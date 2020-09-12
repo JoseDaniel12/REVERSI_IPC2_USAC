@@ -1,0 +1,137 @@
+﻿body {
+    background-color: #3f3f3f;
+}
+
+.state-container {
+    position: relative;
+    margin: auto;
+    height: 95px;
+    width: 509px;
+    background: #303030;
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
+
+.black-points {
+    position: absolute;
+    border-radius: 8px;
+    left: 15px;
+    top: 18px;
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    float: left;
+    color: gray;
+    text-align: center;
+}
+
+.white-points {
+    position: absolute;
+    border-radius: 8px;
+    right: 15px;
+    top: 18px;
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke;
+    float: left;
+    text-align: center;
+}
+
+.black-points p {
+    position: absolute;
+    left: 25px;
+    top: 5px;
+}
+
+.white-points p {
+    position: absolute;
+    right: 25px;
+    top: 5px;
+}
+
+.turn-state {
+    position: absolute;
+    left: 208px;
+    top: 25px;
+}
+
+    .turn-state p {
+        color: whitesmoke;
+    }
+
+
+.box-container {
+    position: relative;
+    width: 510px;
+    height: 510px;
+    background-color: #3f3f3f;
+    margin: auto;
+}
+
+.box {
+    float: left;
+    height: 50px;
+    width: 50px;
+    background: #009067;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    text-align: center;
+}
+
+.coin {
+    margin-top: 5px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    background-color: #009067;
+    border: none;
+}
+
+.fila#cero .box#cero {
+    border-top-left-radius: 6px;
+}
+
+.fila#cero .box#nueve {
+    border-top-right-radius: 6px;
+}
+
+.fila#nueve .box#cero {
+    border-bottom-left-radius: 6px;
+}
+
+.fila#nueve .box#nueve {
+    border-bottom-right-radius: 6px;
+}
+
+.fila#cero .box {
+    background-color: #ca8c4f;
+}
+
+.fila#nueve .box {
+    background-color: #ca8c4f;
+}
+
+.box#cero {
+    background-color: #ca8c4f;
+}
+
+.box#nueve {
+    background-color: #ca8c4f;
+}
+
+
+.box .marcador {
+    color: #a33c25;
+    font-size: 15px;
+}
+
+.option-cotainer {
+    float: left;
+}
+
+.option {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 6px;
+}

@@ -1,0 +1,55 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #2c2b30;
+}
+
+.loging-box {
+    position: relative;
+    margin: 120px auto;
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    height: 300px;
+    box-shadow: black;
+}
+
+input {
+    border-radius: 4px;
+    border-width: 0.005px;
+    border: 0;
+    width: 365px;
+    padding: 18px;
+    margin-bottom: 10px;
+}
+
+button {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 0;
+    color: white;
+    padding: 15px;
+    display: block;
+}
+
+.btn-iniciar-sesion {
+    background-color: #1877f2;
+    width: 402px;
+    margin-bottom: 20px;
+}
+
+.btn-crear-sesion {
+    margin-left: 80px;
+    margin-top: 20px;
+    width: 220px;
+    background-color: #42b72a;
+}
+
+a {
+    margin-left: 120px;
+    text-decoration: none;
+    color: gray;
+}
+
+

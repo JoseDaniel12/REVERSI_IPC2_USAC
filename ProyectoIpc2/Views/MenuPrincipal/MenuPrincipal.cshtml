@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "MenuPrincipal";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Principal </title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/css/MenuPrincipalEstitlo.css">
+</head>
+
+<body>
+    <div class="option-container">
+        <img src="~/Content/Imgs/reversi.png" alt="" width="460" class="cabezera">
+        <button class="option">Partida contra la PC</button>
+        <button class="option">Partida con otro jugador</button>
+        <button class="option">Torneo</button>
+        <button class="option">Reportes</button>
+        <button class="option">Cerrar sesion</button>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Cargar Partida
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cargar partida</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01" onchange="processSelectedFiles(this)">
+                                <label class="custom-file-label" for="inputGroupFile01" id="choosedFile"
+                                       accept=".xml">Choose file</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" onclick="cargarPartida()">Continuar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin de boostrap -->
+
+    </div>
+</body>
+</html>
+
+<script>
+    function renderBoard(tablero) {
+        for (let y = 0; y < 8; y++) {
+            for (let x = 0; x < 8; x++) {
+                let id = x + "" + y
+                let boton = document.getElementById(id);
+                switch (tablero[x][y]) {
+                    case 1:
+                        boton.style.backgroundColor = "whitesmoke";
+                        break
+                    case 2:
+                        boton.style.backgroundColor = "black";
+                        break
+                    default:
+                        boton.style.backgroundColor = "";
+                        break
+                }
+            }
+        }
+    }
+
+    function processSelectedFiles(fileInput) {
+        let fileName = fileInput.files[0].name
+        document.getElementById("choosedFile").innerHTML = fileName
+    }
+
+    function cargarPartida() {
+        let fileRoot = "C:\\Users\\josed\\Downloads\\" + document.getElementById("choosedFile").innerHTML;
+        let rootForm = new FormData();
+        rootForm.append("fileRoot", fileRoot)
+        fetch('/Tablero/CargarPartida', {
+            method: 'POST',
+            body: rootForm
+        }).then(respuesta => respuesta.json())
+            .then(respuesta => { console.log(respuesta) ; window.locationf ="/Tablero/Tablero" ; renderBoard(respuesta) });
+    }
+</script>

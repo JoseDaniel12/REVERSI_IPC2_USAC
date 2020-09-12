@@ -1,0 +1,71 @@
+﻿@model ProyectoIpc2.Models.Player 
+@{
+    ViewBag.Title = "Registro";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Registro </title>
+    <link rel="stylesheet" href="~/Content/css/RegistroEstilo.css">
+</head>
+
+
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <ul>
+            <li>
+                <label for="fname"> Nombres: </label>
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "", placeholder = "Ingrese su nombre" } })
+            </li>
+            <li>
+                <label for="fname"> Nombre de usuario: </label>
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "", placeholder = "Ingrese su nombre de usaurio" } })
+            </li>
+            <li>
+                <label for="fname"> Apellidos: </label>
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "", placeholder = "Ingrese sus apellidos" } })
+            </li>
+            <li>
+                <label for="femail"> Correo: </label>
+                @Html.EditorFor(model => model.Mail, new { htmlAttributes = new { @class = "", placeholder = "Ingrese su correo" } })
+            </li>
+            <li>
+                <label for="fcontraseña"> Contraseña: </label>
+                @Html.EditorFor(model => model.Password, new {htmlAttributes = new { @class = "", placeholder = "Ingrese contraseña" } })
+            </li>
+            <li>
+                <label for="fcon_contraseña"> Contraseña: </label>
+                <input type="password" id="fcon_contraseña" placeholder="Ingrese su contraseña">
+            </li>
+            <li>
+                <label for="fdate"> Fecha: </label>
+                @Html.EditorFor(model => model.BornDate, new { htmlAttributes = new { @class = "", placeholder = "Ingrese fecha de nacimiento" } })
+            </li>
+            <li>
+                <label for="fsexo"> Sexo: </label>
+                @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "", placeholder = "Ingrese su sexo" } })
+            </li>
+            <li>
+                <label for="fpais"> Pais: </label>  
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "", placeholder = "Ingrese su pais" } })
+            </li>
+
+        </ul>
+        <div id="logos">
+            <img src="https://www.vectorico.com/download/social_media/Facebook-Logo-Square.jpg" alt="">
+            <img src="https://hipertextual.com/files/2012/06/twitter-bird-white-on-blue.jpg" alt="">
+            <img src="~/Content/Imgs/GoogleLogo.png" alt="">
+        </div>
+        <button type="submit" onclick="@Url.Action("Tablero","Tablero")">Enviar todo</button>
+
+    }
+</body>
+
+</html>
+
+
