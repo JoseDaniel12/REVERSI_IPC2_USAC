@@ -136,6 +136,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Encuentro.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inscripcion.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelPlayers.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,8 +157,35 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelPlayers.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelReversi.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelReversi.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelReversi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ModelReversi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelReversi.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Partida.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Player.cs">
       <DependentUpon>ModelPlayers.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ronda.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Torneo.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -177,6 +210,16 @@
       <DependentUpon>ModelPlayers.edmx</DependentUpon>
       <LastGenOutput>ModelPlayers.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\ModelReversi.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelReversi.edmx</DependentUpon>
+      <LastGenOutput>ModelReversi.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ModelReversi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelReversi.edmx</DependentUpon>
+      <LastGenOutput>ModelReversi.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Imgs\faceLogo.webp" />
@@ -187,6 +230,13 @@
     </EntityDeploy>
     <Content Include="Models\ModelPlayers.edmx.diagram">
       <DependentUpon>ModelPlayers.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ModelReversi.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelReversi.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ModelReversi.edmx.diagram">
+      <DependentUpon>ModelReversi.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

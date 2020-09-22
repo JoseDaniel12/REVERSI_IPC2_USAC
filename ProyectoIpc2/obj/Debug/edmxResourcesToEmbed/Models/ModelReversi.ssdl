@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReversiDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Encuentro">
+    <Key>
+      <PropertyRef Name="MeetingId" />
+    </Key>
+    <Property Name="MeetingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="GameId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inscripcion">
+    <Key>
+      <PropertyRef Name="InscriptionId" />
+    </Key>
+    <Property Name="InscriptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TournamentId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="GameId" />
+    </Key>
+    <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="XmlRouteBoard" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Player1MovesNumber" Type="int" Nullable="false" />
+    <Property Name="Player2MovesNumber" Type="int" Nullable="false" />
+    <Property Name="Player1Points" Type="int" Nullable="false" />
+    <Property Name="Player2Points" Type="int" Nullable="false" />
+    <Property Name="Player1" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Player2" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoundId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ronda">
+    <Key>
+      <PropertyRef Name="RoundId" />
+    </Key>
+    <Property Name="RoundId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TournamentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Torneo">
+    <Key>
+      <PropertyRef Name="TournamentId" />
+    </Key>
+    <Property Name="TournamentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TournamentName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BornDate" Type="datetime" Nullable="false" />
+    <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Encuentro__GameI__48CFD27E">
+    <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+    <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partida">
+        <PropertyRef Name="GameId" />
+      </Principal>
+      <Dependent Role="Encuentro">
+        <PropertyRef Name="GameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Encuentro__UserI__47DBAE45">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Encuentro">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscripci__Tourn__3E52440B">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+    <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="TournamentId" />
+      </Principal>
+      <Dependent Role="Inscripcion">
+        <PropertyRef Name="TournamentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Inscripci__UserI__3F466844">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Inscripcion">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Partida__RoundId__44FF419A">
+    <End Role="Ronda" Type="Self.Ronda" Multiplicity="1" />
+    <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ronda">
+        <PropertyRef Name="RoundId" />
+      </Principal>
+      <Dependent Role="Partida">
+        <PropertyRef Name="RoundId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Ronda__Tournamen__4222D4EF">
+    <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
+    <End Role="Ronda" Type="Self.Ronda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Torneo">
+        <PropertyRef Name="TournamentId" />
+      </Principal>
+      <Dependent Role="Ronda">
+        <PropertyRef Name="TournamentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReversiDBModelStoreContainer">
+    <EntitySet Name="Encuentro" EntityType="Self.Encuentro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inscripcion" EntityType="Self.Inscripcion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ronda" EntityType="Self.Ronda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Encuentro__GameI__48CFD27E" Association="Self.FK__Encuentro__GameI__48CFD27E">
+      <End Role="Partida" EntitySet="Partida" />
+      <End Role="Encuentro" EntitySet="Encuentro" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Encuentro__UserI__47DBAE45" Association="Self.FK__Encuentro__UserI__47DBAE45">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Encuentro" EntitySet="Encuentro" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscripci__Tourn__3E52440B" Association="Self.FK__Inscripci__Tourn__3E52440B">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Inscripcion" EntitySet="Inscripcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Inscripci__UserI__3F466844" Association="Self.FK__Inscripci__UserI__3F466844">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Inscripcion" EntitySet="Inscripcion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Partida__RoundId__44FF419A" Association="Self.FK__Partida__RoundId__44FF419A">
+      <End Role="Ronda" EntitySet="Ronda" />
+      <End Role="Partida" EntitySet="Partida" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Ronda__Tournamen__4222D4EF" Association="Self.FK__Ronda__Tournamen__4222D4EF">
+      <End Role="Torneo" EntitySet="Torneo" />
+      <End Role="Ronda" EntitySet="Ronda" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

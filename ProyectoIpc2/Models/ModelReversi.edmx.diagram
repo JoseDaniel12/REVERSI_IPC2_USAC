@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="17fc1259e9f34cc182f999867cf5ffc3" Name="Diagram1">
+        <EntityTypeShape EntityType="ReversiDBModel.Encuentro" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReversiDBModel.Inscripcion" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReversiDBModel.Partida" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReversiDBModel.Ronda" Width="1.5" PointX="1.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReversiDBModel.Torneo" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReversiDBModel.Usuario" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="ReversiDBModel.FK__Encuentro__GameI__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="ReversiDBModel.FK__Encuentro__UserI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="ReversiDBModel.FK__Inscripci__Tourn__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="ReversiDBModel.FK__Inscripci__UserI__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="ReversiDBModel.FK__Partida__RoundId__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="ReversiDBModel.FK__Ronda__Tournamen__4222D4EF" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

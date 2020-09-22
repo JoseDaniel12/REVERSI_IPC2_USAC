@@ -1,4 +1,5 @@
 ﻿
+
 @{
     ViewBag.Title = "Loging";
 }
@@ -6,29 +7,26 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Loging </title>
-    <link rel="stylesheet" href="~/Content/css/EstiloLoging.css">
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap" rel="stylesheet">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Loging </title>
+        <link rel="stylesheet" href="~/Content/css/EstiloLoging.css">
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap" rel="stylesheet">
+    </head>
 
-<body>
-    <div class="loging-box">
-        <form action="">
-            <input type="text" id="fname" placeholder="Nombre Usuario">
-            <input type="password" id="fpassword" placeholder="Contraseña">
-            <button class="btn-iniciar-sesion">Iniciar sesion</button>
-            <a href="">Contactate con iGameGT</a>
-            <hr>
-            <button class="btn-crear-sesion">Crear cuenta nueva</button>
-            
-
-        </form>
-        <h1></h1>
-    </div>
-</body>
-
+    <body>
+            <div class="loging-box">
+                <form  action="/Loging/Loging" method="post">
+                    <input type="text" id="fname" placeholder="Nombre Usuario" name="nombre">
+                    <input type="password" id="fpassword" placeholder="Contraseña" name="contraseña">
+                    <button class="btn-iniciar-sesion" type="submit">Iniciar sesion</button>
+                    <a href="">Contactate con iGameGT</a>
+                    <hr>
+                    <button class="btn-crear-sesion">@Html.ActionLink("Crear sesion", "Registro","Registro")</button>
+                </form>
+                <h1></h1>
+            </div>
+    </body>
 </html>
 

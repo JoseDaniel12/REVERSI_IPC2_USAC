@@ -17,14 +17,22 @@ namespace ProyectoIpc2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registro(Player jugador)
+        public ActionResult Registro(Usuario jugador)
         {
-            using (PlayerContext db = new PlayerContext())
+            using (ReversiContext db = new ReversiContext())
             {
-                db.Player.Add(jugador);
-                db.SaveChanges();
-                return RedirectToAction("Tablero","Tablero");
+                try
+                {
+                    db.Usuario.Add(jugador);
+                    db.SaveChanges();
+                    return RedirectToAction("Loging", "Loging");
+                } catch
+                {
+                    return RedirectToAction("Registro", "Registro");
+                }
+                
             }
+           
         }
     }          
 }

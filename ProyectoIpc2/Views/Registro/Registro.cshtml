@@ -1,4 +1,4 @@
-﻿@model ProyectoIpc2.Models.Player 
+﻿@model ProyectoIpc2.Models.Usuario 
 @{
     ViewBag.Title = "Registro";
 }
@@ -45,10 +45,6 @@
             <li>
                 <label for="fdate"> Fecha: </label>
                 @Html.EditorFor(model => model.BornDate, new { htmlAttributes = new { @class = "", placeholder = "Ingrese fecha de nacimiento" } })
-            </li>
-            <li>
-                <label for="fsexo"> Sexo: </label>
-                @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "", placeholder = "Ingrese su sexo" } })
             </li>
             <li>
                 <label for="fpais"> Pais: </label>  

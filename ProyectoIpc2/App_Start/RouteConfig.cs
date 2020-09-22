@@ -17,7 +17,7 @@ namespace ProyectoIpc2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Registro", action = "Registro", id = UrlParameter.Optional }
+                defaults: new { controller = "Loging", action = "Loging", id = UrlParameter.Optional }
             );
 
 
