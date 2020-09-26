@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics;
+using System.Web.Mvc;
+using ProyectoIpc2.Content.Csharp;
 using ProyectoIpc2.Models;
 
 namespace ProyectoIpc2.Controllers
@@ -18,7 +20,8 @@ namespace ProyectoIpc2.Controllers
                 foreach (Usuario usuario in db.Usuario)
                     if (usuario.Name == nombre && usuario.Password == contraseña)
                     {
-                        return RedirectToAction("Tablero", "Tablero");
+                        GameLogic.userId = usuario.UserId;
+                        return RedirectToAction("MenuPrincipal", "MenuPrincipal");
                     }
             }
 

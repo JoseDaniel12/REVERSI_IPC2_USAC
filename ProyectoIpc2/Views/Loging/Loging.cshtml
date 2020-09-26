@@ -16,17 +16,23 @@
     </head>
 
     <body>
-            <div class="loging-box">
-                <form  action="/Loging/Loging" method="post">
-                    <input type="text" id="fname" placeholder="Nombre Usuario" name="nombre">
-                    <input type="password" id="fpassword" placeholder="Contraseña" name="contraseña">
-                    <button class="btn-iniciar-sesion" type="submit">Iniciar sesion</button>
-                    <a href="">Contactate con iGameGT</a>
-                    <hr>
-                    <button class="btn-crear-sesion">@Html.ActionLink("Crear sesion", "Registro","Registro")</button>
-                </form>
-                <h1></h1>
-            </div>
+        <div class="loging-box">
+            <form action="/Loging/Loging" method="post">
+                <input type="text" id="fname" placeholder="Nombre Usuario" name="nombre">
+                <input type="password" id="fpassword" placeholder="Contraseña" name="contraseña">
+                <button class="btn-iniciar-sesion" type="submit">Iniciar sesion</button>
+                <a href="">Contactate con iGameGT</a>
+                <hr>
+
+            </form>
+            <button class="btn-crear-sesion" onclick="crearSesion()">Crear sesion</button>
+            <h1></h1>
+        </div>
     </body>
 </html>
 
+<script>
+    function crearSesion() {
+        location.assign("/Registro/Registro")
+    }
+</script>

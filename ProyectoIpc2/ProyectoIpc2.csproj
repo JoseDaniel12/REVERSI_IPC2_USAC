@@ -196,6 +196,7 @@
     <Content Include="Content\css\TableroEstilo.css" />
     <Content Include="Content\Imgs\GoogleLogo.png" />
     <Content Include="Content\Imgs\reversi.png" />
+    <Content Include="Content\JsFiles\MenuPrincipal.js" />
     <Content Include="Content\JsFiles\Pruebas.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

@@ -12,6 +12,8 @@
     border-radius: 8px;
 }
 
+
+
 button {
     background-color: #1877f2;
     border-radius: 8px;
@@ -22,6 +24,11 @@ button {
     width: 350px;
     margin-bottom: 20px;
     margin-left: 50px;
+}
+
+a {
+    text-decoration: none;
+    color:white;
 }
 
 .cabezera {

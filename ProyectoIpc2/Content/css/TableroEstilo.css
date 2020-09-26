@@ -2,6 +2,19 @@
     background-color: #3f3f3f;
 }
 
+.options-container {
+    margin: 10px;
+    float: left;
+    width: 240px;
+}
+
+    .options-container button {
+        display: block;
+        width: 223px;
+        margin: 10px;
+        margin-bottom: 0px;
+    }
+
 .state-container {
     position: relative;
     margin: auto;
@@ -17,7 +30,7 @@
     border-radius: 8px;
     left: 15px;
     top: 18px;
-    width: 60px;
+    width: 100px;
     height: 60px;
     background-color: black;
     float: left;
@@ -30,7 +43,7 @@
     border-radius: 8px;
     right: 15px;
     top: 18px;
-    width: 60px;
+    width: 100px;
     height: 60px;
     background-color: whitesmoke;
     float: left;
@@ -38,15 +51,13 @@
 }
 
 .black-points p {
-    position: absolute;
-    left: 25px;
-    top: 5px;
+    margin-top: 17px;
+    margin-left: auto;
 }
 
 .white-points p {
-    position: absolute;
-    right: 25px;
-    top: 5px;
+    margin-top: 17px;
+    margin-right: auto;
 }
 
 .turn-state {
@@ -83,7 +94,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50px;
-    background-color: #009067;
+    background-color:#009067;
     border: none;
 }
 
@@ -134,4 +145,60 @@
     height: 40px;
     border: none;
     border-radius: 6px;
+}
+
+.game_container {
+    float: left;
+    margin-left: 160px;
+}
+
+.players_info {
+    float: right;
+    margin: 10px;
+    background-color: #303030;
+    width: 250px;
+    height: 220px;
+    border-radius: 8px;
+    padding-top: 20px;
+    box-sizing: border-box;
+}
+
+
+.player_info {
+    background-color: whitesmoke;
+    width: 210px;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+.player1_Name {
+    text-align: center;
+    padding-top: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: black;
+    height: 40px;
+    color: whitesmoke;
+}
+
+.player2_Name {
+    text-align: center;
+    padding-top: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    background-color: white;
+    height: 40px;
+    color: black;
+}
+
+.player_movs {
+    box-sizing: border-box;
+    padding-top: 8px;
+    text-align: center;
+    height: 40px;
+}
+
+.box .marcador {
+    margin-top: 12px;
 }

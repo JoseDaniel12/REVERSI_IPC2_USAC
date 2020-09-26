@@ -9,6 +9,8 @@ namespace ProyectoIpc2.Content.Csharp
 {
     public static class GameLogic
     {
+        public static int userId = -1;
+        public static string tipoPartida = "";
         public static int[,] tablero = new int[8, 8] {
             {-1, -1, -1, -1, -1, -1, -1, -1},
             {-1, -1, -1, -1, -1, -1, -1, -1},
