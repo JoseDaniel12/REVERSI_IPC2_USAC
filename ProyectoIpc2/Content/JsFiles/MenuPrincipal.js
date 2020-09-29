@@ -4,8 +4,7 @@
     fetch('/MenuPrincipal/opcionSeleccionada', {
         method: 'POST',
         body: opcion
-    }).then()
-    location.assign("/Tablero/Tablero")
+    }).then(res => location.assign("/Tablero/Tablero"))
 }
 
 function vsJugador() {
@@ -14,6 +13,5 @@ function vsJugador() {
     fetch('/MenuPrincipal/opcionSeleccionada', {
         method: 'POST',
         body: opcion
-    }).then()
-    location.assign("/Tablero/Tablero")
+    }).then(res => location.assign("/Tablero/Tablero"))
 }

@@ -14,12 +14,11 @@ namespace ProyectoIpc2.Controllers
         // GET: Tablero
         public ActionResult Tablero()
         {
-            GameLogic.limpiarTablero();
             return View();
         }
 
         [HttpPost]
-        public ActionResult CaillaPresionada(FormCollection collection) {
+        public ActionResult CasillaPresionada(FormCollection collection) {
             string coordenada = Request.Params["coordenada"];
             int editX = Int32.Parse(coordenada[0].ToString());
             int editY = Int32.Parse(coordenada[1].ToString());
@@ -50,7 +49,6 @@ namespace ProyectoIpc2.Controllers
         [HttpPost]
         public ActionResult CargarPartida(FormCollection collection)
         {
-            GameLogic.limpiarTablero();
             string fileRoot = Request.Params["fileRoot"];
             GameLogic.cargarPartida(fileRoot);
             var tableroJson = JsonConvert.SerializeObject(GameLogic.tablero);

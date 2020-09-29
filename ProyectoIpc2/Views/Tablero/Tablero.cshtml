@@ -14,6 +14,7 @@
     <title> Tablero </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Principal </title>
+    <script src="~/Content/JsFiles/Pruebas.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -31,6 +32,7 @@
 <body>
 
     <div class="options-container">
+        <button class="option salir"> Salir </button>
         <button class="option" onclick="guardarPartida()">Guardar Partida</button>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -67,9 +69,9 @@
 
     <div class="game_container">
         <div class="state-container">
-            <div class="black-points"><p>Puntos: 65</p></div>
-            <div class="turn-state"><p>Turno: Blancas</p></div>
-            <div class="white-points"><p>Puntos: 65</p></div>
+            <div class="black-points"><p>Puntos: 0</p></div>
+            <div class="turn-state"><p>Turno: Negro</p></div>
+            <div class="white-points"><p>Puntos: 0</p></div>
         </div>
 
         <div class="box-container">
@@ -113,25 +115,25 @@
                     <button class="coin" id="00" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="01" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="10" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="02" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="20" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="03" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="30" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="04" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="40" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="05" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="50" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="06" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="60" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="07" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="70" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">1</p>
@@ -143,28 +145,28 @@
                     <p class="marcador">2</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="10" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="01" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
                     <button class="coin" id="11" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="12" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="21" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="13" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="31" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="14" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="41" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="15" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="51" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="16" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="61" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="17" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="71" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">2</p>
@@ -176,28 +178,28 @@
                     <p class="marcador">3</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="20" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="02" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="21" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="12" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
                     <button class="coin" id="22" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="23" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="32" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="24" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="42" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="25" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="52" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="26" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="62" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="27" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="72" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">3</p>
@@ -209,28 +211,28 @@
                     <p class="marcador">4</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="30" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="03" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="31" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="13" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="32" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="23" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="33" onclick="casillaPresionada(this)"></button>
+                    <button class="coin blanca_inicial" id="33" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="34" onclick="casillaPresionada(this)"></button>
+                    <button class="coin negra_inicial" id="43" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="35" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="53" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="36" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="63" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="37" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="73" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">4</p>
@@ -242,28 +244,28 @@
                     <p class="marcador">5</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="40" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="04" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="41" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="14" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="42" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="24" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="43" onclick="casillaPresionada(this)"></button>
+                    <button class="coin negra_inicial" id="34" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="44" onclick="casillaPresionada(this)"></button>
+                    <button class="coin blanca_inicial" id="44" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="45" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="54" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="46" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="64" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="47" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="74" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">5</p>
@@ -275,28 +277,28 @@
                     <p class="marcador">6</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="50" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="05" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="51" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="15" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="52" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="25" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="53" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="35" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="54" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="45" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
                     <button class="coin" id="55" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="56" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="65" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="57" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="75" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">6</p>
@@ -308,28 +310,28 @@
                     <p class="marcador">7</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="60" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="06" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="61" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="16" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="62" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="26" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="63" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="36" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="64" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="46" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="65" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="56" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
                     <button class="coin" id="66" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
-                    <button class="coin" id="67" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="76" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="nueve">
                     <p class="marcador">7</p>
@@ -341,25 +343,25 @@
                     <p class="marcador">8</p>
                 </div>
                 <div class="box" id="1">
-                    <button class="coin" id="70" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="07" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="2">
-                    <button class="coin" id="71" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="17" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="72" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="27" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="73" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="37" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="74" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="47" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="75" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="57" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
-                    <button class="coin" id="76" onclick="casillaPresionada(this)"></button>
+                    <button class="coin" id="67" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="8">
                     <button class="coin" id="77" onclick="casillaPresionada(this)"></button>
@@ -404,14 +406,23 @@
     </div>
     <div class="players_info">
         <div class="player_info">
-            <div class="player1_Name">Jugador 1</div>
-            <div class="player_movs">Movimientos: 65</div>
+            <div class="black_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_negro</div>
+            <div class="player_movs">Movimientos: 0</div>
         </div>
         <div class="player_info">
-            <div class="player2_Name">Jugador 2</div>
-            <div class="player_movs">Movimientos 65</div>
+            <div class="white_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_blanco</div>
+            <div class="player_movs">Movimientos: 0</div>
         </div>
     </div>
+    @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
+        <div class="players_info" id="vsJugador">
+            <input type="text" class="nombre_input" placeholder="Nombre de inivitado">
+            <button class="info_option" id="nombre">Cambiar nombre</button>
+            <button class="info_option" id="host_black" onclick="cambiarColor()">Cambiar color del host</button>
+        </div>
+     }
+
+
 </body>
 </html>
-<script src="~/Content/JsFiles/Pruebas.js"></script>
+
