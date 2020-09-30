@@ -23,40 +23,61 @@ namespace ProyectoIpc2.Controllers
             int editX = Int32.Parse(coordenada[0].ToString());
             int editY = Int32.Parse(coordenada[1].ToString());
             GameLogic.colocarFicha(editX, editY);
-            var tableroJs = JsonConvert.SerializeObject(GameLogic.tablero);
-            var turnoJs = JsonConvert.SerializeObject(GameLogic.turno);
             Dictionary<string, string> info = new Dictionary<string, string>();
-            info.Add("tablero", tableroJs);
-            info.Add("turno", turnoJs);
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero) );
+            info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
+            info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
+            info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
+            info.Add("player1Points", JsonConvert.SerializeObject(GameLogic.player1Points));
+            info.Add("player2Points", JsonConvert.SerializeObject(GameLogic.player2Points));
+            info.Add("tipoPartida", JsonConvert.SerializeObject(GameLogic.tipoPartida));
+            info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
+            info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
             return Content(JsonConvert.SerializeObject(info));
         }
 
         [HttpPost]
         public ActionResult GuardarPartida(FormCollection collection)
         {
-            int[,] tablero = new int[8, 8];
-            string position;
-            string valorCasilla;
-            for (int y = 0; y < 8; y++)
-            {
-                for (int x = 0; x < 8; x++)
-                {
-                    position = x + "" + y;
-                    valorCasilla = Request.Params[position];
-                    tablero[x,y] = Int32.Parse(valorCasilla);
-                }
-            }
-            GameLogic.guardarPartida(tablero);
-            return Content("{\"Procedimiento\": \"exitoso\"}");
+            GameLogic.guardarPartida();
+            return new EmptyResult();
         }
 
         [HttpPost]
-        public ActionResult CargarPartida(FormCollection collection)
-        {
+        public ActionResult CargarPartida(FormCollection collection) {
             string fileRoot = Request.Params["fileRoot"];
             GameLogic.cargarPartida(fileRoot);
-            var tableroJson = JsonConvert.SerializeObject(GameLogic.tablero);
-            return Content(tableroJson);
+            Dictionary<string, string> info = new Dictionary<string, string>();
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
+            info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
+            info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
+            info.Add("player1Points", JsonConvert.SerializeObject(GameLogic.player1Points));
+            info.Add("player2Points", JsonConvert.SerializeObject(GameLogic.player2Points));
+            info.Add("tipoPartida", JsonConvert.SerializeObject(GameLogic.tipoPartida));
+            info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
+            info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
+            return Content(JsonConvert.SerializeObject(info));
         }
+
+
+        [HttpPost]
+        public ActionResult PcPlayerMove(FormCollection collection) {
+            int[] tiro = PcPlayer.move(GameLogic.tablero, GameLogic.tirosPosibles, GameLogic.turno);
+            GameLogic.colocarFicha(tiro[0], tiro[1]);
+            Dictionary<string, string> info = new Dictionary<string, string>();
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
+            info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
+            info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
+            info.Add("player1Points", JsonConvert.SerializeObject(GameLogic.player1Points));
+            info.Add("player2Points", JsonConvert.SerializeObject(GameLogic.player2Points));
+            info.Add("tipoPartida", JsonConvert.SerializeObject(GameLogic.tipoPartida));
+            info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
+            info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
+            return Content(JsonConvert.SerializeObject(info));
+        }
+
     }
+
 }

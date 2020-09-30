@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure.Interception;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
@@ -18,8 +19,8 @@ namespace ProyectoIpc2.Content.Csharp
         public static string jugador_blanco = "Nombre";
         public static int player1MovesNumber = 0;
         public static int player2MovesNumber = 0;
-        public static int player1Points = 0;
-        public static int player2Points = 0;
+        public static int player1Points = 2;
+        public static int player2Points = 2;
         public static int turno = 1;
         public static List<int[]> tirosPosibles = new List<int[]>() { 
             new int[] {3,2},
@@ -172,12 +173,20 @@ namespace ProyectoIpc2.Content.Csharp
                         x++;
                         y--;
                     }
+
                     Debug.WriteLine(turno);
                     foreach (List<int[]> camino in caminosComidos) {
                         foreach (int[] ficha in camino) {
                             tablero[ficha[1], ficha[0]] = turno;
                         }
                     }
+
+                    if (turno == 1) {
+                        player1MovesNumber++;
+                    } else {
+                        player2MovesNumber++;
+                    }
+                    calcularPutnos();
 
                     turno = (turno == 1) ? 2 : 1;
                     actualizarTirosPosibles();
@@ -318,7 +327,7 @@ namespace ProyectoIpc2.Content.Csharp
                 }
             }
         }
-        public static void guardarPartida(int[,] tablero)
+        public static void guardarPartida()
         {
             XmlDocument xmlDoc = new XmlDocument();
             XmlNode tableroNode = xmlDoc.CreateElement("tablero");
@@ -342,13 +351,13 @@ namespace ProyectoIpc2.Content.Csharp
                     filaNode.InnerText = (y + 1).ToString();
 
                     // establecer el color de la ficha
-                    switch (tablero[x, y])
+                    switch (tablero[y,x])
                     {
                         case 1:
-                            colorNode.InnerText = "blanco";
+                            colorNode.InnerText = "negro";
                             break;
                         case 2:
-                            colorNode.InnerText = "negro";
+                            colorNode.InnerText = "blanco";
                             break;
                     }
 
@@ -393,25 +402,22 @@ namespace ProyectoIpc2.Content.Csharp
 
             XmlNode siguienteTiroNode = xmlDoc.CreateElement("siguienteTiro");
             colorNode = xmlDoc.CreateElement("color");
-            colorNode.InnerText = "blanco";
+            colorNode.InnerText = (GameLogic.turno == 1)? "negro": "blanco";
             siguienteTiroNode.AppendChild(colorNode);
             tableroNode.AppendChild(siguienteTiroNode);
             xmlDoc.Save(@"C:\Users\josed\Downloads\archivo.xml");
         }
 
-        public static void cargarPartida(String rootFile)
-        {
+        public static void cargarPartida(String rootFile) {
+            limpiarTablero();
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(rootFile);
-            foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes)
-            {
-                if (xmlNode.Name == "ficha")
-                {
+            foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes) {
+                if (xmlNode.Name == "ficha") {
                     string color = xmlNode.ChildNodes[0].InnerText;
                     int y = Int32.Parse(xmlNode.ChildNodes[2].InnerText) - 1;
                     int x = 0;
-                    switch (xmlNode.ChildNodes[1].InnerText)
-                    {
+                    switch (xmlNode.ChildNodes[1].InnerText) {
                         case "A":
                             x = 0;
                             break;
@@ -439,24 +445,43 @@ namespace ProyectoIpc2.Content.Csharp
 
                     }
 
-                    switch (color)
-                    {
-                        case "blanco":
-                            tablero[x, y] = 1;
-                            break;
+                    switch (color) {
                         case "negro":
-                            tablero[x, y] = 2;
+                            tablero[y, x] = 1;
+                            break;
+                        case "blanco":
+                            tablero[y, x] = 2;
                             break;
                     }
-                }
 
+                } else if (xmlNode.Name == "siguienteTiro") {
+                    string color = xmlNode.ChildNodes[0].InnerText;
+                    GameLogic.turno = (color == "negro") ? 1 : 2;
+
+                }
             }
+            calcularPutnos();
+            actualizarTirosPosibles();
         }
 
         public static void limpiarTablero() {
             for (int y = 0; y < 8; y++) {
                 for (int x = 0; x < 8; x++) {
-                    tablero[x, y] = -1;  
+                    tablero[y, x] = -1;  
+                }
+            }
+        }
+
+        public static void calcularPutnos() {
+            player1Points = 0;
+            player2Points = 0;
+            for (int y = 0; y < 8; y++) {
+                for (int x = 0; x < 8; x++) {
+                    if (tablero[y,x] == 1) {
+                        player1Points++;
+                    } else if (tablero[y, x] == 2) {
+                        player2Points++;
+                    }
                 }
             }
         }

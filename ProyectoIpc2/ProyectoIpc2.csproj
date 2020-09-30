@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\Csharp\GameLogic.cs" />
+    <Compile Include="Content\Csharp\PcPlayer.cs" />
     <Compile Include="Controllers\LogingController.cs" />
     <Compile Include="Controllers\MenuPrincipalController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />

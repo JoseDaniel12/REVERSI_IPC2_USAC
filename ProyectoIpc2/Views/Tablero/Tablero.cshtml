@@ -69,9 +69,9 @@
 
     <div class="game_container">
         <div class="state-container">
-            <div class="black-points"><p>Puntos: 0</p></div>
+            <div class="black-points"><p id="player1Points">Puntos: 2</p></div>
             <div class="turn-state"><p id="turno">Turno: Negro</p></div>
-            <div class="white-points"><p>Puntos: 0</p></div>
+            <div class="white-points"><p id="player2Points">Puntos: 2</p></div>
         </div>
 
         <div class="box-container">
@@ -407,11 +407,11 @@
     <div class="players_info">
         <div class="player_info">
             <div class="black_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_negro</div>
-            <div class="player_movs">Movimientos: 0</div>
+            <div class="player_movs" id="player_movs1">Movimientos: 0</div>
         </div>
         <div class="player_info">
             <div class="white_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_blanco</div>
-            <div class="player_movs">Movimientos: 0</div>
+            <div class="player_movs" id="player_movs2">Movimientos: 0</div>
         </div>
     </div>
     @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
