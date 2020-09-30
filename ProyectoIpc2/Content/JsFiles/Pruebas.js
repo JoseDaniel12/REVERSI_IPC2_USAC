@@ -1,20 +1,29 @@
-﻿function renderBoard(tablero) {
+﻿function renderBoard(info) {
+    let tablero = JSON.parse(info["tablero"])
+    let turno = JSON.parse(info["turno"])
+    console.log(tablero)
     for (let y = 0; y < 8; y++) {
         for (let x = 0; x < 8; x++) {
             let id = x + "" + y
-            let boton = document.getElementById(id);
+            let boton = document.getElementById(id)
             switch (tablero[y][x]) {
                 case 1:
                     boton.style.backgroundColor = "black";
                     break
                 case 2:
-                    boton.style.backgroundColor = "whitesomke";
+                    boton.style.backgroundColor = "whitesmoke";
                     break
                 default:
-                    boton.style.backgroundColor = "";
+                    boton.style.backgroundColor = "#009067";
                     break
             }
         }
+    }
+    let turnState = document.getElementById("turno")
+    if (turno == 1) {
+        turnState.innerHTML = "Turno: Negro"
+    } else {
+        turnState.innerHTML = "Turno: Blanco"
     }
 }
 

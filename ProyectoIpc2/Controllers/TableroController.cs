@@ -23,8 +23,12 @@ namespace ProyectoIpc2.Controllers
             int editX = Int32.Parse(coordenada[0].ToString());
             int editY = Int32.Parse(coordenada[1].ToString());
             GameLogic.colocarFicha(editX, editY);
-            var tableroJson = JsonConvert.SerializeObject(GameLogic.tablero);
-            return Content(tableroJson);
+            var tableroJs = JsonConvert.SerializeObject(GameLogic.tablero);
+            var turnoJs = JsonConvert.SerializeObject(GameLogic.turno);
+            Dictionary<string, string> info = new Dictionary<string, string>();
+            info.Add("tablero", tableroJs);
+            info.Add("turno", turnoJs);
+            return Content(JsonConvert.SerializeObject(info));
         }
 
         [HttpPost]
