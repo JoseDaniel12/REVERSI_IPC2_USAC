@@ -29,7 +29,7 @@ namespace ProyectoIpc2.Models
         public int Player2Points { get; set; }
         public string Player1 { get; set; }
         public string Player2 { get; set; }
-        public int RoundId { get; set; }
+        public Nullable<int> RoundId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Encuentro> Encuentro { get; set; }

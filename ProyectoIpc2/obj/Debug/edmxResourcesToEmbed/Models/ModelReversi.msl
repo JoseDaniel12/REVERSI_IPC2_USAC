@@ -4,64 +4,64 @@
     <EntitySetMapping Name="Encuentro">
       <EntityTypeMapping TypeName="ReversiDBModel.Encuentro">
         <MappingFragment StoreEntitySet="Encuentro">
-          <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Inscripcion">
       <EntityTypeMapping TypeName="ReversiDBModel.Inscripcion">
         <MappingFragment StoreEntitySet="Inscripcion">
-          <ScalarProperty Name="InscriptionId" ColumnName="InscriptionId" />
-          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
+          <ScalarProperty Name="InscriptionId" ColumnName="InscriptionId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Partida">
       <EntityTypeMapping TypeName="ReversiDBModel.Partida">
         <MappingFragment StoreEntitySet="Partida">
-          <ScalarProperty Name="GameId" ColumnName="GameId" />
-          <ScalarProperty Name="GameType" ColumnName="GameType" />
-          <ScalarProperty Name="XmlRouteBoard" ColumnName="XmlRouteBoard" />
-          <ScalarProperty Name="Player1MovesNumber" ColumnName="Player1MovesNumber" />
-          <ScalarProperty Name="Player2MovesNumber" ColumnName="Player2MovesNumber" />
-          <ScalarProperty Name="Player1Points" ColumnName="Player1Points" />
-          <ScalarProperty Name="Player2Points" ColumnName="Player2Points" />
-          <ScalarProperty Name="Player1" ColumnName="Player1" />
-          <ScalarProperty Name="Player2" ColumnName="Player2" />
           <ScalarProperty Name="RoundId" ColumnName="RoundId" />
+          <ScalarProperty Name="Player2" ColumnName="Player2" />
+          <ScalarProperty Name="Player1" ColumnName="Player1" />
+          <ScalarProperty Name="Player2Points" ColumnName="Player2Points" />
+          <ScalarProperty Name="Player1Points" ColumnName="Player1Points" />
+          <ScalarProperty Name="Player2MovesNumber" ColumnName="Player2MovesNumber" />
+          <ScalarProperty Name="Player1MovesNumber" ColumnName="Player1MovesNumber" />
+          <ScalarProperty Name="XmlRouteBoard" ColumnName="XmlRouteBoard" />
+          <ScalarProperty Name="GameType" ColumnName="GameType" />
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Ronda">
       <EntityTypeMapping TypeName="ReversiDBModel.Ronda">
         <MappingFragment StoreEntitySet="Ronda">
-          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
           <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
+          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Torneo">
       <EntityTypeMapping TypeName="ReversiDBModel.Torneo">
         <MappingFragment StoreEntitySet="Torneo">
-          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
           <ScalarProperty Name="TournamentName" ColumnName="TournamentName" />
+          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="ReversiDBModel.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="BornDate" ColumnName="BornDate" />
           <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="BornDate" ColumnName="BornDate" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

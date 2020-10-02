@@ -105,7 +105,6 @@ namespace ProyectoIpc2.Content.Csharp {
                     caminoComido.Add(new int[] { x, y });
                     hayContrarias = (tablero[y, x] != -1) ? true : hayContrarias;
                 } else if (hayContrarias) {
-                    Debug.WriteLine("entro");
                     caminosComidos.Add(caminoComido);
                     break;
                 }
@@ -161,16 +160,27 @@ namespace ProyectoIpc2.Content.Csharp {
         }
 
         public static int[] move(int[,] tablero, List<int[]> tirosPosibles, int turno) {
-            tableroCopia = copiarTablero(tablero);
-            foreach (int[] tiro in tirosPosibles) { 
-                puntajes.Add(calcularPuntajePc(colocarFicha(tableroCopia, tiro[0], tiro[1], turno), turno ));
+            int[] tiroPc = new int[2];
+            if (tirosPosibles.Count > 0) {
                 tableroCopia = copiarTablero(tablero);
+                foreach (int[] tiro in tirosPosibles) {
+                    puntajes.Add(calcularPuntajePc(colocarFicha(tableroCopia, tiro[0], tiro[1], turno), turno));
+                    tableroCopia = copiarTablero(tablero);
+                }
+
+                int maxIndex = puntajes.IndexOf(puntajes.Max());
+                puntajes = new List<int>();
+                tiroPc = tirosPosibles[maxIndex];
+            } else {
+                for (int y = 0; y < 8; y++) {
+                    for (int x = 0; x < 8; x++) {
+                        if (tablero[y,x] == turno) {
+                            tiroPc = new int[] { x, y };
+                        }
+                    }
+                }
             }
-            Debug.WriteLine(puntajes.Max());
-            int maxIndex = puntajes.IndexOf(puntajes.Max());
-            Debug.WriteLine("Indice de movimiento: " + maxIndex);
-            puntajes = new List<int>();
-            return tirosPosibles[maxIndex];
+            return tiroPc;
         }
 
     }

@@ -1,7 +1,6 @@
 ﻿
 @{
 
-
 }
 
 <!DOCTYPE html>
@@ -14,7 +13,6 @@
     <title> Tablero </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Tablero </title>
-    <script src="~/Content/JsFiles/Pruebas.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
@@ -26,13 +24,13 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="~/Content/css/TableroEstilo.css">
+    <link rel="stylesheet" href="~/Content/css/TableroEstilo.css?v=<%=DateTime.Now%>">
 </head>
 
 <body>
 
     <div class="options-container">
-        <button class="option salir"> Salir </button>
+        <button class="option salir" onclick="salir()"> Salir </button>
         <button class="option" onclick="guardarPartida()">Guardar Partida</button>
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -416,13 +414,18 @@
     </div>
     @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
         <div class="players_info" id="vsJugador">
-            <input type="text" class="nombre_input" placeholder="Nombre de inivitado">
-            <button class="info_option" id="nombre">Cambiar nombre</button>
-            <button class="info_option" id="host_black" onclick="cambiarColor()">Cambiar color del host</button>
+            <input type="text" class="nombre_input" placeholder="Nombre de inivitado" id="nombreIngreso">
+            <button class="info_option" id="nombre" onclick="cambiarNombre()">Cambiar nombre</button>
+            @if (ProyectoIpc2.Content.Csharp.GameLogic.hostColor == 1) {
+                <button class="info_option host_black" id="cambiarNombre" onclick="cambiarColor()">Cambiar color del host</button>
+            } else {
+                <button class="info_option host_white" id="cambiarNombre" onclick="cambiarColor()">Cambiar color del host</button>
+            }
         </div>
-     }
+    }
 
-
+    <script src="~/Content/JsFiles/Pruebas.js"></script>
 </body>
+
 </html>
 

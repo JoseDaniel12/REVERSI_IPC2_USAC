@@ -8,7 +8,8 @@
     let tipoPartida = JSON.parse(info["tipoPartida"])
     let jugador_negro = JSON.parse(info["jugador_negro"])
     let jugador_blanco = JSON.parse(info["jugador_blanco"])
-    console.log(tablero)
+    let haTerminado = JSON.parse(info["haTerminado"])
+
     for (let y = 0; y < 8; y++) {
         for (let x = 0; x < 8; x++) {
             let id = x + "" + y
@@ -28,6 +29,7 @@
         }
     }
 
+
     let turnState = document.getElementById("turno")
     if (turno == 1) {
         turnState.innerHTML = "Turno: Negro"
@@ -45,13 +47,22 @@
     player1Points_element.innerHTML = "Puntos: " + player1Points
     player2Points_element.innerHTML = "Puntos: " + player2Points
 
-    if ((tipoPartida == "vsPc") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC"))) {
+    if ((tipoPartida == "vsPc") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC")) && (haTerminado == false) ) {
         fetch('/Tablero/PcPlayerMove', {
             method: 'POST',
         }).then(respuesta => respuesta.json())
             .then(respuesta => renderBoard(respuesta))
     }
-
+    
+    if (haTerminado == true) {
+        if (player1Points > player2Points) {
+            turnState.innerHTML = "Gandor: Negro"
+        } else if (player2Points > player1Points) {
+            turnState.innerHTML = "Gandor: Blanco"
+        } else {
+            turnState.innerHTML = "EMPATE"
+        }
+    }
 
 }
 
@@ -101,12 +112,50 @@ function cargarPartida() {
 }
 
 function cambiarColor() {
-    let nombreNegro = document.getElementsByClassName("black_Name")[0].innerHTML
-    let nombreBlanco = document.getElementsByClassName("white_Name")[0].innerHTML
-    document.getElementsByClassName("black_Name")[0].innerHTML = nombreBlanco
-    document.getElementsByClassName("white_Name")[0].innerHTML = nombreNegro
+    fetch('/Tablero/CambiarColor', {
+        method: 'POST',
+    }).then(respuesta => respuesta.json())
+        .then(
+            function (respuesta) {
+                if (respuesta == true) {
+                    let nombreNegro = document.getElementsByClassName("black_Name")[0].innerHTML
+                    let nombreBlanco = document.getElementsByClassName("white_Name")[0].innerHTML
+                    document.getElementsByClassName("black_Name")[0].innerHTML = nombreBlanco
+                    document.getElementsByClassName("white_Name")[0].innerHTML = nombreNegro
+                    let boton = document.getElementById("cambiarNombre")
+                    if (boton.style.backgroundColor == "black") {
+                        boton.innerHTML = "Color del Host: Blanco"
+                        boton.style.backgroundColor = "whitesmoke"
+                        boton.style.color = "black"
+                    } else {
+                        boton.innerHTML = "Color del Host: Negro"
+                        boton.style.backgroundColor = "black"
+                        boton.style.color = "whitesmoke"
+                    }
+                } else {
+                    alert("No puedes cambiar el color del host al ya haber empezado a jugar")
+                }
+            }
+        );
+        
+
+}
+
+function cambiarNombre() {
+    let nombreDiv = document.getElementById("nombre")
+    let input = document.getElementById("nombreIngreso")
+    if (ingreo.innerHTML != "") {
+        nombre.innerHTML = ingreso.nodeValue
+    }
+
 }
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function salir() {
+    fetch('/Tablero/Salir', {
+        method: 'POST',
+    }).then(respuesta => location.assign("/MenuPrincipal/MenuPrincipal"));
 }

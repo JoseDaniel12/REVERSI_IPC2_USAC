@@ -15,3 +15,9 @@ function vsJugador() {
         body: opcion
     }).then(res => location.assign("/Tablero/Tablero"))
 }
+
+function cerrarSesion() {
+    fetch('/Tablero/CerrarSesion', {
+        method: 'POST',
+    }).then(res => location.assign('/Loging/Loging'))
+}

@@ -26,16 +26,18 @@ namespace ProyectoIpc2.Controllers
                     Random random = new Random();
                     int numero = random.Next(1, 3);
                     if (numero == 1) {
-                        GameLogic.jugador_negro = db.Usuario.Find(GameLogic.userId).Name;
+                        GameLogic.jugador_negro = db.Usuario.Find(GameLogic.userId).UserName;
+                        GameLogic.hostColor = 1;
                         GameLogic.jugador_blanco = "Invitado";
                     } else {
-                        GameLogic.jugador_blanco= db.Usuario.Find(GameLogic.userId).Name;
+                        GameLogic.jugador_blanco= db.Usuario.Find(GameLogic.userId).UserName;
+                        GameLogic.hostColor = 2;
                         GameLogic.jugador_negro = "Invitado";
                     }
                 }
             } else if (GameLogic.tipoPartida == "vsPc") {
                 using (ReversiContext db = new ReversiContext()) {
-                        GameLogic.jugador_negro = db.Usuario.Find(GameLogic.userId).Name;
+                        GameLogic.jugador_negro = db.Usuario.Find(GameLogic.userId).UserName;
                         GameLogic.jugador_blanco = "PC";       
                 }
             }

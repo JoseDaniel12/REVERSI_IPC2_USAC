@@ -79,7 +79,6 @@ C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\es\System.Web.Razor.resourc
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\es\System.Web.WebPages.resources.dll
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\obj\Debug\ProyectoIpc2.csprojAssemblyReference.cache
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\obj\Debug\ProyectoIpc2.csproj.CoreCompileInputs.cache
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\obj\Debug\ProyectoIpc2.csproj.CopyComplete
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\obj\Debug\ProyectoIpc2.dll
@@ -88,3 +87,4 @@ C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\EntityFramework.dll
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\EntityFramework.SqlServer.dll
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\EntityFramework.xml
 C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\bin\EntityFramework.SqlServer.xml
+C:\Users\josed\Desktop\ProyectoIpc2\ProyectoIpc2\obj\Debug\ProyectoIpc2.csprojAssemblyReference.cache

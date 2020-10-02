@@ -256,3 +256,13 @@
     background-color: #d9534f;
     color: white;
 }
+
+.info_option#host_black {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.info_option#host_white {
+    background-color: whitesmoke;
+    color: black;
+}
