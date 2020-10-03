@@ -14,6 +14,7 @@ using WebGrease.Css.Ast.Selectors;
 namespace ProyectoIpc2.Content.Csharp
 {
     public static class GameLogic {
+        public static int gameId = -1;
         public static int userId = -1;
         public static int hostColor = 1;
         public static string xmlRouteBoard = "";
@@ -75,7 +76,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                     }
@@ -93,7 +94,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                     }
@@ -111,7 +112,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                     }
@@ -129,7 +130,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                     }
@@ -151,7 +152,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                         x++;
@@ -165,7 +166,7 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                    if (x - 1 != 8 && x - 1 != -1 && y - 1 != 8 && y - 1 != -1) {
                         x--;
                         y--;
                     }
@@ -176,7 +177,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                         x--;
@@ -189,7 +190,7 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                    if (x - 1 != 8 && x - 1 != -1 && y + 1 != 8 && y + 1 != -1) {
                         x--;
                         y++;
                     }
@@ -200,7 +201,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                         x--;
@@ -213,7 +214,7 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                    if (x + 1 != 8 && x + 1 != -1 && y - 1 != 8 && y - 1 != -1) {
                         x++;
                         y--;
                     }
@@ -224,7 +225,7 @@ namespace ProyectoIpc2.Content.Csharp
                         } else if (tablero[y, x] == turno && hayContrarias == true) {
                             caminosComidos.Add(caminoComido);
                             break;
-                        } else if (tablero[y, x] == turno && hayContrarias == false) {
+                        } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                             break;
                         }
                         x++;
@@ -247,24 +248,24 @@ namespace ProyectoIpc2.Content.Csharp
                     }
 
                     turno = (turno == 1) ? 2 : 1;
-
-                    tirosPosibles = actualizarTirosPosibles(turno);
-
-                    Debug.WriteLine("Turno siguiente: " + ((turno==1)?"negro":"blanco"));
-                    foreach (int[] tiro in tirosPosibles) {
-                        Debug.WriteLine(tiro[0] + ", " + tiro[1]);
-                    }
-                    Debug.WriteLine("___________________________");
-
-                    // verificar si la partida ya termino 
-                    if (actualizarTirosPosibles(turno).Count == 0 && actualizarTirosPosibles((turno == 1) ? 2 : 1).Count > 0) {
-                        turno = (turno == 1) ? 2 : 1;
-                    } 
+                    tirosPosibles = actualizarTirosPosibles(turno); 
                     if (isFinished() == true) {
                         haTerminado = isFinished();
                         guardarPartida();
                         break;
+                    } else if (tirosPosibles.Count == 0 && actualizarTirosPosibles((turno == 1) ? 2 : 1).Count > 0) {
+                        turno = (turno == 1) ? 2 : 1;
+                        tirosPosibles = actualizarTirosPosibles(turno);
                     }
+
+                    /*
+                    Debug.WriteLine("Turno siguiente: " + ((turno == 1) ? "negro" : "blanco"));
+                    foreach (int[] tiro in tirosPosibles) {
+                        Debug.WriteLine(tiro[0] + ", " + tiro[1]);
+                    }
+                    Debug.WriteLine("___________________________");
+                    */
+
                     break;
                 }
             }
@@ -273,155 +274,159 @@ namespace ProyectoIpc2.Content.Csharp
 
         public static List<int[]> actualizarTirosPosibles(int turno) {
             List<int[]> tirosPosibles = new List<int[]>();
-            bool hayContrarias = false;
             // recorrer casilla por casilla del tablero para encotrar las fichas del turno corresponiete
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
-                    if (tablero[y, x] == turno) {
-                        // tiros a la derecha
-                        int coordenadaX = x;
-                        int coordenadaY = y;
-                        for (coordenadaX = (coordenadaX + 1 < 8)? coordenadaX + 1: x; coordenadaX < 8; coordenadaX++) {
-                            if (tablero[y, coordenadaX] != turno && tablero[y, coordenadaX] != -1) {
+            for (int coordenadaY = 0; coordenadaY < 8; coordenadaY++) {
+                for (int coordenadaX = 0; coordenadaX < 8; coordenadaX++) {
+                    if (tablero[coordenadaY, coordenadaX] == turno) {
+
+                        // _________________________tiros a la derecha_____________________________________________
+                        int x = coordenadaX;
+                        int y = coordenadaY;
+                        bool hayContrarias = false;
+                        for (x= (x + 1 < 8)? x + 1: x; x < 8; x++) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[y, coordenadaX] == -1 && hayContrarias == true) {
-                                int[] arr = { coordenadaX, y };
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[y, coordenadaX] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             } 
                         }
+
+                        //___________________________ tiros por la izquierda__________________________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros por la izquierda
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        for (coordenadaX = (coordenadaX - 1 > 0) ? coordenadaX - 1 : x; coordenadaX > -1; coordenadaX--) {
-                            if (tablero[y, coordenadaX] != turno && tablero[y, coordenadaX] != -1) {
+                        for (x = (x - 1 > -1) ? x - 1 : x; x > -1; x--) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[y, coordenadaX] == -1 && hayContrarias == true) {
-                                int[] arr = {coordenadaX, y};
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[y, coordenadaX] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
                         }
+
+                        // _____________________________tiros por arriba_________________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros por arriba
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        for (coordenadaY = (coordenadaY -1 > 0)? coordenadaY - 1: coordenadaY; coordenadaY > -1; coordenadaY--) {
-                            if (tablero[coordenadaY, x] != turno && tablero[coordenadaY, x] != -1) {
+                        for (y = (y - 1 > -1) ? y - 1 : y; y > -1; y--) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[coordenadaY, x] == -1 && hayContrarias == true) {
-                                int[] arr = {x, coordenadaY};
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[coordenadaY, x] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
                         }
+
+
+                        //________________________tiros por abajo________________________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros por abajo
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        for (coordenadaY = (coordenadaY + 1 < 8) ? coordenadaY + 1 : coordenadaY; coordenadaY < 8; coordenadaY++) {
-                            if (tablero[coordenadaY, x] != turno && tablero[coordenadaY, x] != -1) {
+                        for (y = (y + 1 < 8) ? y + 1 : y; y < 8; y++) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[coordenadaY, x] == -1 && hayContrarias == true) {
-                                int[] arr = {x, coordenadaY };
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[coordenadaY, x] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
                         }
+
+                        //_____________________ tiros diagonal derecha supeiror__________________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros diagonal derecha supeiror 
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        if (coordenadaX+1 != 8 && coordenadaX+1 != -1 && coordenadaY+1 != 8 && coordenadaY+1 != -1) {
-                            coordenadaX++;
-                            coordenadaY++;
+                        if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                            x++;
+                            y++;
                         }
-                        while (coordenadaX != 8 && coordenadaX != -1 && coordenadaY != 8 && coordenadaY != -1) {
-                            if (tablero[coordenadaY, coordenadaX] != turno && tablero[coordenadaY, coordenadaX] != -1) {
+                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[coordenadaY, coordenadaX] == -1 && hayContrarias == true) {
-                                int[] arr = { coordenadaX, coordenadaY };
-                                tirosPosibles.Add(arr);
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                tirosPosibles.Add(new int[] {x, y});
                                 break;
-                            } else if (tablero[coordenadaY, coordenadaX] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
-                            coordenadaX++;
-                            coordenadaY++;
+                            x++;
+                            y++;
                         }
+
+                        // _____________________tiros diagonal izquierda superior _______________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros diagonal izquierda superior 
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        if (coordenadaX - 1 != 8 && coordenadaX - 1 != -1 && coordenadaY + 1 != 8 && coordenadaY + 1 != -1) {
-                            coordenadaX--;
-                            coordenadaY++;
+                        if (x - 1 != 8 && x - 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+                            x--;
+                            y--;
                         }
-                        while (coordenadaX != 8 && coordenadaX != -1 && coordenadaY != 8 && coordenadaY != -1) {
-                            if (tablero[coordenadaY, coordenadaX] != turno && tablero[coordenadaY, coordenadaX] != -1) {
+                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[coordenadaY, coordenadaX] == -1 && hayContrarias == true) {
-                                int[] arr = { coordenadaX, coordenadaY};
-                                tirosPosibles.Add(arr);
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                tirosPosibles.Add(new int[] { x, y });
                                 break;
-                            } else if (tablero[coordenadaY, coordenadaX] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
-                            coordenadaX--;
-                            coordenadaY++;
+                            x--;
+                            y--;
                         }
+
+                        //__________________ tiros diagonal derecha inferior ___________________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros diagonal derecha inferior 
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        if (coordenadaX + 1 != 8 && coordenadaX + 1 != -1 && coordenadaY - 1 != 8 && coordenadaY - 1 != -1) {
-                            coordenadaX++;
-                            coordenadaY--;
+                        if (x + 1 != 8 && x + 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+                            x++;
+                            y--;
                         }
-                        while (coordenadaX != 8 && coordenadaX != -1 && coordenadaY != 8 && coordenadaY != -1) {
-                            if (tablero[coordenadaY, coordenadaX] != turno && tablero[coordenadaY, coordenadaX] != -1) {
+                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[coordenadaY, coordenadaX] == -1 && hayContrarias == true) {
-                                int[] arr = { coordenadaX, coordenadaY};
-                                tirosPosibles.Add(arr);
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                tirosPosibles.Add(new int[] { x, y });
                                 break;
-                            } else if (tablero[coordenadaY, coordenadaX] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
-                            coordenadaX++;
-                            coordenadaY--;
+                            x++;
+                            y--;
                         }
+
+                        //________________tiros diagonal izquierda inferior________________________________
+                        x = coordenadaX;
+                        y = coordenadaY;
                         hayContrarias = false;
-                        // tiros diagonal izquierda inferior 
-                        coordenadaX = x;
-                        coordenadaY = y;
-                        if (coordenadaX - 1 != 8 && coordenadaX - 1 != -1 && coordenadaY - 1 != 8 && coordenadaY - 1 != -1) {
-                            coordenadaX--;
-                            coordenadaY--;
+                        if (x - 1 != 8 && x - 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                            x--;
+                            y++;
                         }
-                        while (coordenadaX != 8 && coordenadaX != -1 && coordenadaY != 8 && coordenadaY != -1) {
-                            if (tablero[coordenadaY, coordenadaX] != turno && tablero[coordenadaY, coordenadaX] != -1) {
+                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                            if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
-                            } else if (tablero[coordenadaY, coordenadaX] == -1 && hayContrarias == true) {
-                                int[] arr = { coordenadaX, coordenadaY};
-                                tirosPosibles.Add(arr);
+                            } else if (tablero[y, x] == -1 && hayContrarias == true) {
+                                tirosPosibles.Add(new int[] { x, y });
                                 break;
-                            } else if (tablero[coordenadaY, coordenadaX] == turno) {
+                            } else if (tablero[y, x] == turno) {
                                 break;
                             }
-                            coordenadaX--;
-                            coordenadaY--;
+                            x--;
+                            y++;
                         }
-                        hayContrarias = false;
 
                     }
                 }
@@ -493,30 +498,45 @@ namespace ProyectoIpc2.Content.Csharp
             tableroNode.AppendChild(siguienteTiroNode);
 
             using (ReversiContext db = new ReversiContext()) {
-                Partida partida = new Partida();
-                partida.GameType = tipoPartida;
-                partida.XmlRouteBoard = @"C:\Users\josed\Downloads\reversi_" + partida.GameId;
-                partida.Player1MovesNumber = player1MovesNumber;
-                partida.Player2MovesNumber = player2MovesNumber;
-                partida.Player1Points = player1Points;
-                partida.Player2Points = player2Points;
-                partida.Player1 = jugador_negro;
-                partida.Player2 = jugador_blanco;
-                db.Partida.Add(partida);
+                if (db.Partida.Find(gameId) == null) {
+                    Partida partida = new Partida();
+                    partida.GameType = tipoPartida;
+                    partida.Player1MovesNumber = player1MovesNumber;
+                    partida.Player2MovesNumber = player2MovesNumber;
+                    partida.Player1Points = player1Points;
+                    partida.Player2Points = player2Points;
+                    partida.Player1 = jugador_negro;
+                    partida.Player2 = jugador_blanco;
+                    db.Partida.Add(partida);
+                    db.SaveChanges();
+                    partida.XmlRouteBoard = @"C:\Users\josed\Downloads\reversi_" + partida.GameId;
 
-                Encuentro encuentro = new Encuentro();
-                encuentro.GameId = partida.GameId;
-                encuentro.UserId = userId;
-                db.Encuentro.Add(encuentro);
-                db.SaveChanges();
-                
-                xmlDoc.Save(@"C:\Users\josed\Downloads\reversi_" + partida.GameId);
+                    Encuentro encuentro = new Encuentro();
+                    encuentro.GameId = partida.GameId;
+                    encuentro.UserId = userId;
+                    db.Encuentro.Add(encuentro);
+                    db.SaveChanges();
+                    xmlDoc.Save(@"C:\Users\josed\Downloads\reversi_" + partida.GameId);
+
+                } else {
+                    Partida partida = db.Partida.Find(gameId);
+                    partida.GameType = tipoPartida;
+                    partida.Player1MovesNumber = player1MovesNumber;
+                    partida.Player2MovesNumber = player2MovesNumber;
+                    partida.Player1Points = player1Points;
+                    partida.Player2Points = player2Points;
+                    partida.Player1 = jugador_negro;
+                    partida.Player2 = jugador_blanco;
+                    db.SaveChanges();
+                    partida.XmlRouteBoard = @"C:\Users\josed\Downloads\reversi_" + partida.GameId;
+                    xmlDoc.Save(@"C:\Users\josed\Downloads\reversi_" + partida.GameId);
+                }
             }
-
         }
 
 
         public static void cargarPartida(String rootFile) {
+            xmlRouteBoard = rootFile;
             limpiarTablero();
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(rootFile);
@@ -527,56 +547,54 @@ namespace ProyectoIpc2.Content.Csharp
                     int x = 0;
                     switch (xmlNode.ChildNodes[1].InnerText) {
                         case "A":
-                            x = 0;
-                            break;
+                            x = 0; break;
                         case "B":
-                            x = 1;
-                            break;
+                            x = 1; break;
                         case "C":
-                            x = 2;
-                            break;
+                            x = 2; break;
                         case "D":
-                            x = 3;
-                            break;
+                            x = 3; break;
                         case "E":
-                            x = 4;
-                            break;
+                            x = 4; break;
                         case "F":
-                            x = 5;
-                            break;
+                            x = 5; break;
                         case "G":
-                            x = 6;
-                            break;
+                            x = 6; break;
                         case "H":
-                            x = 7;
-                            break;
+                            x = 7;  break;
 
                     }
 
                     switch (color) {
                         case "negro":
-                            tablero[y, x] = 1;
-                            break;
+                            tablero[y, x] = 1; break;
                         case "blanco":
-                            tablero[y, x] = 2;
-                            break;
+                            tablero[y, x] = 2; break;
                     }
 
                 } else if (xmlNode.Name == "siguienteTiro") {
                     string color = xmlNode.ChildNodes[0].InnerText;
                     GameLogic.turno = (color == "negro") ? 1 : 2;
+                    tirosPosibles = actualizarTirosPosibles(GameLogic.turno);
                 }
 
 
             }
             calcularPutnos();
-            actualizarTirosPosibles(turno);
             haTerminado = isFinished();
             using (ReversiContext db = new ReversiContext()) {
                 foreach (Partida partida in db.Partida) {
-                    if (partida.XmlRouteBoard == rootFile) {
-                        player1MovesNumber = partida.Player1MovesNumber;
-                        player2MovesNumber = partida.Player2MovesNumber;
+                    if (partida.XmlRouteBoard == xmlRouteBoard) {
+                        Encuentro encuentro = db.Encuentro.Find(partida.GameId);
+                        if (userId == encuentro.UserId) {
+                            gameId = partida.GameId;
+                            player1MovesNumber = partida.Player1MovesNumber;
+                            player2MovesNumber = partida.Player2MovesNumber;
+                            if (tipoPartida == "vsJugador") {
+                                jugador_negro = partida.Player1;
+                                jugador_blanco = partida.Player2;
+                            }
+                        }
                     }
                 }
             }
@@ -605,6 +623,7 @@ namespace ProyectoIpc2.Content.Csharp
         }
 
         public static void reiniciarDatos() {
+            gameId = -1;
             hostColor = 1;
             xmlRouteBoard = "";
             tipoPartida = "";
@@ -631,7 +650,7 @@ namespace ProyectoIpc2.Content.Csharp
         }
 
         public static bool isFinished() {
-            bool isfull = false;
+            bool isfull = true;
             for (int y = 0; y < 8; y++) {
                 for (int x = 0; x < 8; x++) {
                     if (tablero[y,x] == -1) {

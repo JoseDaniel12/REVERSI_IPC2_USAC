@@ -116,14 +116,16 @@ function cambiarColor() {
         method: 'POST',
     }).then(respuesta => respuesta.json())
         .then(
-            function (respuesta) {
-                if (respuesta == true) {
+            function (colorInfo) {
+                let isChanged = JSON.parse(colorInfo["isChanged"])
+                let hostColor = JSON.parse(colorInfo["hostColor"])
+                if (isChanged) {
                     let nombreNegro = document.getElementsByClassName("black_Name")[0].innerHTML
                     let nombreBlanco = document.getElementsByClassName("white_Name")[0].innerHTML
                     document.getElementsByClassName("black_Name")[0].innerHTML = nombreBlanco
                     document.getElementsByClassName("white_Name")[0].innerHTML = nombreNegro
                     let boton = document.getElementById("cambiarNombre")
-                    if (boton.style.backgroundColor == "black") {
+                    if (hostColor == 2) {
                         boton.innerHTML = "Color del Host: Blanco"
                         boton.style.backgroundColor = "whitesmoke"
                         boton.style.color = "black"

@@ -27,7 +27,7 @@
           </Key>
           <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GameType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="XmlRouteBoard" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="XmlRouteBoard" Type="varchar" MaxLength="250" />
           <Property Name="Player1MovesNumber" Type="int" Nullable="false" />
           <Property Name="Player2MovesNumber" Type="int" Nullable="false" />
           <Property Name="Player1Points" Type="int" Nullable="false" />
@@ -63,7 +63,7 @@
           <Property Name="BornDate" Type="datetime" Nullable="false" />
           <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Encuentro__GameI__7C4F7684">
+        <Association Name="FK__Encuentro__GameI__114A936A">
           <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
           <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,7 +75,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Encuentro__UserI__7B5B524B">
+        <Association Name="FK__Encuentro__UserI__10566F31">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Encuentro" Type="Self.Encuentro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inscripci__Tourn__71D1E811">
+        <Association Name="FK__Inscripci__Tourn__06CD04F7">
           <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
           <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +99,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inscripci__UserI__72C60C4A">
+        <Association Name="FK__Inscripci__UserI__07C12930">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,7 +111,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Partida__RoundId__787EE5A0">
+        <Association Name="FK__Partida__RoundId__0D7A0286">
           <End Role="Ronda" Type="Self.Ronda" Multiplicity="0..1" />
           <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
           <ReferentialConstraint>
@@ -123,7 +123,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ronda__Tournamen__75A278F5">
+        <Association Name="FK__Ronda__Tournamen__0A9D95DB">
           <End Role="Torneo" Type="Self.Torneo" Multiplicity="1" />
           <End Role="Ronda" Type="Self.Ronda" Multiplicity="*" />
           <ReferentialConstraint>
@@ -142,27 +142,27 @@
           <EntitySet Name="Ronda" EntityType="Self.Ronda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Torneo" EntityType="Self.Torneo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Encuentro__GameI__7C4F7684" Association="Self.FK__Encuentro__GameI__7C4F7684">
+          <AssociationSet Name="FK__Encuentro__GameI__114A936A" Association="Self.FK__Encuentro__GameI__114A936A">
             <End Role="Partida" EntitySet="Partida" />
             <End Role="Encuentro" EntitySet="Encuentro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Encuentro__UserI__7B5B524B" Association="Self.FK__Encuentro__UserI__7B5B524B">
+          <AssociationSet Name="FK__Encuentro__UserI__10566F31" Association="Self.FK__Encuentro__UserI__10566F31">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Encuentro" EntitySet="Encuentro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inscripci__Tourn__71D1E811" Association="Self.FK__Inscripci__Tourn__71D1E811">
+          <AssociationSet Name="FK__Inscripci__Tourn__06CD04F7" Association="Self.FK__Inscripci__Tourn__06CD04F7">
             <End Role="Torneo" EntitySet="Torneo" />
             <End Role="Inscripcion" EntitySet="Inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inscripci__UserI__72C60C4A" Association="Self.FK__Inscripci__UserI__72C60C4A">
+          <AssociationSet Name="FK__Inscripci__UserI__07C12930" Association="Self.FK__Inscripci__UserI__07C12930">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Inscripcion" EntitySet="Inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Partida__RoundId__787EE5A0" Association="Self.FK__Partida__RoundId__787EE5A0">
+          <AssociationSet Name="FK__Partida__RoundId__0D7A0286" Association="Self.FK__Partida__RoundId__0D7A0286">
             <End Role="Ronda" EntitySet="Ronda" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ronda__Tournamen__75A278F5" Association="Self.FK__Ronda__Tournamen__75A278F5">
+          <AssociationSet Name="FK__Ronda__Tournamen__0A9D95DB" Association="Self.FK__Ronda__Tournamen__0A9D95DB">
             <End Role="Torneo" EntitySet="Torneo" />
             <End Role="Ronda" EntitySet="Ronda" />
           </AssociationSet>
@@ -178,27 +178,27 @@
           <EntitySet Name="Ronda" EntityType="ReversiDBModel.Ronda" />
           <EntitySet Name="Torneo" EntityType="ReversiDBModel.Torneo" />
           <EntitySet Name="Usuario" EntityType="ReversiDBModel.Usuario" />
-          <AssociationSet Name="FK__Encuentro__GameI__7C4F7684" Association="ReversiDBModel.FK__Encuentro__GameI__7C4F7684">
+          <AssociationSet Name="FK__Encuentro__GameI__114A936A" Association="ReversiDBModel.FK__Encuentro__GameI__114A936A">
             <End Role="Partida" EntitySet="Partida" />
             <End Role="Encuentro" EntitySet="Encuentro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Encuentro__UserI__7B5B524B" Association="ReversiDBModel.FK__Encuentro__UserI__7B5B524B">
+          <AssociationSet Name="FK__Encuentro__UserI__10566F31" Association="ReversiDBModel.FK__Encuentro__UserI__10566F31">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Encuentro" EntitySet="Encuentro" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inscripci__Tourn__71D1E811" Association="ReversiDBModel.FK__Inscripci__Tourn__71D1E811">
+          <AssociationSet Name="FK__Inscripci__Tourn__06CD04F7" Association="ReversiDBModel.FK__Inscripci__Tourn__06CD04F7">
             <End Role="Torneo" EntitySet="Torneo" />
             <End Role="Inscripcion" EntitySet="Inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inscripci__UserI__72C60C4A" Association="ReversiDBModel.FK__Inscripci__UserI__72C60C4A">
+          <AssociationSet Name="FK__Inscripci__UserI__07C12930" Association="ReversiDBModel.FK__Inscripci__UserI__07C12930">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Inscripcion" EntitySet="Inscripcion" />
           </AssociationSet>
-          <AssociationSet Name="FK__Partida__RoundId__787EE5A0" Association="ReversiDBModel.FK__Partida__RoundId__787EE5A0">
+          <AssociationSet Name="FK__Partida__RoundId__0D7A0286" Association="ReversiDBModel.FK__Partida__RoundId__0D7A0286">
             <End Role="Ronda" EntitySet="Ronda" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
-          <AssociationSet Name="FK__Ronda__Tournamen__75A278F5" Association="ReversiDBModel.FK__Ronda__Tournamen__75A278F5">
+          <AssociationSet Name="FK__Ronda__Tournamen__0A9D95DB" Association="ReversiDBModel.FK__Ronda__Tournamen__0A9D95DB">
             <End Role="Torneo" EntitySet="Torneo" />
             <End Role="Ronda" EntitySet="Ronda" />
           </AssociationSet>
@@ -210,8 +210,8 @@
           <Property Name="MeetingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="GameId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Encuentro__GameI__7C4F7684" FromRole="Encuentro" ToRole="Partida" />
-          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Encuentro__UserI__7B5B524B" FromRole="Encuentro" ToRole="Usuario" />
+          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Encuentro__GameI__114A936A" FromRole="Encuentro" ToRole="Partida" />
+          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Encuentro__UserI__10566F31" FromRole="Encuentro" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Inscripcion">
           <Key>
@@ -220,8 +220,8 @@
           <Property Name="InscriptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TournamentId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Torneo" Relationship="ReversiDBModel.FK__Inscripci__Tourn__71D1E811" FromRole="Inscripcion" ToRole="Torneo" />
-          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Inscripci__UserI__72C60C4A" FromRole="Inscripcion" ToRole="Usuario" />
+          <NavigationProperty Name="Torneo" Relationship="ReversiDBModel.FK__Inscripci__Tourn__06CD04F7" FromRole="Inscripcion" ToRole="Torneo" />
+          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Inscripci__UserI__07C12930" FromRole="Inscripcion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Partida">
           <Key>
@@ -229,7 +229,7 @@
           </Key>
           <Property Name="GameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GameType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="XmlRouteBoard" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="XmlRouteBoard" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Player1MovesNumber" Type="Int32" Nullable="false" />
           <Property Name="Player2MovesNumber" Type="Int32" Nullable="false" />
           <Property Name="Player1Points" Type="Int32" Nullable="false" />
@@ -237,8 +237,8 @@
           <Property Name="Player1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Player2" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RoundId" Type="Int32" />
-          <NavigationProperty Name="Encuentro" Relationship="ReversiDBModel.FK__Encuentro__GameI__7C4F7684" FromRole="Partida" ToRole="Encuentro" />
-          <NavigationProperty Name="Ronda" Relationship="ReversiDBModel.FK__Partida__RoundId__787EE5A0" FromRole="Partida" ToRole="Ronda" />
+          <NavigationProperty Name="Encuentro" Relationship="ReversiDBModel.FK__Encuentro__GameI__114A936A" FromRole="Partida" ToRole="Encuentro" />
+          <NavigationProperty Name="Ronda" Relationship="ReversiDBModel.FK__Partida__RoundId__0D7A0286" FromRole="Partida" ToRole="Ronda" />
         </EntityType>
         <EntityType Name="Ronda">
           <Key>
@@ -246,8 +246,8 @@
           </Key>
           <Property Name="RoundId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TournamentId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Partida__RoundId__787EE5A0" FromRole="Ronda" ToRole="Partida" />
-          <NavigationProperty Name="Torneo" Relationship="ReversiDBModel.FK__Ronda__Tournamen__75A278F5" FromRole="Ronda" ToRole="Torneo" />
+          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Partida__RoundId__0D7A0286" FromRole="Ronda" ToRole="Partida" />
+          <NavigationProperty Name="Torneo" Relationship="ReversiDBModel.FK__Ronda__Tournamen__0A9D95DB" FromRole="Ronda" ToRole="Torneo" />
         </EntityType>
         <EntityType Name="Torneo">
           <Key>
@@ -255,8 +255,8 @@
           </Key>
           <Property Name="TournamentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TournamentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Inscripcion" Relationship="ReversiDBModel.FK__Inscripci__Tourn__71D1E811" FromRole="Torneo" ToRole="Inscripcion" />
-          <NavigationProperty Name="Ronda" Relationship="ReversiDBModel.FK__Ronda__Tournamen__75A278F5" FromRole="Torneo" ToRole="Ronda" />
+          <NavigationProperty Name="Inscripcion" Relationship="ReversiDBModel.FK__Inscripci__Tourn__06CD04F7" FromRole="Torneo" ToRole="Inscripcion" />
+          <NavigationProperty Name="Ronda" Relationship="ReversiDBModel.FK__Ronda__Tournamen__0A9D95DB" FromRole="Torneo" ToRole="Ronda" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -270,10 +270,10 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Encuentro" Relationship="ReversiDBModel.FK__Encuentro__UserI__7B5B524B" FromRole="Usuario" ToRole="Encuentro" />
-          <NavigationProperty Name="Inscripcion" Relationship="ReversiDBModel.FK__Inscripci__UserI__72C60C4A" FromRole="Usuario" ToRole="Inscripcion" />
+          <NavigationProperty Name="Encuentro" Relationship="ReversiDBModel.FK__Encuentro__UserI__10566F31" FromRole="Usuario" ToRole="Encuentro" />
+          <NavigationProperty Name="Inscripcion" Relationship="ReversiDBModel.FK__Inscripci__UserI__07C12930" FromRole="Usuario" ToRole="Inscripcion" />
         </EntityType>
-        <Association Name="FK__Encuentro__GameI__7C4F7684">
+        <Association Name="FK__Encuentro__GameI__114A936A">
           <End Type="ReversiDBModel.Partida" Role="Partida" Multiplicity="1" />
           <End Type="ReversiDBModel.Encuentro" Role="Encuentro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -285,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Encuentro__UserI__7B5B524B">
+        <Association Name="FK__Encuentro__UserI__10566F31">
           <End Type="ReversiDBModel.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="ReversiDBModel.Encuentro" Role="Encuentro" Multiplicity="*" />
           <ReferentialConstraint>
@@ -297,7 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inscripci__Tourn__71D1E811">
+        <Association Name="FK__Inscripci__Tourn__06CD04F7">
           <End Type="ReversiDBModel.Torneo" Role="Torneo" Multiplicity="1" />
           <End Type="ReversiDBModel.Inscripcion" Role="Inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -309,7 +309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inscripci__UserI__72C60C4A">
+        <Association Name="FK__Inscripci__UserI__07C12930">
           <End Type="ReversiDBModel.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="ReversiDBModel.Inscripcion" Role="Inscripcion" Multiplicity="*" />
           <ReferentialConstraint>
@@ -321,7 +321,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Partida__RoundId__787EE5A0">
+        <Association Name="FK__Partida__RoundId__0D7A0286">
           <End Type="ReversiDBModel.Ronda" Role="Ronda" Multiplicity="0..1" />
           <End Type="ReversiDBModel.Partida" Role="Partida" Multiplicity="*" />
           <ReferentialConstraint>
@@ -333,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Ronda__Tournamen__75A278F5">
+        <Association Name="FK__Ronda__Tournamen__0A9D95DB">
           <End Type="ReversiDBModel.Torneo" Role="Torneo" Multiplicity="1" />
           <End Type="ReversiDBModel.Ronda" Role="Ronda" Multiplicity="*" />
           <ReferentialConstraint>
@@ -345,7 +345,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

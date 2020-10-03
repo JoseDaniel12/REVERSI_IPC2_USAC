@@ -62,8 +62,8 @@ namespace ProyectoIpc2.Controllers
 
         [HttpPost]
         public ActionResult PcPlayerMove(FormCollection collection) {
-            int[] tiro = PcPlayer.move(GameLogic.tablero, GameLogic.tirosPosibles, GameLogic.turno);
-            GameLogic.colocarFicha(tiro[0], tiro[1]);
+            PcPlayer.move(GameLogic.tablero, GameLogic.tirosPosibles, GameLogic.turno);
+
             Dictionary<string, string> info = new Dictionary<string, string>();
             info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
@@ -80,14 +80,18 @@ namespace ProyectoIpc2.Controllers
 
         [HttpPost]
         public ActionResult CambiarColor() {
+            Dictionary<string, string> colorInfo = new Dictionary<string, string>();
             if (GameLogic.player1Points == 2 && GameLogic.player2Points == 2) {
                 string temporal = GameLogic.jugador_negro;
                 GameLogic.jugador_negro = GameLogic.jugador_blanco;
                 GameLogic.jugador_blanco = temporal;
                 GameLogic.hostColor = (GameLogic.hostColor == 1) ? 2 : 1;
-                return Content(JsonConvert.SerializeObject(true));
+                colorInfo.Add("isChanged", JsonConvert.SerializeObject(true));
+            } else {
+                colorInfo.Add("isChanged", JsonConvert.SerializeObject(false));
             }
-            return Content(JsonConvert.SerializeObject(false));
+            colorInfo.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
+            return Content(JsonConvert.SerializeObject(colorInfo));
         }
 
         [HttpPost]
