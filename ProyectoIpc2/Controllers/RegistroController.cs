@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -17,15 +18,19 @@ namespace ProyectoIpc2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registro(Usuario jugador)
+        public ActionResult Registro(Usuario jugador, string revision)
         {
             using (ReversiContext db = new ReversiContext())
             {
                 try
                 {
-                    db.Usuario.Add(jugador);
-                    db.SaveChanges();
-                    return RedirectToAction("Loging", "Loging");
+                    if (jugador.Password == revision) {
+                        db.Usuario.Add(jugador);
+                        db.SaveChanges();
+                        return RedirectToAction("Loging", "Loging");
+                    } else {
+                        return RedirectToAction("Registro", "Registro");
+                    }
                 } catch
                 {
                     return RedirectToAction("Registro", "Registro");

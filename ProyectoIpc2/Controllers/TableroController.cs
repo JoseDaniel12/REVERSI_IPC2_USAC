@@ -32,6 +32,8 @@ namespace ProyectoIpc2.Controllers
             info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
             info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
+            info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
+            info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -56,6 +58,8 @@ namespace ProyectoIpc2.Controllers
             info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
             info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
+            info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
+            info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -63,7 +67,6 @@ namespace ProyectoIpc2.Controllers
         [HttpPost]
         public ActionResult PcPlayerMove(FormCollection collection) {
             PcPlayer.move(GameLogic.tablero, GameLogic.tirosPosibles, GameLogic.turno);
-
             Dictionary<string, string> info = new Dictionary<string, string>();
             info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
@@ -75,6 +78,8 @@ namespace ProyectoIpc2.Controllers
             info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
             info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
+            info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
+            info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -93,6 +98,18 @@ namespace ProyectoIpc2.Controllers
             colorInfo.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             return Content(JsonConvert.SerializeObject(colorInfo));
         }
+
+
+        [HttpPost]
+        public ActionResult CambiarNombre(FormCollection collection) {
+            if (GameLogic.hostColor == 1) {
+                GameLogic.jugador_blanco = Request.Params["nombre"];
+            } else {
+                GameLogic.jugador_negro = Request.Params["nombre"];
+            }
+            return Content(JsonConvert.SerializeObject(GameLogic.hostColor));
+        }
+
 
         [HttpPost]
         public ActionResult Salir() {

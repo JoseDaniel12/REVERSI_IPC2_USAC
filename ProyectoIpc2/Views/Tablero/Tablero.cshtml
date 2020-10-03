@@ -185,7 +185,7 @@
                     <button class="coin" id="22" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
-                    <button class="coin" id="32" onclick="casillaPresionada(this)"></button>
+                    <button class="coin  posible_inicial" id="32" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
                     <button class="coin" id="42" onclick="casillaPresionada(this)"></button>
@@ -215,7 +215,7 @@
                     <button class="coin" id="13" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="3">
-                    <button class="coin" id="23" onclick="casillaPresionada(this)"></button>
+                    <button class="coin posible_inicial" id="23" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="4">
                     <button class="coin blanca_inicial" id="33" onclick="casillaPresionada(this)"></button>
@@ -257,7 +257,7 @@
                     <button class="coin blanca_inicial" id="44" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
-                    <button class="coin" id="54" onclick="casillaPresionada(this)"></button>
+                    <button class="coin  posible_inicial" id="54" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="7">
                     <button class="coin" id="64" onclick="casillaPresionada(this)"></button>
@@ -287,7 +287,7 @@
                     <button class="coin" id="35" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="5">
-                    <button class="coin" id="45" onclick="casillaPresionada(this)"></button>
+                    <button class="coin posible_inicial" id="45" onclick="casillaPresionada(this)"></button>
                 </div>
                 <div class="box" id="6">
                     <button class="coin" id="55" onclick="casillaPresionada(this)"></button>
@@ -412,17 +412,34 @@
             <div class="player_movs" id="player_movs2">Movimientos: 0</div>
         </div>
     </div>
-    @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
-        <div class="players_info" id="vsJugador">
-            <input type="text" class="nombre_input" placeholder="Nombre de inivitado" id="nombreIngreso">
-            <button class="info_option" id="nombre" onclick="cambiarNombre()">Cambiar nombre</button>
-            @if (ProyectoIpc2.Content.Csharp.GameLogic.hostColor == 1) {
-                <button class="info_option host_black" id="cambiarNombre" onclick="cambiarColor()">Cambiar color del host</button>
-            } else {
-                <button class="info_option host_white" id="cambiarNombre" onclick="cambiarColor()">Cambiar color del host</button>
-            }
+    <div>
+        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
+            <div class="players_info" id="vsJugador">
+                @if (ProyectoIpc2.Content.Csharp.GameLogic.hostColor == 1) {
+                    <button class="info_option host_black" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+                } else {
+                    <button class="info_option host_white" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+                }
+            </div>
+        }
+    </div>
+
+    @*
         </div>
-    }
+        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
+            <div class="players_info" id="vsJugador">
+
+                <input type="text" class="nombre_input" placeholder="Nombre de inivitado" id="nombreIngreso">
+                <button class="info_option" id="nombre" onclick="cambiarNombre()">Cambiar nombre</button>
+
+            @if (ProyectoIpc2.Content.Csharp.GameLogic.hostColor == 1) {
+                <button class="info_option host_black" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+            } else {
+                <button class="info_option host_white" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+            }
+        }
+        </div>
+    *@
 
     <script src="~/Content/JsFiles/Pruebas.js?v=<%=DateTime.Now%>"></script>
 </body>

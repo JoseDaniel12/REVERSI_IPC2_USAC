@@ -36,11 +36,11 @@
             </li>
             <li>
                 <label for="fcontraseña"> Contraseña: </label>
-                @Html.EditorFor(model => model.Password, new {htmlAttributes = new { @class = "", placeholder = "Ingrese contraseña" } })
+                @Html.PasswordFor(model => model.Password, new {  placeholder = "Ingrese su contraseña" })
             </li>
             <li>
-                <label for="fcon_contraseña"> Contraseña: </label>
-                <input type="password" id="fcon_contraseña" placeholder="Ingrese su contraseña">
+                <label for="revision"> Contraseña: </label>
+                <input type="password" id="revision" name="revision" placeholder="Ingrese su contraseña">
             </li>
             <li>
                 <label for="fdate"> Fecha: </label>

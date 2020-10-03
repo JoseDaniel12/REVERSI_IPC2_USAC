@@ -290,7 +290,7 @@ namespace ProyectoIpc2.Content.Csharp
                                 int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             } 
                         }
@@ -306,7 +306,7 @@ namespace ProyectoIpc2.Content.Csharp
                                 int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                         }
@@ -322,7 +322,7 @@ namespace ProyectoIpc2.Content.Csharp
                                 int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                         }
@@ -339,7 +339,7 @@ namespace ProyectoIpc2.Content.Csharp
                                 int[] arr = { x, y };
                                 tirosPosibles.Add(arr);
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                         }
@@ -358,7 +358,7 @@ namespace ProyectoIpc2.Content.Csharp
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
                                 tirosPosibles.Add(new int[] {x, y});
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                             x++;
@@ -379,7 +379,7 @@ namespace ProyectoIpc2.Content.Csharp
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
                                 tirosPosibles.Add(new int[] { x, y });
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                             x--;
@@ -400,7 +400,7 @@ namespace ProyectoIpc2.Content.Csharp
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
                                 tirosPosibles.Add(new int[] { x, y });
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                             x++;
@@ -421,7 +421,7 @@ namespace ProyectoIpc2.Content.Csharp
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
                                 tirosPosibles.Add(new int[] { x, y });
                                 break;
-                            } else if (tablero[y, x] == turno) {
+                            } else if (tablero[y, x] == turno || tablero[y, x] == -1) {
                                 break;
                             }
                             x--;
@@ -510,7 +510,7 @@ namespace ProyectoIpc2.Content.Csharp
                     db.Partida.Add(partida);
                     db.SaveChanges();
                     partida.XmlRouteBoard = @"C:\Users\josed\Downloads\reversi_" + partida.GameId;
-
+                    GameLogic.gameId = partida.GameId;
                     Encuentro encuentro = new Encuentro();
                     encuentro.GameId = partida.GameId;
                     encuentro.UserId = userId;
@@ -535,11 +535,16 @@ namespace ProyectoIpc2.Content.Csharp
         }
 
 
-        public static void cargarPartida(String rootFile) {
-            xmlRouteBoard = rootFile;
-            limpiarTablero();
+        public static bool cargarPartida(String rootFile) {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(rootFile);
+            try {
+                xmlDoc.Load(rootFile);
+            } catch {
+                return false;
+            }
+            xmlRouteBoard = rootFile;
+            gameId = -1;
+            limpiarTablero();
             foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes) {
                 if (xmlNode.Name == "ficha") {
                     string color = xmlNode.ChildNodes[0].InnerText;
@@ -593,11 +598,17 @@ namespace ProyectoIpc2.Content.Csharp
                             if (tipoPartida == "vsJugador") {
                                 jugador_negro = partida.Player1;
                                 jugador_blanco = partida.Player2;
+                                if (partida.Player1 == db.Usuario.Find(userId).UserName) {
+                                    hostColor = 1;
+                                } else {
+                                    hostColor = 2;
+                                }
                             }
                         }
                     }
                 }
             }
+            return true;
         }
 
         public static void limpiarTablero() {

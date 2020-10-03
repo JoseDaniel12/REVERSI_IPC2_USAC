@@ -249,7 +249,7 @@
 }
 
 .players_info#vsJugador {
-    height: 185px;
+    height: 80px;
 }
 
 .salir {
@@ -265,4 +265,8 @@
 .info_option#host_white {
     background-color: whitesmoke;
     color: black;
+}
+
+.posible_inicial {
+    background-color: #307864;
 }

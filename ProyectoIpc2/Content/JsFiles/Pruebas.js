@@ -9,7 +9,8 @@
     let jugador_negro = JSON.parse(info["jugador_negro"])
     let jugador_blanco = JSON.parse(info["jugador_blanco"])
     let haTerminado = JSON.parse(info["haTerminado"])
-
+    let tirosPosibles = JSON.parse(info["tirosPosibles"])
+    let hostColor = JSON.parse(info["hostColor"])
     for (let y = 0; y < 8; y++) {
         for (let x = 0; x < 8; x++) {
             let id = x + "" + y
@@ -25,10 +26,13 @@
                     boton.style.backgroundColor = "#009067";
                     break
             }
-
         }
     }
 
+    for (let i = 0; i < tirosPosibles.length; i++) {
+        id = tirosPosibles[i][0] + "" + tirosPosibles[i][1]
+        document.getElementById(id).style.backgroundColor = "#307864";
+    }
 
     let turnState = document.getElementById("turno")
     if (turno == 1) {
@@ -46,6 +50,15 @@
     let player2Points_element = document.getElementById("player2Points")
     player1Points_element.innerHTML = "Puntos: " + player1Points
     player2Points_element.innerHTML = "Puntos: " + player2Points
+
+    document.getElementsByClassName("black_Name")[0].innerHTML = jugador_negro
+    document.getElementsByClassName("white_Name")[0].innerHTML = jugador_blanco
+    if (hostColor == 1) {
+        document.getElementById("cambiarColor").classList.add("host_black")
+    } else {
+        document.getElementById("cambiarColor").classList.add("host_white")
+    }
+
 
     if ((tipoPartida == "vsPc") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC")) && (haTerminado == false) ) {
         fetch('/Tablero/PcPlayerMove', {
@@ -124,7 +137,7 @@ function cambiarColor() {
                     let nombreBlanco = document.getElementsByClassName("white_Name")[0].innerHTML
                     document.getElementsByClassName("black_Name")[0].innerHTML = nombreBlanco
                     document.getElementsByClassName("white_Name")[0].innerHTML = nombreNegro
-                    let boton = document.getElementById("cambiarNombre")
+                    let boton = document.getElementById("cambiarColor")
                     if (hostColor == 2) {
                         boton.innerHTML = "Color del Host: Blanco"
                         boton.style.backgroundColor = "whitesmoke"
@@ -144,12 +157,26 @@ function cambiarColor() {
 }
 
 function cambiarNombre() {
-    let nombreDiv = document.getElementById("nombre")
-    let input = document.getElementById("nombreIngreso")
-    if (ingreo.innerHTML != "") {
-        nombre.innerHTML = ingreso.nodeValue
-    }
+    let nombre = document.getElementById("nombreIngreso").value
+    if (nombre != "" && nombre != document.getElementsByClassName("black_Name")[0].innerHTML && nombre != document.getElementsByClassName("white_Name")[0].innerHTML) {
+        let nombreInfo = new FormData();
+        nombreInfo.append("nombre", document.getElementById("nombreIngreso").value)
+        fetch('/Tablero/CambiarNombre', {
+            method: 'POST',
+            body: nombreInfo
+        }).then(res => res.json())
+            .then(function (res) {
+                if (res == 1) {
+                    document.getElementsByClassName("white_Name")[0].innerHTML = nombre
 
+                } else {
+                    document.getElementsByClassName("black_Name")[0].innerHTML = nombre
+                }
+                document.getElementById("nombreIngreso").value = "";
+            });
+    } else {
+        alert("Nombre no valido, o ya asignado.")
+    }
 }
 
 function sleep(ms) {
