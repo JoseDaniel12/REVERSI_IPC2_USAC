@@ -51,16 +51,17 @@
     player1Points_element.innerHTML = "Puntos: " + player1Points
     player2Points_element.innerHTML = "Puntos: " + player2Points
 
-    document.getElementsByClassName("black_Name")[0].innerHTML = jugador_negro
-    document.getElementsByClassName("white_Name")[0].innerHTML = jugador_blanco
-    if (hostColor == 1) {
-        document.getElementById("cambiarColor").classList.add("host_black")
-    } else {
-        document.getElementById("cambiarColor").classList.add("host_white")
+    if (tipoPartida == "vsJugador") {
+        document.getElementsByClassName("black_Name")[0].innerHTML = jugador_negro
+        document.getElementsByClassName("white_Name")[0].innerHTML = jugador_blanco
+        if (hostColor == 1) {
+            document.getElementById("cambiarColor").classList.add("host_black")
+        } else {
+            document.getElementById("cambiarColor").classList.add("host_white")
+        }
     }
 
-
-    if ((tipoPartida == "vsPc") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC")) && (haTerminado == false) ) {
+    if ((tipoPartida == "vsPc") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC")) && (haTerminado == false)) {
         fetch('/Tablero/PcPlayerMove', {
             method: 'POST',
         }).then(respuesta => respuesta.json())

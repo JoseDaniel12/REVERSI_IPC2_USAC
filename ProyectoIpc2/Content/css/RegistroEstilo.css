@@ -4,6 +4,7 @@
 
 form {
     margin: auto;
+    margin-top: 9px;
     border: 1px solid;
     background-color: whitesmoke;
     border-radius: 8px;
@@ -30,6 +31,13 @@ input {
     width: 300px;
     border-radius: 8px;
     border: 0;
+}
+
+.contraseña {
+    margin-right: 5px;
+    margin-bottom: 10px;
+    float:left;
+    width:140px;
 }
 
 select {
