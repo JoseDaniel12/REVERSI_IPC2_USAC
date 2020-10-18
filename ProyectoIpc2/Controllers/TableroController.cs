@@ -34,6 +34,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
+            info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -60,6 +61,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
+            info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -80,6 +82,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
+            info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -153,6 +156,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
+            info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             return Content(JsonConvert.SerializeObject(info));
         }
 

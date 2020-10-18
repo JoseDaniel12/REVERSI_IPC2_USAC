@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Web;
 using System.Xml;
+using Microsoft.Ajax.Utilities;
 using ProyectoIpc2.Controllers;
 using ProyectoIpc2.Models;
 using WebGrease.Css.Ast.Selectors;
@@ -29,6 +30,8 @@ namespace ProyectoIpc2.Content.Csharp
         public static int tiempoSegP1 = 0;
         public static int tiempoSegP2 = 0;
         public static bool haTerminado = false;
+        public static bool esModoInverso = false;
+        public static string ganador = "";
         public static List<int[]> tirosPosibles = new List<int[]>() { 
             new int[] {3,2},
             new int[] {2,3},
@@ -286,6 +289,7 @@ namespace ProyectoIpc2.Content.Csharp
                         tirosPosibles = actualizarTirosPosibles(turno);
                         if (isFinished() == true) {
                             haTerminado = isFinished();
+                            definirGanador();
                             guardarPartida();
                             break;
                         } else if (tirosPosibles.Count == 0 && actualizarTirosPosibles((turno == 1) ? 2 : 1).Count > 0) {
@@ -709,6 +713,30 @@ namespace ProyectoIpc2.Content.Csharp
             }
             return false;
         }
+
+        public static void definirGanador() {
+            if (!esModoInverso) {
+                if (player1Points > player2Points) {
+                    ganador = jugador_negro;
+                } else if  (player2Points > player1Points) {
+                    ganador = jugador_blanco;
+                } else {
+                    ganador = "EMPATE";
+                }
+            } else {
+                if (player1Points < player2Points) {
+                    ganador = jugador_negro;
+                } else if (player2Points < player1Points) {
+                    ganador = jugador_blanco;
+                } else {
+                    ganador = "EMPATE";
+                }
+            }
+        }
+
+
+
+
 
     }
 }

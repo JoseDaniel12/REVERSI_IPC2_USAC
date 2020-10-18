@@ -14,6 +14,8 @@ async function renderBoard(info) {
     let haTerminado = JSON.parse(info["haTerminado"])
     let tirosPosibles = JSON.parse(info["tirosPosibles"])
     let hostColor = JSON.parse(info["hostColor"])
+    let ganador = JSON.parse(info["ganador"])
+
     for (let y = 0; y < 8; y++) {
         for (let x = 0; x < 8; x++) {
             let id = x + "" + y
@@ -72,13 +74,7 @@ async function renderBoard(info) {
     }
     
     if (haTerminado == true) {
-        if (player1Points > player2Points) {
-            turnState.innerHTML = "Gandor: Negro"
-        } else if (player2Points > player1Points) {
-            turnState.innerHTML = "Gandor: Blanco"
-        } else {
-            turnState.innerHTML = "EMPATE"
-        }
+        turnState.innerHTML = "Ganador: " + ganador
     }
 
 }
@@ -199,7 +195,7 @@ function activarCronometro() {
     fetch('/Tablero/RegistrarTiempo', {
         method: 'POST',
         body: tiempo
-    }).then(respuesta => respuesta.json())
+    })
     clearInterval(cronometro)
 
     s.innerHTML = "0"
