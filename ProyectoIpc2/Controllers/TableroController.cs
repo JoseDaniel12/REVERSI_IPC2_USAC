@@ -136,5 +136,27 @@ namespace ProyectoIpc2.Controllers
             return new EmptyResult();
         }
 
+
+        [HttpPost]
+        public ActionResult PrepararTablero() {
+            string fileRoot = Request.Params["fileRoot"];
+            Dictionary<string, string> info = new Dictionary<string, string>();
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
+            info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
+            info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
+            info.Add("player1Points", JsonConvert.SerializeObject(GameLogic.player1Points));
+            info.Add("player2Points", JsonConvert.SerializeObject(GameLogic.player2Points));
+            info.Add("tipoPartida", JsonConvert.SerializeObject(GameLogic.tipoPartida));
+            info.Add("jugador_negro", JsonConvert.SerializeObject(GameLogic.jugador_negro));
+            info.Add("jugador_blanco", JsonConvert.SerializeObject(GameLogic.jugador_blanco));
+            info.Add("haTerminado", JsonConvert.SerializeObject(GameLogic.haTerminado));
+            info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
+            info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
+            return Content(JsonConvert.SerializeObject(info));
+        }
+
+
+
     }
 }

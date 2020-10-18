@@ -1,4 +1,5 @@
-﻿var cronometro;
+﻿var cronometro
+prepararTablero()
 
 async function renderBoard(info) {
     let tablero = JSON.parse(info["tablero"])
@@ -215,4 +216,12 @@ function activarCronometro() {
         s.innerHTML = contador_s
     }
     , 1000)
+}
+
+
+function prepararTablero() {
+    fetch('/Tablero/PrepararTablero', {
+        method: 'POST',
+    }).then(respuesta => respuesta.json())
+      .then(respuesta => renderBoard(respuesta));
 }
