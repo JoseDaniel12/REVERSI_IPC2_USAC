@@ -6,7 +6,7 @@
 
 .option-container {
     position: relative;
-    margin: 70px auto;
+    margin: 45px auto;
     background-color: whitesmoke;
     width: 460px;
     border-radius: 8px;
@@ -23,7 +23,7 @@ button {
     height: 45px;
     width: 350px;
     margin-bottom: 20px;
-    margin-left: 50px;
+    margin-left: 55px;
 }
 
 a {

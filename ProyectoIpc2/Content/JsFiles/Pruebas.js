@@ -1,4 +1,6 @@
-﻿async function renderBoard(info) {
+﻿var cronometro;
+
+async function renderBoard(info) {
     let tablero = JSON.parse(info["tablero"])
     let turno = JSON.parse(info["turno"])
     let player1MovesNumber = JSON.parse(info["player1MovesNumber"])
@@ -61,7 +63,7 @@
         }
     }
 
-    if ((tipoPartida == "vsPc") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC")) && (haTerminado == false)) {
+    if ((tipoPartida == "vsPc" || tipoPartida == "vsPcXtreme") && ((turno == 1 && jugador_negro == "PC") || (turno == 2 && jugador_blanco == "PC")) && (haTerminado == false)) {
         fetch('/Tablero/PcPlayerMove', {
             method: 'POST',
         }).then(respuesta => respuesta.json())
@@ -81,6 +83,7 @@
 }
 
 function casillaPresionada(e) {
+    activarCronometro()
     let coordenada = new FormData();
     coordenada.append("coordenada", e.id);
     fetch('/Tablero/CasillaPresionada', {
@@ -180,12 +183,36 @@ function cambiarNombre() {
     }
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function salir() {
     fetch('/Tablero/Salir', {
         method: 'POST',
     }).then(respuesta => location.assign("/MenuPrincipal/MenuPrincipal"));
+}
+
+function activarCronometro() {
+    let s = document.getElementById("segundos")
+    let m = document.getElementById("minutos")
+    let tiempo = new FormData();
+    tiempo.append("segundos", parseInt(s.innerHTML))
+    tiempo.append("minutos", parseInt(m.innerHTML))
+    fetch('/Tablero/RegistrarTiempo', {
+        method: 'POST',
+        body: tiempo
+    }).then(respuesta => respuesta.json())
+    clearInterval(cronometro)
+
+    s.innerHTML = "0"
+    m.innerHTML = "0"
+    let contador_s = 0
+    let contador_m = 0
+    cronometro = window.setInterval(function () {
+        if (contador_s == 60) {
+            contador_s = 0
+            contador_m++
+            m.innerHTML = contador_m
+        }
+        contador_s++
+        s.innerHTML = contador_s
+    }
+    , 1000)
 }

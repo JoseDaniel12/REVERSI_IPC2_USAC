@@ -226,6 +226,7 @@ namespace ProyectoIpc2.Content.Csharp {
                 int maxIndex = puntajes.IndexOf(puntajes.Max());
                 puntajes = new List<int>();
                 tiroPc = tirosPosibles[maxIndex];
+                
                 GameLogic.colocarFicha(tiroPc[0], tiroPc[1]);
             } 
             tableroCopia = new int[8, 8];

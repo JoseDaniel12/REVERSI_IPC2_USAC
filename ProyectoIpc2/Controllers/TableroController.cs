@@ -117,11 +117,22 @@ namespace ProyectoIpc2.Controllers
             return new EmptyResult();
         }
 
-
         [HttpPost]
         public ActionResult CerrarSesion() {
             GameLogic.userId = -1;
             GameLogic.reiniciarDatos();
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult RegistrarTiempo(FormCollection collection) {
+            if (GameLogic.turno == 1) {
+                GameLogic.tiempoSegP1 += Int32.Parse(Request.Params["segundos"].ToString());
+                GameLogic.tiempoSegP1 += (Int32.Parse(Request.Params["minutos"].ToString()))*60;
+            } else {
+                GameLogic.tiempoSegP2 += Int32.Parse(Request.Params["segundos"].ToString());
+                GameLogic.tiempoSegP2 += (Int32.Parse(Request.Params["minutos"].ToString())) * 60;
+            }
             return new EmptyResult();
         }
 

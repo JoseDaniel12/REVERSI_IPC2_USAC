@@ -26,6 +26,8 @@ namespace ProyectoIpc2.Content.Csharp
         public static int player1Points = 2;
         public static int player2Points = 2;
         public static int turno = 1;
+        public static int tiempoSegP1 = 0;
+        public static int tiempoSegP2 = 0;
         public static bool haTerminado = false;
         public static List<int[]> tirosPosibles = new List<int[]>() { 
             new int[] {3,2},
@@ -57,19 +59,40 @@ namespace ProyectoIpc2.Content.Csharp
         };
 
         static void Main(String[] args) {
+
+        }
+
+        public static void iniciarJuego() {
+            if (tipoPartida == "vsPc" || tipoPartida == "vsJugador") {
+                tirosPosibles = new List<int[]>() {
+                    new int[] {3,2},
+                    new int[] {2,3},
+                    new int[] {5,4},
+                    new int[] {4,5},
+                };
+
+            } else if (tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") {
+                limpiarTablero();
+                tirosPosibles = new List<int[]>() {
+                    new int[] {3,3},
+                    new int[] {4,3},
+                    new int[] {3,4},
+                    new int[] {4,4},
+                };
+            }
         }
 
         public static void colocarFicha(int tiroX, int tiroY) {
             List<List<int[]>> caminosComidos = new List<List<int[]>>();
             foreach (int[] tiroPosible in tirosPosibles) {
-                if (tiroPosible[0] == tiroX && tiroPosible[1] == tiroY && isFinished() == false) {
+                if (tiroPosible[0] == tiroX && tiroPosible[1] == tiroY && !isFinished()) {
                     //_____________________comidos a la derehca____________________________ 
                     int x = tiroX;
                     int y = tiroY;
                     List<int[]> caminoComido = new List<int[]>();
                     bool hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    for (x = (x + 1 < 8)? x+1 : x; x < 8; x++) {
+                    for (x = (x + 1 < 8) ? x + 1 : x; x < 8; x++) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -87,7 +110,7 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    for (x = (x - 1 > -1)? x - 1 : x; x > -1; x--) {
+                    for (x = (x - 1 > -1) ? x - 1 : x; x > -1; x--) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -247,15 +270,28 @@ namespace ProyectoIpc2.Content.Csharp
                         player2MovesNumber++;
                     }
 
-                    turno = (turno == 1) ? 2 : 1;
-                    tirosPosibles = actualizarTirosPosibles(turno); 
-                    if (isFinished() == true) {
-                        haTerminado = isFinished();
-                        guardarPartida();
-                        break;
-                    } else if (tirosPosibles.Count == 0 && actualizarTirosPosibles((turno == 1) ? 2 : 1).Count > 0) {
+                    // Verifica si es aprtura personalizada de lo contrario continua normal
+                    if ((tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") && (player1MovesNumber + player2MovesNumber) <= 4) {
+                        foreach (int[] tiro in tirosPosibles) {
+                            if (tiroX == tiro[0] && tiroY == tiro[1]) {
+                                tablero[tiroY, tiroX] = turno;
+                                tirosPosibles.Remove(tiro);
+                                turno = (turno == 1) ? 2 : 1;
+                                tirosPosibles = (player1MovesNumber + player2MovesNumber == 4) ? actualizarTirosPosibles(turno):tirosPosibles;
+                                break;
+                            }
+                        }
+                    } else {
                         turno = (turno == 1) ? 2 : 1;
                         tirosPosibles = actualizarTirosPosibles(turno);
+                        if (isFinished() == true) {
+                            haTerminado = isFinished();
+                            guardarPartida();
+                            break;
+                        } else if (tirosPosibles.Count == 0 && actualizarTirosPosibles((turno == 1) ? 2 : 1).Count > 0) {
+                            turno = (turno == 1) ? 2 : 1;
+                            tirosPosibles = actualizarTirosPosibles(turno);
+                        }
                     }
 
                     /*
@@ -269,7 +305,6 @@ namespace ProyectoIpc2.Content.Csharp
                     break;
                 }
             }
-
         }
 
         public static List<int[]> actualizarTirosPosibles(int turno) {
@@ -669,7 +704,7 @@ namespace ProyectoIpc2.Content.Csharp
                     }
                 }
             }
-            if ((actualizarTirosPosibles(1).Count == 0 && actualizarTirosPosibles(2).Count == 0) || isfull) {
+            if (( (actualizarTirosPosibles(1).Count == 0 && actualizarTirosPosibles(2).Count == 0) && (player1MovesNumber + player2MovesNumber) > 4) || isfull) {
                 return true;
             }
             return false;
