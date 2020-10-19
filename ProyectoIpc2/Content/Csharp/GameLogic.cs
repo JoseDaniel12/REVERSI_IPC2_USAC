@@ -82,6 +82,7 @@ namespace ProyectoIpc2.Content.Csharp
                     new int[] {3,4},
                     new int[] {4,4},
                 };
+                esModoInverso = true;
             }
         }
 
@@ -685,6 +686,7 @@ namespace ProyectoIpc2.Content.Csharp
             player2Points = 2;
             turno = 1;
             haTerminado = false;
+            esModoInverso = false;
             tirosPosibles = new List<int[]>() {
                 new int[] {3,2},
                 new int[] {2,3},
