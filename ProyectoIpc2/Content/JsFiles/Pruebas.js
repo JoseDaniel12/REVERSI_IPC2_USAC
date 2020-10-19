@@ -75,14 +75,26 @@ async function renderBoard(info) {
     
     if (haTerminado == true) {
         turnState.innerHTML = "Ganador: " + ganador
+        clearInterval(cronometro)
+        document.getElementById("cronometro").innerHTML = ""
     }
 
 }
 
-function casillaPresionada(e) {
-    activarCronometro()
+async function casillaPresionada(e) {
     let coordenada = new FormData();
     coordenada.append("coordenada", e.id);
+
+    let res = await fetch('/Tablero/ValidarTiro', {
+        method: 'POST',
+        body: coordenada
+    }).then(res => res.json())
+    .then(res => {
+        if (res == true) {
+            activarCronometro()
+        }
+    })
+
     fetch('/Tablero/CasillaPresionada', {
         method: 'POST',
         body: coordenada

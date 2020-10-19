@@ -131,11 +131,13 @@ namespace ProyectoIpc2.Controllers
         public ActionResult RegistrarTiempo(FormCollection collection) {
             if (GameLogic.turno == 1) {
                 GameLogic.tiempoSegP1 += Int32.Parse(Request.Params["segundos"].ToString());
-                GameLogic.tiempoSegP1 += (Int32.Parse(Request.Params["minutos"].ToString()))*60;
+                GameLogic.tiempoSegP1 += (Int32.Parse(Request.Params["minutos"].ToString())) * 60;
             } else {
                 GameLogic.tiempoSegP2 += Int32.Parse(Request.Params["segundos"].ToString());
                 GameLogic.tiempoSegP2 += (Int32.Parse(Request.Params["minutos"].ToString())) * 60;
             }
+            Debug.WriteLine("Jugador 1:" + GameLogic.tiempoSegP1);
+            Debug.WriteLine("Jugador 2:" + GameLogic.tiempoSegP2);
             return new EmptyResult();
         }
 
@@ -160,6 +162,18 @@ namespace ProyectoIpc2.Controllers
             return Content(JsonConvert.SerializeObject(info));
         }
 
+        [HttpPost]
+        public ActionResult ValidarTiro(FormCollection collection) {
+            string coordenada = Request.Params["coordenada"];
+            int x = Int32.Parse(coordenada[0].ToString());
+            int y = Int32.Parse(coordenada[1].ToString());
+            foreach (int[] tiro in GameLogic.tirosPosibles) {
+                if (tiro[0] == x && tiro[1] == y) {
+                    return Content(JsonConvert.SerializeObject(true));
+                }
+            }
+            return Content(JsonConvert.SerializeObject(false));
+        }
 
 
     }

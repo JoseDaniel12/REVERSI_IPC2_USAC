@@ -484,7 +484,7 @@ namespace ProyectoIpc2.Content.Csharp
             XmlNode colorNode;
             XmlNode columnaNode;
             XmlNode filaNode;
-
+            
             for (int y = 0; y < 8; y++) {
                 for (int x = 0; x < 8; x++) {
                     fichaNode = xmlDoc.CreateElement("ficha");
@@ -684,6 +684,8 @@ namespace ProyectoIpc2.Content.Csharp
             player2MovesNumber = 0;
             player1Points = 2;
             player2Points = 2;
+            tiempoSegP1 = 0;
+            tiempoSegP2 = 0;
             turno = 1;
             haTerminado = false;
             esModoInverso = false;
