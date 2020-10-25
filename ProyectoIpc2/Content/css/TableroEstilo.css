@@ -8,12 +8,12 @@
     width: 240px;
 }
 
-    .options-container button {
-        display: block;
-        width: 223px;
-        margin: 10px;
-        margin-bottom: 0px;
-    }
+.options-container button {
+    display: block;
+    width: 223px;
+    margin: 10px;
+    margin-bottom: 0px;
+}
 
 .state-container {
     position: relative;
@@ -66,9 +66,9 @@
     top: 25px;
 }
 
-    .turn-state p {
-        color: whitesmoke;
-    }
+.turn-state p {
+    color: whitesmoke;
+}
 
 
 .box-container {
@@ -81,59 +81,45 @@
 
 .box {
     float: left;
-    height: 50px;
-    width: 50px;
     background: #009067;
     margin-bottom: 1px;
     margin-right: 1px;
     text-align: center;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #a33c25;
 }
 
 .coin {
-    margin-top: 5px;
-    height: 40px;
-    width: 40px;
-    border-radius: 50px;
-    background-color:#009067;
+    height: 80%;
+    width: 80%;
+    background-color: #009067;
+    border-radius: 50%;
     border: none;
 }
 
-.fila#cero .box#cero {
-    border-top-left-radius: 6px;
-}
 
-.fila#cero .box#nueve {
+.esquina_der_sup {
     border-top-right-radius: 6px;
 }
 
-.fila#nueve .box#cero {
-    border-bottom-left-radius: 6px;
+.esquina_izq_sup {
+    border-top-left-radius: 6px;
 }
 
-.fila#nueve .box#nueve {
+.esquina_der_inf {
     border-bottom-right-radius: 6px;
 }
 
-.fila#cero .box {
-    background-color: #ca8c4f;
+.esquina_izq_inf {
+    border-bottom-left-radius: 6px;
 }
 
-.fila#nueve .box {
+.borde {
     background-color: #ca8c4f;
-}
-
-.box#cero {
-    background-color: #ca8c4f;
-}
-
-.box#nueve {
-    background-color: #ca8c4f;
-}
-
-
-.box .marcador {
-    color: #a33c25;
-    font-size: 15px;
 }
 
 .option-cotainer {
@@ -197,18 +183,6 @@
     padding-top: 8px;
     text-align: center;
     height: 40px;
-}
-
-.box .marcador {
-    margin-top: 12px;
-}
-
-.blanca_inicial {
-    background-color: whitesmoke;
-}
-
-.negra_inicial {
-    background-color: black;
 }
 
 .info_option {

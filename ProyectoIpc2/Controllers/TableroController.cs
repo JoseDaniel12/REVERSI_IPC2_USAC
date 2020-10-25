@@ -18,11 +18,11 @@ namespace ProyectoIpc2.Controllers
         [HttpPost]
         public ActionResult CasillaPresionada(FormCollection collection) {
             string coordenada = Request.Params["coordenada"];
-            int editX = Int32.Parse(coordenada[0].ToString());
-            int editY = Int32.Parse(coordenada[1].ToString());
+            int editX = Int32.Parse(coordenada.Split('_')[0]);
+            int editY = Int32.Parse(coordenada.Split('_')[1]);
             GameLogic.colocarFicha(editX, editY);
             Dictionary<string, string> info = new Dictionary<string, string>();
-            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tableroDeColores));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
             info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
             info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
@@ -35,6 +35,8 @@ namespace ProyectoIpc2.Controllers
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
+            info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
+            info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -49,7 +51,7 @@ namespace ProyectoIpc2.Controllers
             string fileRoot = Request.Params["fileRoot"];
             GameLogic.cargarPartida(fileRoot);
             Dictionary<string, string> info = new Dictionary<string, string>();
-            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tableroDeColores));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
             info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
             info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
@@ -62,6 +64,8 @@ namespace ProyectoIpc2.Controllers
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
+            info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
+            info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -70,7 +74,7 @@ namespace ProyectoIpc2.Controllers
         public ActionResult PcPlayerMove(FormCollection collection) {
             PcPlayer.move(GameLogic.tablero, GameLogic.tirosPosibles, GameLogic.turno);
             Dictionary<string, string> info = new Dictionary<string, string>();
-            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tableroDeColores));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
             info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
             info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
@@ -83,6 +87,8 @@ namespace ProyectoIpc2.Controllers
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
+            info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
+            info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -136,17 +142,14 @@ namespace ProyectoIpc2.Controllers
                 GameLogic.tiempoSegP2 += Int32.Parse(Request.Params["segundos"].ToString());
                 GameLogic.tiempoSegP2 += (Int32.Parse(Request.Params["minutos"].ToString())) * 60;
             }
-            Debug.WriteLine("Jugador 1:" + GameLogic.tiempoSegP1);
-            Debug.WriteLine("Jugador 2:" + GameLogic.tiempoSegP2);
             return new EmptyResult();
         }
 
 
         [HttpPost]
         public ActionResult PrepararTablero() {
-            string fileRoot = Request.Params["fileRoot"];
             Dictionary<string, string> info = new Dictionary<string, string>();
-            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tablero));
+            info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tableroDeColores));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));
             info.Add("player1MovesNumber", JsonConvert.SerializeObject(GameLogic.player1MovesNumber));
             info.Add("player2MovesNumber", JsonConvert.SerializeObject(GameLogic.player2MovesNumber));
@@ -159,14 +162,16 @@ namespace ProyectoIpc2.Controllers
             info.Add("tirosPosibles", JsonConvert.SerializeObject(GameLogic.tirosPosibles));
             info.Add("hostColor", JsonConvert.SerializeObject(GameLogic.hostColor));
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
+            info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
+            info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
             return Content(JsonConvert.SerializeObject(info));
         }
 
         [HttpPost]
         public ActionResult ValidarTiro(FormCollection collection) {
-            string coordenada = Request.Params["coordenada"];
-            int x = Int32.Parse(coordenada[0].ToString());
-            int y = Int32.Parse(coordenada[1].ToString());
+            string coordenada = Request.Params["coordenada"].ToString();
+            int x = Int32.Parse(coordenada.Split('_')[0]);
+            int y = Int32.Parse(coordenada.Split('_')[1]);
             foreach (int[] tiro in GameLogic.tirosPosibles) {
                 if (tiro[0] == x && tiro[1] == y) {
                     return Content(JsonConvert.SerializeObject(true));

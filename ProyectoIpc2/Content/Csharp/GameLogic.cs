@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Data.Entity.Infrastructure.Interception;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Xml;
 using Microsoft.Ajax.Utilities;
@@ -32,58 +34,57 @@ namespace ProyectoIpc2.Content.Csharp
         public static bool haTerminado = false;
         public static bool esModoInverso = false;
         public static string ganador = "";
-        public static List<int[]> tirosPosibles = new List<int[]>() { 
-            new int[] {3,2},
-            new int[] {2,3},
-            new int[] {5,4},
-            new int[] {4,5},
+        public static int anchoTablero = 8;
+        public static int altoTablero = 8;
+        public static List<List<String>> coloresElegidos = new List<List<String>>{
+            new List<String> {"Negro"},
+            new List<String> {"Blanco"},
+        };
+        public static List<String> coloresActuales = new List<String> {"Negro", "Blanco"};
+        public static Dictionary<string, int> dicColores = new Dictionary<string, int>() {
+            { "Negro", 1 },
+            { "Blanco", 2 },
+            { "Rojo", 3 },
+            { "Amarillo", 4 },
+            { "Azul", 5 },
+            { "Anaranjado", 6 },
+            { "Verde", 7 },
+            { "Violeta", 8 },
+            { "Celeste", 9 },
+            { "Gris", 0 },
+
         };
 
-         public static int[,] tableroInicial = new int[8, 8] {
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1,  2,  1, -1, -1, -1},
-            {-1, -1, -1,  1,  2, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-        };
-
-        public static int[,] tablero = new int[8, 8] {
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1,  2,  1, -1, -1, -1},
-            {-1, -1, -1,  1,  2, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-            {-1, -1, -1, -1, -1, -1, -1, -1},
-        };
-
-        static void Main(String[] args) {
-
-        }
+        public static List<int[]> tirosPosibles = new List<int[]>();
+        public static int[,] tableroInicial;
+        public static int[,] tablero;
+        public static int[,] tableroDeColores;
 
         public static void iniciarJuego() {
             if (tipoPartida == "vsPc" || tipoPartida == "vsJugador") {
-                tirosPosibles = new List<int[]>() {
-                    new int[] {3,2},
-                    new int[] {2,3},
-                    new int[] {5,4},
-                    new int[] {4,5},
-                };
-
-            } else if (tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") {
+                anchoTablero = 8;
+                altoTablero = 8;
+                tablero = new int[altoTablero, anchoTablero];
                 limpiarTablero();
+                tablero[(altoTablero / 2) - 1, (anchoTablero / 2) - 1] = 2;
+                tablero[(altoTablero / 2) - 1, (anchoTablero / 2)] = 1;
+                tablero[(altoTablero / 2), (anchoTablero / 2) - 1] = 1;
+                tablero[(altoTablero / 2), (anchoTablero / 2)] = 2;
+                tirosPosibles = actualizarTirosPosibles(1);
+            } else if (tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") {
+                tablero = new int[altoTablero, anchoTablero];
+                limpiarTablero();
+
                 tirosPosibles = new List<int[]>() {
-                    new int[] {3,3},
-                    new int[] {4,3},
-                    new int[] {3,4},
-                    new int[] {4,4},
+                    new int[] { (anchoTablero / 2) - 1, (altoTablero / 2) - 1},
+                    new int[] { (anchoTablero / 2), (altoTablero / 2) - 1},
+                    new int[] { (anchoTablero / 2) - 1, (altoTablero / 2)},
+                    new int[] {(anchoTablero / 2), (altoTablero / 2)},
                 };
                 esModoInverso = true;
             }
+            tableroDeColores = (int[,])tablero.Clone();
+            tableroInicial = (int[,])tablero.Clone();
         }
 
         public static void colocarFicha(int tiroX, int tiroY) {
@@ -96,7 +97,7 @@ namespace ProyectoIpc2.Content.Csharp
                     List<int[]> caminoComido = new List<int[]>();
                     bool hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    for (x = (x + 1 < 8) ? x + 1 : x; x < 8; x++) {
+                    for (x = (x + 1 < anchoTablero) ? x + 1 : x; x < anchoTablero; x++) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -150,7 +151,7 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    for (y = (y + 1 < 8) ? y + 1 : y; y < 8; y++) {
+                    for (y = (y + 1 < altoTablero) ? y + 1 : y; y < altoTablero; y++) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -168,11 +169,11 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                    if (x + 1 != anchoTablero && x + 1 != -1 && y + 1 != altoTablero && y + 1 != -1) {
                         x++;
                         y++;
                     }
-                    while (x != 8 && x != -1 && y != 8 && y != -1) {
+                    while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -193,11 +194,11 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x - 1 != 8 && x - 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+                    if (x - 1 != anchoTablero && x - 1 != -1 && y - 1 != altoTablero && y - 1 != -1) {
                         x--;
                         y--;
                     }
-                    while (x != 8 && x != -1 && y != 8 && y != -1) {
+                    while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -217,11 +218,11 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x - 1 != 8 && x - 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                    if (x - 1 != anchoTablero && x - 1 != -1 && y + 1 != altoTablero && y + 1 != -1) {
                         x--;
                         y++;
                     }
-                    while (x != 8 && x != -1 && y != 8 && y != -1) {
+                    while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -241,11 +242,11 @@ namespace ProyectoIpc2.Content.Csharp
                     caminoComido = new List<int[]>();
                     hayContrarias = false;
                     caminoComido.Add(new int[] { tiroX, tiroY });
-                    if (x + 1 != 8 && x + 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+                    if (x + 1 != anchoTablero && x + 1 != -1 && y - 1 != altoTablero && y - 1 != -1) {
                         x++;
                         y--;
                     }
-                    while (x != 8 && x != -1 && y != 8 && y != -1) {
+                    while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                         if (tablero[y, x] != turno && tablero[y, x] != -1) {
                             hayContrarias = true;
                             caminoComido.Add(new int[] { x, y });
@@ -264,6 +265,7 @@ namespace ProyectoIpc2.Content.Csharp
                     foreach (List<int[]> camino in caminosComidos) {
                         foreach (int[] ficha in camino) {
                             tablero[ficha[1], ficha[0]] = turno;
+                            tableroDeColores[ficha[1], ficha[0]] = dicColores[coloresActuales[turno - 1]];
                         }
                     }
                     calcularPutnos();
@@ -274,11 +276,13 @@ namespace ProyectoIpc2.Content.Csharp
                         player2MovesNumber++;
                     }
 
+
                     // Verifica si es aprtura personalizada de lo contrario continua normal
                     if ((tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") && (player1MovesNumber + player2MovesNumber) <= 4) {
                         foreach (int[] tiro in tirosPosibles) {
                             if (tiroX == tiro[0] && tiroY == tiro[1]) {
                                 tablero[tiroY, tiroX] = turno;
+                                tableroDeColores[tiroY, tiroX] = dicColores[coloresActuales[turno - 1]];
                                 tirosPosibles.Remove(tiro);
                                 turno = (turno == 1) ? 2 : 1;
                                 tirosPosibles = (player1MovesNumber + player2MovesNumber == 4) ? actualizarTirosPosibles(turno):tirosPosibles;
@@ -306,7 +310,7 @@ namespace ProyectoIpc2.Content.Csharp
                     }
                     Debug.WriteLine("___________________________");
                     */
-
+                    cambiarColor(turno);
                     break;
                 }
             }
@@ -315,15 +319,15 @@ namespace ProyectoIpc2.Content.Csharp
         public static List<int[]> actualizarTirosPosibles(int turno) {
             List<int[]> tirosPosibles = new List<int[]>();
             // recorrer casilla por casilla del tablero para encotrar las fichas del turno corresponiete
-            for (int coordenadaY = 0; coordenadaY < 8; coordenadaY++) {
-                for (int coordenadaX = 0; coordenadaX < 8; coordenadaX++) {
+            for (int coordenadaY = 0; coordenadaY < altoTablero; coordenadaY++) {
+                for (int coordenadaX = 0; coordenadaX < anchoTablero; coordenadaX++) {
                     if (tablero[coordenadaY, coordenadaX] == turno) {
 
                         // _________________________tiros a la derecha_____________________________________________
                         int x = coordenadaX;
                         int y = coordenadaY;
                         bool hayContrarias = false;
-                        for (x= (x + 1 < 8)? x + 1: x; x < 8; x++) {
+                        for (x= (x + 1 < anchoTablero)? x + 1: x; x < anchoTablero; x++) {
                             if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
@@ -372,7 +376,7 @@ namespace ProyectoIpc2.Content.Csharp
                         x = coordenadaX;
                         y = coordenadaY;
                         hayContrarias = false;
-                        for (y = (y + 1 < 8) ? y + 1 : y; y < 8; y++) {
+                        for (y = (y + 1 < altoTablero) ? y + 1 : y; y < altoTablero; y++) {
                             if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
@@ -388,11 +392,11 @@ namespace ProyectoIpc2.Content.Csharp
                         x = coordenadaX;
                         y = coordenadaY;
                         hayContrarias = false;
-                        if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                        if (x + 1 != anchoTablero && x + 1 != -1 && y + 1 != altoTablero && y + 1 != -1) {
                             x++;
                             y++;
                         }
-                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                        while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                             if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
@@ -409,11 +413,11 @@ namespace ProyectoIpc2.Content.Csharp
                         x = coordenadaX;
                         y = coordenadaY;
                         hayContrarias = false;
-                        if (x - 1 != 8 && x - 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+                        if (x - 1 != anchoTablero && x - 1 != -1 && y - 1 != altoTablero && y - 1 != -1) {
                             x--;
                             y--;
                         }
-                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                        while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                             if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
@@ -430,11 +434,11 @@ namespace ProyectoIpc2.Content.Csharp
                         x = coordenadaX;
                         y = coordenadaY;
                         hayContrarias = false;
-                        if (x + 1 != 8 && x + 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+                        if (x + 1 != anchoTablero && x + 1 != -1 && y - 1 != altoTablero && y - 1 != -1) {
                             x++;
                             y--;
                         }
-                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                        while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                             if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
@@ -451,11 +455,11 @@ namespace ProyectoIpc2.Content.Csharp
                         x = coordenadaX;
                         y = coordenadaY;
                         hayContrarias = false;
-                        if (x - 1 != 8 && x - 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+                        if (x - 1 != anchoTablero && x - 1 != -1 && y + 1 != altoTablero && y + 1 != -1) {
                             x--;
                             y++;
                         }
-                        while (x != 8 && x != -1 && y != 8 && y != -1) {
+                        while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                             if (tablero[y, x] != turno && tablero[y, x] != -1) {
                                 hayContrarias = true;
                             } else if (tablero[y, x] == -1 && hayContrarias == true) {
@@ -485,8 +489,8 @@ namespace ProyectoIpc2.Content.Csharp
             XmlNode columnaNode;
             XmlNode filaNode;
             
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     fichaNode = xmlDoc.CreateElement("ficha");
                     colorNode = xmlDoc.CreateElement("color");
                     columnaNode = xmlDoc.CreateElement("columna");
@@ -652,8 +656,8 @@ namespace ProyectoIpc2.Content.Csharp
         }
 
         public static void limpiarTablero() {
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     tablero[y, x] = -1;  
                 }
             }
@@ -662,8 +666,8 @@ namespace ProyectoIpc2.Content.Csharp
         public static void calcularPutnos() {
             player1Points = 0;
             player2Points = 0;
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     if (tablero[y,x] == 1) {
                         player1Points++;
                     } else if (tablero[y, x] == 2) {
@@ -686,27 +690,28 @@ namespace ProyectoIpc2.Content.Csharp
             player2Points = 2;
             tiempoSegP1 = 0;
             tiempoSegP2 = 0;
+            tirosPosibles = new List<int[]>();
             turno = 1;
             haTerminado = false;
             esModoInverso = false;
-            tirosPosibles = new List<int[]>() {
-                new int[] {3,2},
-                new int[] {2,3},
-                new int[] {5,4},
-                new int[] {4,5},
-            };
-
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     tablero[y, x] = tableroInicial[y, x];
                 }
             }
-        }
+
+            coloresElegidos = new List<List<String>>{
+                new List<String> {"Negro"},
+                new List<String> {"Blanco"},
+            };
+            coloresActuales = new List<String> { "Negro", "Blanco" };
+
+    }
 
         public static bool isFinished() {
             bool isfull = true;
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     if (tablero[y,x] == -1) {
                         isfull = false;
                     }
@@ -738,6 +743,17 @@ namespace ProyectoIpc2.Content.Csharp
             }
         }
 
+
+        public static void cambiarColor(int turno) {
+            string colorActual = coloresActuales[turno - 1];
+            int indexColorActual = coloresElegidos[turno - 1].IndexOf(colorActual);
+            if (indexColorActual != coloresElegidos[turno - 1].Count() - 1) {
+                coloresActuales[turno - 1] = coloresElegidos[turno - 1][indexColorActual + 1];
+            } else {
+                coloresActuales[turno - 1] = coloresElegidos[turno - 1][0];
+            }
+
+        }
 
 
 

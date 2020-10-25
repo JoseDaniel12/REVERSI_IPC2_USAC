@@ -132,6 +132,7 @@
     <Compile Include="Content\Csharp\PcPlayer.cs" />
     <Compile Include="Controllers\LogingController.cs" />
     <Compile Include="Controllers\MenuPrincipalController.cs" />
+    <Compile Include="Controllers\MenuXtremeController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Global.asax.cs">
@@ -193,11 +194,13 @@
   <ItemGroup>
     <Content Include="Content\css\EstiloLoging.css" />
     <Content Include="Content\css\MenuPrincipalEstitlo.css" />
+    <Content Include="Content\css\MenuXtremeEstilo.css" />
     <Content Include="Content\css\RegistroEstilo.css" />
     <Content Include="Content\css\TableroEstilo.css" />
     <Content Include="Content\Imgs\GoogleLogo.png" />
     <Content Include="Content\Imgs\reversi.png" />
     <Content Include="Content\JsFiles\MenuPrincipal.js" />
+    <Content Include="Content\JsFiles\MenuXtreme.js" />
     <Content Include="Content\JsFiles\Pruebas.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -267,6 +270,7 @@
     <Content Include="Views\Registro\Registro.cshtml" />
     <Content Include="Views\MenuPrincipal\MenuPrincipal.cshtml" />
     <Content Include="Views\Tablero\Tablero.cshtml" />
+    <Content Include="Views\MenuXtreme\MenuXtreme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

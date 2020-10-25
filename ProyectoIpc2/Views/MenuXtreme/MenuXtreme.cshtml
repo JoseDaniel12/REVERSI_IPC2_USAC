@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Xtreme </title>
+    <link rel="stylesheet" href="~/Content/css/MenuXtremeEstilo.css">
+</head>
+
+<body>
+    <div class="option-container">
+        <img src="~/Content/Imgs/reversi.png" alt="" width="460" class="cabezera">
+
+        <label for="">Ancho de tablero:</label>
+        <select id="anchoTablero">
+            <option value="">6</option>
+            <option value="">8</option>
+            <option value="">10</option>
+            <option value="">12</option>
+            <option value="">14</option>
+            <option value="">16</option>
+            <option value="">18</option>
+            <option value="">20</option>
+        </select>
+
+        <label>Alto de tablero:</label>
+        <select id="altoTablero">
+            <option value="">6</option>
+            <option value="">8</option>
+            <option value="">10</option>
+            <option value="">12</option>
+            <option value="">14</option>
+            <option value="">16</option>
+            <option value="">18</option>
+            <option value="">20</option>
+        </select>
+
+        <label>Modo:</label>
+        <select id="modalidad">
+            <option value="">Normal</option>
+            <option value="">Inverso</option>
+        </select>
+
+        <label>Colores Jugador 1:</label>
+        <select class="color" id="color1_p1">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color2_p1">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color3_p1">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color4_p1">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color5_p1">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+
+
+        <label for="">Colores Jugador 2:</label>
+        <select class="color" id="color1_p2">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color2_p2">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color3_p2">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color4_p2">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+        <select class="color" id="color5_p2">
+            <option>Ninguno</option>
+            <option>Negro</option>
+            <option>Blanco</option>
+            <option>Rojo</option>
+            <option>Amarillo</option>
+            <option>Azul</option>
+            <option>Anaranjado</option>
+            <option>Verde</option>
+            <option>Violeta</option>
+            <option>Celeste</option>
+            <option>Gris</option>
+        </select>
+
+        <button class="option" onclick="ajustarConfsXtreme()">continuar</button>
+
+    </div>
+    <script src="~/Content/JsFiles/MenuXtreme.js"></script>
+</body>
+
+</html>

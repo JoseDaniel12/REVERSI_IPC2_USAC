@@ -8,10 +8,13 @@ using System.Web;
 namespace ProyectoIpc2.Content.Csharp {
 
     public static class PcPlayer { 
-        public static int[,] tableroCopia = new int[8,8];
+        public static int[,] tableroCopia = new int[GameLogic.altoTablero,GameLogic.anchoTablero];
         public static List<int> puntajes = new List<int>();
 
         public static int[,] colocarFicha(int[,] tablero, int tiroX, int tiroY, int turno) {
+            int anchoTablero = GameLogic.anchoTablero;
+            int altoTablero = GameLogic.altoTablero;
+
             List<List<int[]>> caminosComidos = new List<List<int[]>>();
             //_____________________comidos a la derehca____________________________ 
             int x = tiroX;
@@ -19,7 +22,7 @@ namespace ProyectoIpc2.Content.Csharp {
             List<int[]> caminoComido = new List<int[]>();
             bool hayContrarias = false;
             caminoComido.Add(new int[] { tiroX, tiroY });
-            for (x = (x + 1 < 8) ? x + 1 : x; x < 8; x++) {
+            for (x = (x + 1 < anchoTablero) ? x + 1 : x; x < anchoTablero; x++) {
                 if (tablero[y, x] != turno && tablero[y, x] != -1) {
                     hayContrarias = true;
                     caminoComido.Add(new int[] { x, y });
@@ -73,7 +76,7 @@ namespace ProyectoIpc2.Content.Csharp {
             caminoComido = new List<int[]>();
             hayContrarias = false;
             caminoComido.Add(new int[] { tiroX, tiroY });
-            for (y = (y + 1 < 8) ? y + 1 : y; y < 8; y++) {
+            for (y = (y + 1 < altoTablero) ? y + 1 : y; y < altoTablero; y++) {
                 if (tablero[y, x] != turno && tablero[y, x] != -1) {
                     hayContrarias = true;
                     caminoComido.Add(new int[] { x, y });
@@ -91,11 +94,11 @@ namespace ProyectoIpc2.Content.Csharp {
             caminoComido = new List<int[]>();
             hayContrarias = false;
             caminoComido.Add(new int[] { tiroX, tiroY });
-            if (x + 1 != 8 && x + 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+            if (x + 1 != anchoTablero && x + 1 != -1 && y + 1 != altoTablero && y + 1 != -1) {
                 x++;
                 y++;
             }
-            while (x != 8 && x != -1 && y != 8 && y != -1) {
+            while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                 if (tablero[y, x] != turno && tablero[y, x] != -1) {
                     hayContrarias = true;
                     caminoComido.Add(new int[] { x, y });
@@ -116,11 +119,11 @@ namespace ProyectoIpc2.Content.Csharp {
             caminoComido = new List<int[]>();
             hayContrarias = false;
             caminoComido.Add(new int[] { tiroX, tiroY });
-            if (x - 1 != 8 && x - 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+            if (x - 1 != anchoTablero && x - 1 != -1 && y - 1 != altoTablero && y - 1 != -1) {
                 x--;
                 y--;
             }
-            while (x != 8 && x != -1 && y != 8 && y != -1) {
+            while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                 if (tablero[y, x] != turno && tablero[y, x] != -1) {
                     hayContrarias = true;
                     caminoComido.Add(new int[] { x, y });
@@ -140,11 +143,11 @@ namespace ProyectoIpc2.Content.Csharp {
             caminoComido = new List<int[]>();
             hayContrarias = false;
             caminoComido.Add(new int[] { tiroX, tiroY });
-            if (x - 1 != 8 && x - 1 != -1 && y + 1 != 8 && y + 1 != -1) {
+            if (x - 1 != anchoTablero && x - 1 != -1 && y + 1 != altoTablero && y + 1 != -1) {
                 x--;
                 y++;
             }
-            while (x != 8 && x != -1 && y != 8 && y != -1) {
+            while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                 if (tablero[y, x] != turno && tablero[y, x] != -1) {
                     hayContrarias = true;
                     caminoComido.Add(new int[] { x, y });
@@ -164,11 +167,11 @@ namespace ProyectoIpc2.Content.Csharp {
             caminoComido = new List<int[]>();
             hayContrarias = false;
             caminoComido.Add(new int[] { tiroX, tiroY });
-            if (x + 1 != 8 && x + 1 != -1 && y - 1 != 8 && y - 1 != -1) {
+            if (x + 1 != anchoTablero && x + 1 != -1 && y - 1 != altoTablero && y - 1 != -1) {
                 x++;
                 y--;
             }
-            while (x != 8 && x != -1 && y != 8 && y != -1) {
+            while (x != anchoTablero && x != -1 && y != altoTablero && y != -1) {
                 if (tablero[y, x] != turno && tablero[y, x] != -1) {
                     hayContrarias = true;
                     caminoComido.Add(new int[] { x, y });
@@ -194,9 +197,11 @@ namespace ProyectoIpc2.Content.Csharp {
 
 
         public static int calcularPuntajePc(int[,] tablero, int turno) {
+            int anchoTablero = GameLogic.anchoTablero;
+            int altoTablero = GameLogic.altoTablero;
             int puntaje = 0;
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     if (tablero[y,x] == turno) {
                         puntaje += 1;
                     }
@@ -206,9 +211,11 @@ namespace ProyectoIpc2.Content.Csharp {
         }
 
         public static int[,] copiarTablero(int[,] tableroOriginal) {
-            int[,] copia = new int[8, 8];
-            for (int y = 0; y < 8; y++) {
-                for (int x = 0; x < 8; x++) {
+            int anchoTablero = GameLogic.anchoTablero;
+            int altoTablero = GameLogic.altoTablero;
+            int[,] copia = new int[altoTablero, anchoTablero];
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
                     copia[y, x] = tableroOriginal[y, x];
                 }
             }
@@ -229,7 +236,7 @@ namespace ProyectoIpc2.Content.Csharp {
                 
                 GameLogic.colocarFicha(tiroPc[0], tiroPc[1]);
             } 
-            tableroCopia = new int[8, 8];
+            tableroCopia = new int[GameLogic.altoTablero, GameLogic.anchoTablero];
             puntajes = new List<int>();
        
         }

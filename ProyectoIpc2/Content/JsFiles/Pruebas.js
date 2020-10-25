@@ -15,27 +15,42 @@ async function renderBoard(info) {
     let tirosPosibles = JSON.parse(info["tirosPosibles"])
     let hostColor = JSON.parse(info["hostColor"])
     let ganador = JSON.parse(info["ganador"])
+    let anchoTablero = JSON.parse(info["anchoTablero"])
+    let altoTablero = JSON.parse(info["altoTablero"])
 
-    for (let y = 0; y < 8; y++) {
-        for (let x = 0; x < 8; x++) {
-            let id = x + "" + y
+    for (let y = 0; y < altoTablero; y++) {
+        for (let x = 0; x < anchoTablero; x++) {
+            let id = x + "_" + y
             let boton = document.getElementById(id)
             switch (tablero[y][x]) {
+                case -1:
+                    boton.style.backgroundColor = "#009067"; break // fondo de tablero
                 case 1:
-                    boton.style.backgroundColor = "black";
-                    break
+                    boton.style.backgroundColor = "black"; break // fondo negro
                 case 2:
-                    boton.style.backgroundColor = "whitesmoke";
-                    break
-                default:
-                    boton.style.backgroundColor = "#009067";
-                    break
+                    boton.style.backgroundColor = "whitesmoke"; break // fondo blanco
+                case 3:
+                    boton.style.backgroundColor = "red"; break // fondo rojo
+                case 4:
+                    boton.style.backgroundColor = "#F1C40F"; break // fondo amarillo
+                case 5:
+                    boton.style.backgroundColor = "#366EED"; break // fondo azul
+                case 6:
+                    boton.style.backgroundColor = "#ED9436"; break // fondo anaranjado
+                case 7:
+                    boton.style.backgroundColor = "#73ED36"; break // fondo verde
+                case 8:
+                    boton.style.backgroundColor = "#E236ED"; break // fondo violeta
+                case 9:
+                    boton.style.backgroundColor = "#36B6ED"; break // fondo celeste
+                case 0:
+                    boton.style.backgroundColor = "#5D6D7E"; break // fondo gris
             }
         }
     }
 
     for (let i = 0; i < tirosPosibles.length; i++) {
-        id = tirosPosibles[i][0] + "" + tirosPosibles[i][1]
+        id = tirosPosibles[i][0] + "_" + tirosPosibles[i][1]
         document.getElementById(id).style.backgroundColor = "#307864";
     }
 
@@ -231,5 +246,55 @@ function prepararTablero() {
     fetch('/Tablero/PrepararTablero', {
         method: 'POST',
     }).then(respuesta => respuesta.json())
-      .then(respuesta => renderBoard(respuesta));
+      .then(respuesta => construirTablero(respuesta))
+}
+
+function construirTablero(info) {
+    let ancho = JSON.parse(info["anchoTablero"])
+    let alto = JSON.parse(info["altoTablero"])
+    let contenedor = document.getElementById("contendorTablero")
+    contenedor.innerHTML = ""
+    let numsText = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"]
+    let abcdario = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T"]
+
+    for (let y = 0; y < alto + 2; y++) {
+        let fila = document.createElement("div")
+        fila.classList.add("fila")
+        fila.setAttribute("id", numsText[y])
+        for (let x = 0; x < ancho + 2; x++) {
+            let contenedorCasilla = document.createElement("div")
+            contenedorCasilla.classList.add("box")
+            contenedorCasilla.setAttribute("id", numsText[x])
+            if (x != 0 && x != ancho + 1 && y != 0 && y != alto + 1) {
+                let boton = document.createElement("button")
+                boton.classList.add("coin")
+                boton.setAttribute("id", (x - 1) + "_" + (y - 1))
+                boton.setAttribute("onclick", "casillaPresionada(this)")
+                contenedorCasilla.appendChild(boton)
+            } else {
+                let texto = document.createElement("div")
+                if (x > 0 && x < ancho + 1) {
+                    texto.innerHTML = abcdario[x]
+                } else if (y > 0 && y < alto + 1) {
+                    texto.innerHTML = y
+                }
+                contenedorCasilla.appendChild(texto)
+                if (x == 0 && y == 0) {
+                    contenedorCasilla.classList.add("esquina_izq_sup")
+                } else if (x == ancho + 1 && y == 0) {
+                    contenedorCasilla.classList.add("esquina_der_sup")
+                } else if (x == 0 && y == alto + 1) {
+                    contenedorCasilla.classList.add("esquina_izq_inf")
+                } else if (x == ancho + 1 && y == alto + 1) {
+                    contenedorCasilla.classList.add("esquina_der_inf")
+                }
+                contenedorCasilla.classList.add("borde")
+            }
+            contenedorCasilla.style.width = (508 / (ancho + 2) - 1).toString() + "px"
+            contenedorCasilla.style.height = (508 / (ancho + 2) - 1).toString() + "px"
+            fila.appendChild(contenedorCasilla)
+        }
+        contenedor.appendChild(fila)
+    }
+    renderBoard(info)
 }

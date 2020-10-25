@@ -22,7 +22,7 @@ function vsPcXtreme() {
     fetch('/MenuPrincipal/opcionSeleccionada', {
         method: 'POST',
         body: opcion
-    }).then(res => location.assign("/Tablero/Tablero"))
+    }).then(res => location.assign("/MenuXtreme/MenuXtreme"))
 }
 
 function vsJugadorXtreme() {
@@ -31,7 +31,7 @@ function vsJugadorXtreme() {
     fetch('/MenuPrincipal/opcionSeleccionada', {
         method: 'POST',
         body: opcion
-    }).then(res => location.assign("/Tablero/Tablero"))
+    }).then(res => location.assign("/MenuXtreme/MenuXtreme"))
 }
 
 function cerrarSesion() {
