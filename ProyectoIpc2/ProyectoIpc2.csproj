@@ -130,34 +130,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\Csharp\GameLogic.cs" />
     <Compile Include="Content\Csharp\PcPlayer.cs" />
+    <Compile Include="Content\Csharp\SaveGame.cs" />
     <Compile Include="Controllers\LogingController.cs" />
     <Compile Include="Controllers\MenuPrincipalController.cs" />
     <Compile Include="Controllers\MenuXtremeController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
     <Compile Include="Controllers\TableroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Encuentro.cs">
+    <Compile Include="Models\Campeonato.cs">
       <DependentUpon>ModelReversi.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Inscripcion.cs">
-      <DependentUpon>ModelReversi.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelPlayers.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelPlayers.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelPlayers.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelPlayers.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ModelPlayers.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ModelPlayers.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ModelReversi.Context.cs">
       <AutoGen>True</AutoGen>
@@ -177,15 +161,6 @@
     <Compile Include="Models\Partida.cs">
       <DependentUpon>ModelReversi.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Player.cs">
-      <DependentUpon>ModelPlayers.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Ronda.cs">
-      <DependentUpon>ModelReversi.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Torneo.cs">
-      <DependentUpon>ModelReversi.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>ModelReversi.tt</DependentUpon>
     </Compile>
@@ -195,6 +170,7 @@
     <Content Include="Content\css\EstiloLoging.css" />
     <Content Include="Content\css\MenuPrincipalEstitlo.css" />
     <Content Include="Content\css\MenuXtremeEstilo.css" />
+    <Content Include="Content\css\PerfilEstilo.css" />
     <Content Include="Content\css\RegistroEstilo.css" />
     <Content Include="Content\css\TableroEstilo.css" />
     <Content Include="Content\Imgs\GoogleLogo.png" />
@@ -205,16 +181,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\ModelPlayers.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModelPlayers.Context.cs</LastGenOutput>
-      <DependentUpon>ModelPlayers.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\ModelPlayers.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelPlayers.edmx</DependentUpon>
-      <LastGenOutput>ModelPlayers.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\ModelReversi.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelReversi.edmx</DependentUpon>
@@ -229,13 +195,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Imgs\faceLogo.webp" />
     <Content Include="Content\Imgs\TwitterLogo.webp" />
-    <EntityDeploy Include="Models\ModelPlayers.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelPlayers.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ModelPlayers.edmx.diagram">
-      <DependentUpon>ModelPlayers.edmx</DependentUpon>
-    </Content>
     <EntityDeploy Include="Models\ModelReversi.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelReversi.Designer.cs</LastGenOutput>
@@ -271,6 +230,7 @@
     <Content Include="Views\MenuPrincipal\MenuPrincipal.cshtml" />
     <Content Include="Views\Tablero\Tablero.cshtml" />
     <Content Include="Views\MenuXtreme\MenuXtreme.cshtml" />
+    <Content Include="Views\Perfil\Perfil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

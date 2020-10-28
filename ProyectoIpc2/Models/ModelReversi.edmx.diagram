@@ -5,18 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="17fc1259e9f34cc182f999867cf5ffc3" Name="Diagram1" ZoomLevel="64">
-        <EntityTypeShape EntityType="ReversiDBModel.Encuentro" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="ReversiDBModel.Inscripcion" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="ReversiDBModel.Partida" Width="1.5" PointX="0.75" PointY="10.125" />
-        <EntityTypeShape EntityType="ReversiDBModel.Ronda" Width="1.5" PointX="1.5" PointY="14.875" />
-        <EntityTypeShape EntityType="ReversiDBModel.Torneo" Width="1.5" PointX="0.75" PointY="7.25" />
-        <EntityTypeShape EntityType="ReversiDBModel.Usuario" Width="1.5" PointX="0.75" PointY="3.25" />
-        <AssociationConnector Association="ReversiDBModel.FK__Encuentro__GameI__114A936A" />
-        <AssociationConnector Association="ReversiDBModel.FK__Encuentro__UserI__10566F31" />
-        <AssociationConnector Association="ReversiDBModel.FK__Inscripci__Tourn__06CD04F7" />
-        <AssociationConnector Association="ReversiDBModel.FK__Inscripci__UserI__07C12930" />
-        <AssociationConnector Association="ReversiDBModel.FK__Partida__RoundId__0D7A0286" />
-        <AssociationConnector Association="ReversiDBModel.FK__Ronda__Tournamen__0A9D95DB" />
+        <EntityTypeShape EntityType="ReversiDBModel.Campeonato" Width="1.5" PointX="3" PointY="2" />
+        <EntityTypeShape EntityType="ReversiDBModel.Partida" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="ReversiDBModel.Usuario" Width="1.5" PointX="0.75" PointY="1.625" />
+        <AssociationConnector Association="ReversiDBModel.FK__Campeonat__UserI__6442E2C9" />
+        <AssociationConnector Association="ReversiDBModel.FK__Partida__Champio__671F4F74" />
+        <AssociationConnector Association="ReversiDBModel.FK__Partida__UserId__681373AD" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

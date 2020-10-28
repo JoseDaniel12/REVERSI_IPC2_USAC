@@ -17,8 +17,8 @@ namespace ProyectoIpc2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            this.Encuentro = new HashSet<Encuentro>();
-            this.Inscripcion = new HashSet<Inscripcion>();
+            this.Campeonato = new HashSet<Campeonato>();
+            this.Partida = new HashSet<Partida>();
         }
     
         public int UserId { get; set; }
@@ -31,8 +31,8 @@ namespace ProyectoIpc2.Models
         public string Country { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Encuentro> Encuentro { get; set; }
+        public virtual ICollection<Campeonato> Campeonato { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inscripcion> Inscripcion { get; set; }
+        public virtual ICollection<Partida> Partida { get; set; }
     }
 }

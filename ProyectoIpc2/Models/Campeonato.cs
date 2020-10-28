@@ -12,19 +12,21 @@ namespace ProyectoIpc2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ronda
+    public partial class Campeonato
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ronda()
+        public Campeonato()
         {
             this.Partida = new HashSet<Partida>();
         }
     
-        public int RoundId { get; set; }
-        public int TournamentId { get; set; }
+        public int ChampionId { get; set; }
+        public string XmlRouteInfo { get; set; }
+        public string Resultado { get; set; }
+        public int UserId { get; set; }
     
+        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Partida> Partida { get; set; }
-        public virtual Torneo Torneo { get; set; }
     }
 }

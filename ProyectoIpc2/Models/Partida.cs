@@ -14,25 +14,22 @@ namespace ProyectoIpc2.Models
     
     public partial class Partida
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Partida()
-        {
-            this.Encuentro = new HashSet<Encuentro>();
-        }
-    
         public int GameId { get; set; }
         public string GameType { get; set; }
+        public string GameMode { get; set; }
         public string XmlRouteBoard { get; set; }
         public int Player1MovesNumber { get; set; }
         public int Player2MovesNumber { get; set; }
         public int Player1Points { get; set; }
         public int Player2Points { get; set; }
-        public string Player1 { get; set; }
-        public string Player2 { get; set; }
-        public Nullable<int> RoundId { get; set; }
+        public int Player1Time { get; set; }
+        public int Player2Time { get; set; }
+        public string Resultado { get; set; }
+        public int HostColor { get; set; }
+        public Nullable<int> ChampionId { get; set; }
+        public int UserId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Encuentro> Encuentro { get; set; }
-        public virtual Ronda Ronda { get; set; }
+        public virtual Campeonato Campeonato { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

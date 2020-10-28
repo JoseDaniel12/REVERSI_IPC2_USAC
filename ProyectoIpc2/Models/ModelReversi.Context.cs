@@ -25,11 +25,8 @@ namespace ProyectoIpc2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Encuentro> Encuentro { get; set; }
-        public virtual DbSet<Inscripcion> Inscripcion { get; set; }
+        public virtual DbSet<Campeonato> Campeonato { get; set; }
         public virtual DbSet<Partida> Partida { get; set; }
-        public virtual DbSet<Ronda> Ronda { get; set; }
-        public virtual DbSet<Torneo> Torneo { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

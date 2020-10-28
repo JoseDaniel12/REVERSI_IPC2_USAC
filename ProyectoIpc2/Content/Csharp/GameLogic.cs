@@ -34,6 +34,8 @@ namespace ProyectoIpc2.Content.Csharp
         public static bool haTerminado = false;
         public static bool esModoInverso = false;
         public static string ganador = "";
+        public static int championId = -1;
+        public static string resultado = "enCurso";
         public static int anchoTablero = 8;
         public static int altoTablero = 8;
         public static List<List<String>> coloresElegidos = new List<List<String>>{
@@ -295,7 +297,7 @@ namespace ProyectoIpc2.Content.Csharp
                         if (isFinished() == true) {
                             haTerminado = isFinished();
                             definirGanador();
-                            guardarPartida();
+                            SaveGame.guardar(gameId);
                             break;
                         } else if (tirosPosibles.Count == 0 && actualizarTirosPosibles((turno == 1) ? 2 : 1).Count > 0) {
                             turno = (turno == 1) ? 2 : 1;
@@ -479,106 +481,6 @@ namespace ProyectoIpc2.Content.Csharp
         }
 
 
-        public static void guardarPartida() {
-            XmlDocument xmlDoc = new XmlDocument();
-            XmlNode tableroNode = xmlDoc.CreateElement("tablero");
-            xmlDoc.AppendChild(tableroNode);
-
-            XmlNode fichaNode;
-            XmlNode colorNode;
-            XmlNode columnaNode;
-            XmlNode filaNode;
-            
-            for (int y = 0; y < altoTablero; y++) {
-                for (int x = 0; x < anchoTablero; x++) {
-                    fichaNode = xmlDoc.CreateElement("ficha");
-                    colorNode = xmlDoc.CreateElement("color");
-                    columnaNode = xmlDoc.CreateElement("columna");
-                    filaNode = xmlDoc.CreateElement("fila");
-
-                    // establecer la fila de la ficha
-                    filaNode.InnerText = (y + 1).ToString();
-
-                    // establecer el color de la ficha
-                    switch (tablero[y,x]) {
-                        case 1:
-                            colorNode.InnerText = "negro"; break;
-                        case 2:
-                            colorNode.InnerText = "blanco"; break;
-                    }
-
-                    // establecer la columna de la ficha
-                    switch (x) {
-                        case 0:
-                            columnaNode.InnerText = "A"; break;
-                        case 1:
-                            columnaNode.InnerText = "B"; break;
-                        case 2:
-                            columnaNode.InnerText = "C"; break;
-                        case 3:
-                            columnaNode.InnerText = "D"; break;
-                        case 4:
-                            columnaNode.InnerText = "E"; break;
-                        case 5:
-                            columnaNode.InnerText = "F"; break;
-                        case 6:
-                            columnaNode.InnerText = "G"; break;
-                        case 7:
-                            columnaNode.InnerText = "H"; break;
-                    }
-
-                    if (colorNode.InnerText != "") {
-                        fichaNode.AppendChild(colorNode);
-                        fichaNode.AppendChild(columnaNode);
-                        fichaNode.AppendChild(filaNode);
-                        tableroNode.AppendChild(fichaNode);
-                    }
-                }
-            }
-            XmlNode siguienteTiroNode = xmlDoc.CreateElement("siguienteTiro");
-            colorNode = xmlDoc.CreateElement("color");
-            colorNode.InnerText = (GameLogic.turno == 1)? "negro": "blanco";
-            siguienteTiroNode.AppendChild(colorNode);
-            tableroNode.AppendChild(siguienteTiroNode);
-
-            using (ReversiContext db = new ReversiContext()) {
-                if (db.Partida.Find(gameId) == null) {
-                    Partida partida = new Partida();
-                    partida.GameType = tipoPartida;
-                    partida.Player1MovesNumber = player1MovesNumber;
-                    partida.Player2MovesNumber = player2MovesNumber;
-                    partida.Player1Points = player1Points;
-                    partida.Player2Points = player2Points;
-                    partida.Player1 = jugador_negro;
-                    partida.Player2 = jugador_blanco;
-                    db.Partida.Add(partida);
-                    db.SaveChanges();
-                    partida.XmlRouteBoard = @"C:\Users\josed\Downloads\reversi_" + partida.GameId;
-                    GameLogic.gameId = partida.GameId;
-                    Encuentro encuentro = new Encuentro();
-                    encuentro.GameId = partida.GameId;
-                    encuentro.UserId = userId;
-                    db.Encuentro.Add(encuentro);
-                    db.SaveChanges();
-                    xmlDoc.Save(@"C:\Users\josed\Downloads\reversi_" + partida.GameId);
-
-                } else {
-                    Partida partida = db.Partida.Find(gameId);
-                    partida.GameType = tipoPartida;
-                    partida.Player1MovesNumber = player1MovesNumber;
-                    partida.Player2MovesNumber = player2MovesNumber;
-                    partida.Player1Points = player1Points;
-                    partida.Player2Points = player2Points;
-                    partida.Player1 = jugador_negro;
-                    partida.Player2 = jugador_blanco;
-                    db.SaveChanges();
-                    partida.XmlRouteBoard = @"C:\Users\josed\Downloads\reversi_" + partida.GameId;
-                    xmlDoc.Save(@"C:\Users\josed\Downloads\reversi_" + partida.GameId);
-                }
-            }
-        }
-
-
         public static bool cargarPartida(String rootFile) {
             XmlDocument xmlDoc = new XmlDocument();
             try {
@@ -631,6 +533,7 @@ namespace ProyectoIpc2.Content.Csharp
             }
             calcularPutnos();
             haTerminado = isFinished();
+            /*
             using (ReversiContext db = new ReversiContext()) {
                 foreach (Partida partida in db.Partida) {
                     if (partida.XmlRouteBoard == xmlRouteBoard) {
@@ -652,6 +555,7 @@ namespace ProyectoIpc2.Content.Csharp
                     }
                 }
             }
+            */
             return true;
         }
 

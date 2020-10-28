@@ -33,3 +33,11 @@
     )
 
 }
+
+function regresar() {
+    location.assign("/MenuPrincipal/MenuPrincipal")
+}
+
+function irPerfil() {
+    location.assign("/Perfil/Perfil")
+}

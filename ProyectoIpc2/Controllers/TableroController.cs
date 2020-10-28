@@ -42,7 +42,7 @@ namespace ProyectoIpc2.Controllers
 
         [HttpPost]
         public ActionResult GuardarPartida(FormCollection collection) {
-            GameLogic.guardarPartida();
+            SaveGame.guardar(GameLogic.gameId);
             return new EmptyResult();
         }
 

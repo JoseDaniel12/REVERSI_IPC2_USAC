@@ -1,53 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ReversiDBModelStoreContainer" CdmEntityContainer="ReversiContext">
-    <EntitySetMapping Name="Encuentro">
-      <EntityTypeMapping TypeName="ReversiDBModel.Encuentro">
-        <MappingFragment StoreEntitySet="Encuentro">
-          <ScalarProperty Name="GameId" ColumnName="GameId" />
+    <EntitySetMapping Name="Campeonato">
+      <EntityTypeMapping TypeName="ReversiDBModel.Campeonato">
+        <MappingFragment StoreEntitySet="Campeonato">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Inscripcion">
-      <EntityTypeMapping TypeName="ReversiDBModel.Inscripcion">
-        <MappingFragment StoreEntitySet="Inscripcion">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
-          <ScalarProperty Name="InscriptionId" ColumnName="InscriptionId" />
+          <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+          <ScalarProperty Name="XmlRouteInfo" ColumnName="XmlRouteInfo" />
+          <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Partida">
       <EntityTypeMapping TypeName="ReversiDBModel.Partida">
         <MappingFragment StoreEntitySet="Partida">
-          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
-          <ScalarProperty Name="Player2" ColumnName="Player2" />
-          <ScalarProperty Name="Player1" ColumnName="Player1" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
+          <ScalarProperty Name="HostColor" ColumnName="HostColor" />
+          <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+          <ScalarProperty Name="Player2Time" ColumnName="Player2Time" />
+          <ScalarProperty Name="Player1Time" ColumnName="Player1Time" />
           <ScalarProperty Name="Player2Points" ColumnName="Player2Points" />
           <ScalarProperty Name="Player1Points" ColumnName="Player1Points" />
           <ScalarProperty Name="Player2MovesNumber" ColumnName="Player2MovesNumber" />
           <ScalarProperty Name="Player1MovesNumber" ColumnName="Player1MovesNumber" />
           <ScalarProperty Name="XmlRouteBoard" ColumnName="XmlRouteBoard" />
+          <ScalarProperty Name="GameMode" ColumnName="GameMode" />
           <ScalarProperty Name="GameType" ColumnName="GameType" />
           <ScalarProperty Name="GameId" ColumnName="GameId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ronda">
-      <EntityTypeMapping TypeName="ReversiDBModel.Ronda">
-        <MappingFragment StoreEntitySet="Ronda">
-          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
-          <ScalarProperty Name="RoundId" ColumnName="RoundId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Torneo">
-      <EntityTypeMapping TypeName="ReversiDBModel.Torneo">
-        <MappingFragment StoreEntitySet="Torneo">
-          <ScalarProperty Name="TournamentName" ColumnName="TournamentName" />
-          <ScalarProperty Name="TournamentId" ColumnName="TournamentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

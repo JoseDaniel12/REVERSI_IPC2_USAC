@@ -20,7 +20,7 @@ button {
     border: 0;
     position: relative;
     height: 45px;
-    width: 350px;
+    width: 175px;
     margin-bottom: 20px;
     margin-top: 16px;
 }
@@ -43,6 +43,7 @@ select {
 }
 
 option {
+    float: left;
     padding: 10px;
 }
 
@@ -57,4 +58,8 @@ label {
 
 .color {
     margin-bottom: 4px;
+}
+
+#regresar {
+    background-color: #e82e40;
 }

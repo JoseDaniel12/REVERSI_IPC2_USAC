@@ -1,0 +1,70 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #313033;
+}
+
+.info-container {
+    position: relative;
+    margin: 8px auto;
+    background-color: #292828;
+    width: 67%;
+    border-radius: 8px;
+    padding-left: 65px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+}
+
+#info tr td {
+    width: 79.5%;
+}
+
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid rgb(41, 40, 40);
+    text-align: center;
+}
+
+label {
+    display: block;
+    color: #dbdada;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 1000;
+    padding-left: 15px;
+    border-radius: 4px;
+}
+
+button {
+    width: 94%;
+    background-color: #b3323f;
+    border-radius: 4px;
+    border: none;
+    color: #dbdada;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-top: 40px;
+}
+
+th {
+    color: #d6cbcb;
+    background-color: #343a40;
+    border-radius: 4px;
+}
+
+td {
+    background: #c7c4c4;
+    color: rgb(37, 36, 36);
+}
+
+label {
+    fuente: cursiva 75% / 125% "Comic Sans MS", cursive;
+}

@@ -39,3 +39,7 @@ function cerrarSesion() {
         method: 'POST',
     }).then(res => location.assign('/Loging/Loging'))
 }
+
+function irPerfil() {
+    location.assign('/Perfil/Perfil')
+}
