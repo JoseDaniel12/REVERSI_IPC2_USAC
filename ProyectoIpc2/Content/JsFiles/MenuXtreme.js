@@ -41,3 +41,19 @@ function regresar() {
 function irPerfil() {
     location.assign("/Perfil/Perfil")
 }
+
+function processSelectedFiles(fileInput) {
+    let fileName = fileInput.files[0].name
+    document.getElementById("choosedFile").innerHTML = fileName
+}
+
+function cargarPartida() {
+    let fileRoot = "C:\\Users\\josed\\Downloads\\" + document.getElementById("choosedFile").innerHTML;
+    let rootForm = new FormData();
+    rootForm.append("fileRoot", fileRoot)
+    fetch('/Tablero/CargarPartida', {
+        method: 'POST',
+        body: rootForm
+    }).then(respuesta => respuesta.json())
+      .then(respuesta => location.assign("/Tablero/Tablero"));
+}

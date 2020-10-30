@@ -2,13 +2,25 @@
     margin: 0px;
     padding: 0px;
     background-color: #2c2b30;
+    padding-top: 0px;
+}
+
+.guardar {
+    margin-top:0px;
+    float:left;
+}
+
+.btnCargar {
+    margin-left:5px;
+    margin-top:2.5px;
+    width:180px;
 }
 
 .option-container {
     position: relative;
-    margin: 8px auto;
+    margin: 6px auto;
     background-color: whitesmoke;
-    width: 408px;
+    width: 454px;
     border-radius: 8px;
     padding-left: 52px;
 }
@@ -21,18 +33,19 @@ button {
     position: relative;
     height: 45px;
     width: 175px;
-    margin-bottom: 20px;
-    margin-top: 16px;
+    margin-bottom: 13px;
+    margin-top: 12px;
 }
 
 .cabezera {
     margin-left: -52px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
-select {
+.option-container select {
+    font-size:13px;
     border-radius: 4px;
     width: 350px;
     border-width: 1px;
@@ -44,13 +57,14 @@ select {
 
 option {
     float: left;
-    padding: 10px;
+    font-size:initial;
+    padding: 0px;
 }
 
 label {
-    margin-top: 6px;
+    margin:auto;
     padding: 3px;
-    font-size: 15px;
+    font-size: 14.2px;
     font-weight: 600;
     display: block;
     color: #202c33;

@@ -49,7 +49,7 @@ namespace ProyectoIpc2.Controllers
         [HttpPost]
         public ActionResult CargarPartida(FormCollection collection) {
             string fileRoot = Request.Params["fileRoot"];
-            GameLogic.cargarPartida(fileRoot);
+            LoadGame.cargar(fileRoot);
             Dictionary<string, string> info = new Dictionary<string, string>();
             info.Add("tablero", JsonConvert.SerializeObject(GameLogic.tableroDeColores));
             info.Add("turno", JsonConvert.SerializeObject(GameLogic.turno));

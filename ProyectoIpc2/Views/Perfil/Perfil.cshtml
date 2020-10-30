@@ -14,31 +14,31 @@
         <table id="info">
             <tr>
                 <th>User Id</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.userId</td>
             </tr>
             <tr>
                 <th>Nombre</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.name</td>
             </tr>
             <tr>
                 <th>Nombre de usuario</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.userName</td>
             </tr>
             <tr>
                 <th>Apellido</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.lastName</td>
             </tr>
             <tr>
                 <th>Correo</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.mail</td>
             </tr>
             <tr>
                 <th>Fecha de nacimiento</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.bornDate</td>
             </tr>
             <tr>
                 <th>Pais</th>
-                <td>Tipo de Partida</td>
+                <td>@ViewBag.country</td>
             </tr>
         </table>
 
@@ -52,15 +52,36 @@
                 <th>Mi tiempo empleado</th>
                 <th>Tiempo del adversario</th>
             </tr>
-            <tr>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
 
-            </tr>
+            @{
+                int contador = 0;
+                foreach (Dictionary<string, string> partida in ViewBag.partidasGanadas) {
+                    if (partida["resultado"] == "enCurso") {
+                        contador += 1;
+                        <tr>
+                            <td>@partida["gameId"]</td>
+                            <td>@partida["gameType"]</td>
+                            <td>@partida["misPuntos"]</td>
+                            <td>@partida["puntosAdversario"]</td>
+                            <td>@partida["miTiempo"]</td>
+                            <td>@partida["tiempoAdversario"]</td>
+                        </tr>
+                    }
+                }
+                if (contador == 0) {
+                    <tr>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                    </tr>
+                }
+            }
+
+
+
         </table>
 
         <label>Partidas Empatadas</label>
@@ -73,14 +94,32 @@
                 <th>Mi tiempo empleado</th>
                 <th>Tiempo del adversario</th>
             </tr>
-            <tr>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-            </tr>
+            @{
+                contador = 0;
+                foreach (Dictionary<string, string> partida in ViewBag.partidasGanadas) {
+                    if (partida["resultado"] == "empatada") {
+                        contador += 1;
+                        <tr>
+                            <td>@partida["gameId"]</td>
+                            <td>@partida["gameType"]</td>
+                            <td>@partida["misPuntos"]</td>
+                            <td>@partida["puntosAdversario"]</td>
+                            <td>@partida["miTiempo"]</td>
+                            <td>@partida["tiempoAdversario"]</td>
+                        </tr>
+                    }
+                }
+                if (contador == 0) {
+                    <tr>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                    </tr>
+                }
+            }
 
         </table>
 
@@ -94,14 +133,32 @@
                 <th>Mi tiempo empleado</th>
                 <th>Tiempo del adversario</th>
             </tr>
-            <tr>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-                <td>-----</td>
-            </tr>
+            @{
+                contador = 0;
+                foreach (Dictionary<string, string> partida in ViewBag.partidasGanadas) {
+                    if (partida["resultado"] == "perdida") {
+                        contador += 1;
+                        <tr>
+                            <td>@partida["gameId"]</td>
+                            <td>@partida["gameType"]</td>
+                            <td>@partida["misPuntos"]</td>
+                            <td>@partida["puntosAdversario"]</td>
+                            <td>@partida["miTiempo"]</td>
+                            <td>@partida["tiempoAdversario"]</td>
+                        </tr>
+                    }
+                }
+                if (contador == 0) {
+                    <tr>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                        <td>-----</td>
+                    </tr>
+                }
+            }
         </table>
 
         <label>Torneos</label>

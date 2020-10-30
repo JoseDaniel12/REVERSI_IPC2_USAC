@@ -17,7 +17,7 @@ async function renderBoard(info) {
     let ganador = JSON.parse(info["ganador"])
     let anchoTablero = JSON.parse(info["anchoTablero"])
     let altoTablero = JSON.parse(info["altoTablero"])
-
+    console.log(tablero)
     for (let y = 0; y < altoTablero; y++) {
         for (let x = 0; x < anchoTablero; x++) {
             let id = x + "_" + y
@@ -47,7 +47,7 @@ async function renderBoard(info) {
                     boton.style.backgroundColor = "#5D6D7E"; break // fondo gris
             }
         }
-    }
+    }   
 
     for (let i = 0; i < tirosPosibles.length; i++) {
         id = tirosPosibles[i][0] + "_" + tirosPosibles[i][1]
@@ -133,7 +133,7 @@ function cargarTablero(ruta) {
         method: 'POST',
         body: fileRoot
     }).then(respuesta => respuesta.json())
-      .then(respuesta => renderBoard(respuesta));
+        .then(respuesta => construirTablero(respuesta))
 }
 
 function processSelectedFiles(fileInput) {
@@ -148,8 +148,7 @@ function cargarPartida() {
     fetch('/Tablero/CargarPartida', {
         method: 'POST',
         body: rootForm
-    }).then(respuesta => respuesta.json())
-      .then(respuesta => renderBoard(respuesta));
+    }).then(respuesta => location.assign("/Tablero/Tablero"))
 }
 
 function cambiarColor() {
@@ -246,7 +245,7 @@ function prepararTablero() {
     fetch('/Tablero/PrepararTablero', {
         method: 'POST',
     }).then(respuesta => respuesta.json())
-      .then(respuesta => construirTablero(respuesta))
+        .then(respuesta => construirTablero(respuesta))
 }
 
 function construirTablero(info) {

@@ -22,25 +22,25 @@ namespace ProyectoIpc2.Controllers
             int altoTablero = Int32.Parse(Request.Params["altoTablero"].ToString());
             string modalidad = Request.Params["modalidad"].ToString();
 
-            string color1_p1 = Request.Params["color1_p1"].ToString();
-            string color2_p1 = Request.Params["color2_p1"].ToString();
-            string color3_p1 = Request.Params["color3_p1"].ToString();
-            string color4_p1 = Request.Params["color4_p1"].ToString();
-            string color5_p1 = Request.Params["color5_p1"].ToString();
-            string color1_p2 = Request.Params["color1_p2"].ToString();
-            string color2_p2 = Request.Params["color2_p2"].ToString();
-            string color3_p2 = Request.Params["color3_p2"].ToString();
-            string color4_p2 = Request.Params["color4_p2"].ToString();
-            string color5_p2 = Request.Params["color5_p2"].ToString();
+            string color1_p1 = Request.Params["color1_p1"].ToString().ToLower();
+            string color2_p1 = Request.Params["color2_p1"].ToString().ToLower();
+            string color3_p1 = Request.Params["color3_p1"].ToString().ToLower();
+            string color4_p1 = Request.Params["color4_p1"].ToString().ToLower();
+            string color5_p1 = Request.Params["color5_p1"].ToString().ToLower();
+            string color1_p2 = Request.Params["color1_p2"].ToString().ToLower();
+            string color2_p2 = Request.Params["color2_p2"].ToString().ToLower();
+            string color3_p2 = Request.Params["color3_p2"].ToString().ToLower();
+            string color4_p2 = Request.Params["color4_p2"].ToString().ToLower();
+            string color5_p2 = Request.Params["color5_p2"].ToString().ToLower();
             List<String> colores_p1 = new List<String> { color1_p1, color2_p1, color3_p1, color4_p1, color5_p1 };
             List<String> colores_p2 = new List<String> { color1_p2, color2_p2, color3_p2, color4_p2, color5_p2 };
 
-            while (colores_p1.Contains("Ninguno")) {
-                colores_p1.Remove("Ninguno");
+            while (colores_p1.Contains("ninguno")) {
+                colores_p1.Remove("ninguno");
             }
 
-            while (colores_p2.Contains("Ninguno")) {
-                colores_p2.Remove("Ninguno");
+            while (colores_p2.Contains("ninguno")) {
+                colores_p2.Remove("ninguno");
             }
 
             if (colores_p1.Intersect(colores_p2).ToList().Count() > 0) {

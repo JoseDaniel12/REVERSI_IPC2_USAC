@@ -100,8 +100,8 @@ namespace ProyectoIpc2.Content.Csharp {
             partidaNode.AppendChild(jugador2Node);
             partidaNode.AppendChild(modalidadNode);
 
-            XmlNode tableroNode = xmlDoc.CreateElement("Tablero");
-            string[] abcdario = new string[] { "", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T"};
+            XmlNode tableroNode = xmlDoc.CreateElement("tablero");
+            string[] abcdario = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T"};
             string[] colores = new string[] {"gris", "negro", "blanco", "rojo", "amarillo", "azul", "anaranjado", "verde", "violeta", "celeste" };
             for (int y = 0; y < GameLogic.altoTablero; y++) {
                 for (int x = 0; x < GameLogic.anchoTablero; x++) {
@@ -157,6 +157,7 @@ namespace ProyectoIpc2.Content.Csharp {
                     db.Partida.Add(partida);
                 }
                 db.SaveChanges();
+                GameLogic.gameId = partida.GameId;
                 XmlDocument xmlDoc;
                 if (GameLogic.tipoPartida == "vsJugador" || GameLogic.tipoPartida == "vsPc") {
                     GameLogic.xmlRouteBoard = @"C:\Users\josed\Downloads\Reversi_" + partida.GameId + ".xml";
@@ -169,6 +170,8 @@ namespace ProyectoIpc2.Content.Csharp {
                 } else if (GameLogic.tipoPartida == "campeonato") {
                     // guardar campeonato
                 }
+                partida.XmlRouteBoard = GameLogic.xmlRouteBoard;
+                db.SaveChanges();
             }
         }
 

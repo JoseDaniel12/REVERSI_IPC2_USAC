@@ -39,21 +39,21 @@ namespace ProyectoIpc2.Content.Csharp
         public static int anchoTablero = 8;
         public static int altoTablero = 8;
         public static List<List<String>> coloresElegidos = new List<List<String>>{
-            new List<String> {"Negro"},
-            new List<String> {"Blanco"},
+            new List<String> {"negro"},
+            new List<String> {"blanco"},
         };
-        public static List<String> coloresActuales = new List<String> {"Negro", "Blanco"};
+        public static List<String> coloresActuales = new List<String> {"negro", "blanco"};
         public static Dictionary<string, int> dicColores = new Dictionary<string, int>() {
-            { "Negro", 1 },
-            { "Blanco", 2 },
-            { "Rojo", 3 },
-            { "Amarillo", 4 },
-            { "Azul", 5 },
-            { "Anaranjado", 6 },
-            { "Verde", 7 },
-            { "Violeta", 8 },
-            { "Celeste", 9 },
-            { "Gris", 0 },
+            { "negro", 1 },
+            { "blanco", 2 },
+            { "rojo", 3 },
+            { "amarillo", 4 },
+            { "azul", 5 },
+            { "anaranjado", 6 },
+            { "verde", 7 },
+            { "violeta", 8 },
+            { "celeste", 9 },
+            { "gris", 0 },
 
         };
 
@@ -76,14 +76,12 @@ namespace ProyectoIpc2.Content.Csharp
             } else if (tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") {
                 tablero = new int[altoTablero, anchoTablero];
                 limpiarTablero();
-
                 tirosPosibles = new List<int[]>() {
                     new int[] { (anchoTablero / 2) - 1, (altoTablero / 2) - 1},
                     new int[] { (anchoTablero / 2), (altoTablero / 2) - 1},
                     new int[] { (anchoTablero / 2) - 1, (altoTablero / 2)},
                     new int[] {(anchoTablero / 2), (altoTablero / 2)},
                 };
-                esModoInverso = true;
             }
             tableroDeColores = (int[,])tablero.Clone();
             tableroInicial = (int[,])tablero.Clone();
@@ -480,91 +478,26 @@ namespace ProyectoIpc2.Content.Csharp
             return tirosPosibles;
         }
 
-
-        public static bool cargarPartida(String rootFile) {
-            XmlDocument xmlDoc = new XmlDocument();
-            try {
-                xmlDoc.Load(rootFile);
-            } catch {
-                return false;
-            }
-            xmlRouteBoard = rootFile;
-            gameId = -1;
-            limpiarTablero();
-            foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes) {
-                if (xmlNode.Name == "ficha") {
-                    string color = xmlNode.ChildNodes[0].InnerText;
-                    int y = Int32.Parse(xmlNode.ChildNodes[2].InnerText) - 1;
-                    int x = 0;
-                    switch (xmlNode.ChildNodes[1].InnerText) {
-                        case "A":
-                            x = 0; break;
-                        case "B":
-                            x = 1; break;
-                        case "C":
-                            x = 2; break;
-                        case "D":
-                            x = 3; break;
-                        case "E":
-                            x = 4; break;
-                        case "F":
-                            x = 5; break;
-                        case "G":
-                            x = 6; break;
-                        case "H":
-                            x = 7;  break;
-
-                    }
-
-                    switch (color) {
-                        case "negro":
-                            tablero[y, x] = 1; break;
-                        case "blanco":
-                            tablero[y, x] = 2; break;
-                    }
-
-                } else if (xmlNode.Name == "siguienteTiro") {
-                    string color = xmlNode.ChildNodes[0].InnerText;
-                    GameLogic.turno = (color == "negro") ? 1 : 2;
-                    tirosPosibles = actualizarTirosPosibles(GameLogic.turno);
-                }
-
-
-            }
-            calcularPutnos();
-            haTerminado = isFinished();
-            /*
-            using (ReversiContext db = new ReversiContext()) {
-                foreach (Partida partida in db.Partida) {
-                    if (partida.XmlRouteBoard == xmlRouteBoard) {
-                        Encuentro encuentro = db.Encuentro.Find(partida.GameId);
-                        if (userId == encuentro.UserId) {
-                            gameId = partida.GameId;
-                            player1MovesNumber = partida.Player1MovesNumber;
-                            player2MovesNumber = partida.Player2MovesNumber;
-                            if (tipoPartida == "vsJugador") {
-                                jugador_negro = partida.Player1;
-                                jugador_blanco = partida.Player2;
-                                if (partida.Player1 == db.Usuario.Find(userId).UserName) {
-                                    hostColor = 1;
-                                } else {
-                                    hostColor = 2;
-                                }
-                            }
-                        }
+        public static int contarFichas() {
+            int nFichas = 0;
+            for (int y = 0; y < altoTablero; y++) {
+                for (int x = 0; x < anchoTablero; x++) {
+                    if (tablero[y,x] != -1) {
+                        nFichas += 1;
                     }
                 }
             }
-            */
-            return true;
+            return nFichas;
         }
+
 
         public static void limpiarTablero() {
             for (int y = 0; y < altoTablero; y++) {
                 for (int x = 0; x < anchoTablero; x++) {
-                    tablero[y, x] = -1;  
+                    tablero[y, x] = -1;
                 }
             }
+            tableroDeColores = (int[,])tablero.Clone();
         }
 
         public static void calcularPutnos() {
@@ -605,12 +538,12 @@ namespace ProyectoIpc2.Content.Csharp
             }
 
             coloresElegidos = new List<List<String>>{
-                new List<String> {"Negro"},
-                new List<String> {"Blanco"},
+                new List<String> {"negro"},
+                new List<String> {"blanco"},
             };
-            coloresActuales = new List<String> { "Negro", "Blanco" };
+            coloresActuales = new List<String> { "negro", "blanco" };
 
-    }
+        }
 
         public static bool isFinished() {
             bool isfull = true;
@@ -631,18 +564,24 @@ namespace ProyectoIpc2.Content.Csharp
             if (!esModoInverso) {
                 if (player1Points > player2Points) {
                     ganador = jugador_negro;
+                    resultado = (hostColor == 1) ? "ganada" : "perdia";
                 } else if  (player2Points > player1Points) {
                     ganador = jugador_blanco;
+                    resultado = (hostColor == 2) ? "ganada" : "perdia";
                 } else {
                     ganador = "EMPATE";
+                    resultado = "empatada";
                 }
             } else {
                 if (player1Points < player2Points) {
                     ganador = jugador_negro;
+                    resultado = (hostColor == 1) ? "ganada" : "perdia";
                 } else if (player2Points < player1Points) {
                     ganador = jugador_blanco;
+                    resultado = (hostColor == 2) ? "ganada" : "perdia";
                 } else {
                     ganador = "EMPATE";
+                    resultado = "empatada";
                 }
             }
         }

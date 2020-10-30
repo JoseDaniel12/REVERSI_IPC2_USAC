@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Content\Csharp\GameLogic.cs" />
+    <Compile Include="Content\Csharp\LoadGame.cs" />
     <Compile Include="Content\Csharp\PcPlayer.cs" />
     <Compile Include="Content\Csharp\SaveGame.cs" />
     <Compile Include="Controllers\LogingController.cs" />
@@ -177,6 +178,7 @@
     <Content Include="Content\Imgs\reversi.png" />
     <Content Include="Content\JsFiles\MenuPrincipal.js" />
     <Content Include="Content\JsFiles\MenuXtreme.js" />
+    <Content Include="Content\JsFiles\Perfil.js" />
     <Content Include="Content\JsFiles\Pruebas.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
