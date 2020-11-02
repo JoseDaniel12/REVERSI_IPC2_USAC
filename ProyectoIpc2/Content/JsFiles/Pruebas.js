@@ -183,29 +183,6 @@ function cambiarColor() {
 
 }
 
-function cambiarNombre() {
-    let nombre = document.getElementById("nombreIngreso").value
-    if (nombre != "" && nombre != document.getElementsByClassName("black_Name")[0].innerHTML && nombre != document.getElementsByClassName("white_Name")[0].innerHTML) {
-        let nombreInfo = new FormData();
-        nombreInfo.append("nombre", document.getElementById("nombreIngreso").value)
-        fetch('/Tablero/CambiarNombre', {
-            method: 'POST',
-            body: nombreInfo
-        }).then(res => res.json())
-            .then(function (res) {
-                if (res == 1) {
-                    document.getElementsByClassName("white_Name")[0].innerHTML = nombre
-
-                } else {
-                    document.getElementsByClassName("black_Name")[0].innerHTML = nombre
-                }
-                document.getElementById("nombreIngreso").value = "";
-            });
-    } else {
-        alert("Nombre no valido, o ya asignado.")
-    }
-}
-
 function salir() {
     fetch('/Tablero/Salir', {
         method: 'POST',
@@ -296,4 +273,39 @@ function construirTablero(info) {
         contenedor.appendChild(fila)
     }
     renderBoard(info)
+}
+
+function continuar() {
+    fetch('/Tablero/Continuar', {
+        method: 'POST',
+    }).then(respuesta => respuesta.json())
+        .then(
+            (estadosCampeonato) => {
+                if (estadosCampeonato["haTerminado"] == true) {
+                    location.assign("/GanadorCampeonato/GanadorCampeonato")
+                } else {
+                    location.assign("/Tablero/Tablero")
+                }
+            }
+        )
+}
+
+function imponerGanador() {
+    let jugadorGanador = document.getElementById("jugadorGanador").value
+    let formGanador = new FormData();
+    formGanador.append("jugadorGanador", jugadorGanador)
+    fetch('/Tablero/ImponerGanador', {
+        method: 'POST',
+        body: formGanador
+    }).then(respuesta => respuesta.json())
+        .then(
+            (estadosCampeonato) => {
+                if (estadosCampeonato["ganadorCorrecto"] == true) {
+                    location.assign("/Tablero/Tablero")
+                } else {
+                    alert("Nombre invalido, intente de nuevo.")
+                }
+            }
+        )
+
 }

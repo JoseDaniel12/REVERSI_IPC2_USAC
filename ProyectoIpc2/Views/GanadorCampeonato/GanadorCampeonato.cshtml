@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Ganador </title>
+    <link rel="stylesheet" href="~/Content/css/GanadorCampeonato.css">
+</head>
+
+<body>
+    <div class="componente">
+        <div class="contenedor grid-block" style="background-image: url('/Content/Imgs/fondoGanador.jpg'); width: 60vh; height: 60vh; ">
+            <h1>
+               @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["nombreEquipo"]
+            </h1>
+            <ul>
+                <li>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["jugador1"]</li>
+                <li>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["jugador2"]</li>
+                <li>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["jugador3"]</li>
+            </ul>
+        </div>
+        <button onclick="salir()">Salir</button>
+    </div>
+</body>
+</html>
+
+<script>
+    function salir() {
+        location.assign("/MenuPrincipal/MenuPrincipal")
+    }
+</script>

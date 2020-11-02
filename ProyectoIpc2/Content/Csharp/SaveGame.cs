@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Xml;
+using Microsoft.Ajax.Utilities;
 using ProyectoIpc2.Models;
 
 namespace ProyectoIpc2.Content.Csharp {
@@ -168,7 +169,9 @@ namespace ProyectoIpc2.Content.Csharp {
                     xmlDoc = guardarPartidaXtreme(gameId);
                     xmlDoc.Save(GameLogic.xmlRouteBoard);
                 } else if (GameLogic.tipoPartida == "campeonato") {
-                    // guardar campeonato
+                    GameLogic.xmlRouteBoard = @"C:\Users\josed\Downloads\Reversi_" + partida.GameId + ".xml";
+                    xmlDoc = guardarPartidaNormal(gameId);
+                    xmlDoc.Save(GameLogic.xmlRouteBoard);
                 }
                 partida.XmlRouteBoard = GameLogic.xmlRouteBoard;
                 db.SaveChanges();

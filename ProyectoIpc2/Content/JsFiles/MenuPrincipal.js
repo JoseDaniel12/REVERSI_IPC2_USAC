@@ -34,12 +34,21 @@ function vsJugadorXtreme() {
     }).then(res => location.assign("/MenuXtreme/MenuXtreme"))
 }
 
-function cerrarSesion() {
-    fetch('/Tablero/CerrarSesion', {
+function campeonato() {
+    let opcion = new FormData()
+    opcion.append("opcion", "campeonato");
+    fetch('/MenuPrincipal/opcionSeleccionada', {
         method: 'POST',
-    }).then(res => location.assign('/Loging/Loging'))
+        body: opcion
+    }).then(res => location.assign("/MenuCampeonato/MenuCampeonato"))
 }
 
 function irPerfil() {
     location.assign('/Perfil/Perfil')
+}
+
+function cerrarSesion() {
+    fetch('/Tablero/CerrarSesion', {
+        method: 'POST',
+    }).then(res => location.assign('/Loging/Loging'))
 }

@@ -40,7 +40,7 @@ namespace ProyectoIpc2.Controllers
                         GameLogic.jugador_negro = db.Usuario.Find(GameLogic.userId).UserName;
                         GameLogic.jugador_blanco = "PC";       
                 }
-            }
+            } 
             GameLogic.iniciarJuego();
             return new EmptyResult(); 
         }

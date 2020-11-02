@@ -56,7 +56,7 @@
             @{
                 int contador = 0;
                 foreach (Dictionary<string, string> partida in ViewBag.partidasGanadas) {
-                    if (partida["resultado"] == "enCurso") {
+                    if (partida["resultado"] == "ganada") {
                         contador += 1;
                         <tr>
                             <td>@partida["gameId"]</td>

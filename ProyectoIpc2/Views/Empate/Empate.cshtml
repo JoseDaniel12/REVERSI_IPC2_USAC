@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Empate </title>
+    <link rel="stylesheet" href="~/Content/css/empate.css">
+</head>
+
+<body>
+    
+    <div class="option-container">
+        <img src="~/Content/Imgs/reversi.png" alt="" width="454" class="cabezera">
+        <p>Ha habido empate, elige a un jugador para desempatar</p>
+        <label>Jugador equipo 1:</label>
+        <select id="jugador_equipo1">
+            <option>4</option>
+            <option>8</option>
+            <option>16</option>
+        </select>
+
+        <label>Jugador equipo 2:</label>
+        <select id="jugador_equipo2">
+            <option>4</option>
+            <option>8</option>
+            <option>16</option>
+        </select>
+
+        <div class="botones">
+            <button class="option" id="salir" onclick="slir()">Salir</button>
+            <button class="option" onclick="desempatar()">Continuar</button>
+        </div>
+    </div>
+    <script src=""></script>
+</body>
+
+</html>

@@ -180,6 +180,20 @@ namespace ProyectoIpc2.Controllers
             return Content(JsonConvert.SerializeObject(false));
         }
 
+        [HttpPost]
+        public ActionResult Continuar() {
+            ChampionshipManager.manage();
+            return Content(JsonConvert.SerializeObject(ChampionshipManager.estadosCampeonato));
+        }
+
+        [HttpPost]
+        public ActionResult ImponerGanador(FormCollection collection) {
+            string jugadorGandor = Request.Params["jugadorGanador"].ToString();
+            if (jugadorGandor == ChampionshipManager.equipos[0].Values.ToList()[ChampionshipManager.contadorPartidas] || jugadorGandor == ChampionshipManager.equipos[1].Values.ToList()[ChampionshipManager.contadorPartidas]) {
+                ChampionshipManager.manage(true, jugadorGandor);
+            }
+            return Content(JsonConvert.SerializeObject(ChampionshipManager.estadosCampeonato));
+        }
 
     }
 }

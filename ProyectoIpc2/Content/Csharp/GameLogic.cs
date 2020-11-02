@@ -63,7 +63,7 @@ namespace ProyectoIpc2.Content.Csharp
         public static int[,] tableroDeColores;
 
         public static void iniciarJuego() {
-            if (tipoPartida == "vsPc" || tipoPartida == "vsJugador") {
+            if (tipoPartida == "vsPc" || tipoPartida == "vsJugador" || tipoPartida == "campeonato") {
                 anchoTablero = 8;
                 altoTablero = 8;
                 tablero = new int[altoTablero, anchoTablero];
@@ -564,10 +564,10 @@ namespace ProyectoIpc2.Content.Csharp
             if (!esModoInverso) {
                 if (player1Points > player2Points) {
                     ganador = jugador_negro;
-                    resultado = (hostColor == 1) ? "ganada" : "perdia";
+                    resultado = (hostColor == 1) ? "ganada" : "perdida";
                 } else if  (player2Points > player1Points) {
                     ganador = jugador_blanco;
-                    resultado = (hostColor == 2) ? "ganada" : "perdia";
+                    resultado = (hostColor == 2) ? "ganada" : "perdida";
                 } else {
                     ganador = "EMPATE";
                     resultado = "empatada";
@@ -575,10 +575,10 @@ namespace ProyectoIpc2.Content.Csharp
             } else {
                 if (player1Points < player2Points) {
                     ganador = jugador_negro;
-                    resultado = (hostColor == 1) ? "ganada" : "perdia";
+                    resultado = (hostColor == 1) ? "ganada" : "perdida";
                 } else if (player2Points < player1Points) {
                     ganador = jugador_blanco;
-                    resultado = (hostColor == 2) ? "ganada" : "perdia";
+                    resultado = (hostColor == 2) ? "ganada" : "perdida";
                 } else {
                     ganador = "EMPATE";
                     resultado = "empatada";

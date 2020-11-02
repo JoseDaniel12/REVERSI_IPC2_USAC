@@ -128,11 +128,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Content\Csharp\ChampionshipManager.cs" />
     <Compile Include="Content\Csharp\GameLogic.cs" />
     <Compile Include="Content\Csharp\LoadGame.cs" />
     <Compile Include="Content\Csharp\PcPlayer.cs" />
     <Compile Include="Content\Csharp\SaveGame.cs" />
+    <Compile Include="Controllers\EmpateController.cs" />
+    <Compile Include="Controllers\GanadorCampeonatoController.cs" />
     <Compile Include="Controllers\LogingController.cs" />
+    <Compile Include="Controllers\MenuCampeonatoController.cs" />
     <Compile Include="Controllers\MenuPrincipalController.cs" />
     <Compile Include="Controllers\MenuXtremeController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -168,14 +172,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\empate.css" />
     <Content Include="Content\css\EstiloLoging.css" />
+    <Content Include="Content\css\GanadorCampeonato.css" />
+    <Content Include="Content\css\MenuCampeonato.css" />
     <Content Include="Content\css\MenuPrincipalEstitlo.css" />
     <Content Include="Content\css\MenuXtremeEstilo.css" />
     <Content Include="Content\css\PerfilEstilo.css" />
     <Content Include="Content\css\RegistroEstilo.css" />
     <Content Include="Content\css\TableroEstilo.css" />
+    <Content Include="Content\Imgs\fondoGanador.jpg" />
     <Content Include="Content\Imgs\GoogleLogo.png" />
     <Content Include="Content\Imgs\reversi.png" />
+    <Content Include="Content\JsFiles\MenuCampeonato.js" />
     <Content Include="Content\JsFiles\MenuPrincipal.js" />
     <Content Include="Content\JsFiles\MenuXtreme.js" />
     <Content Include="Content\JsFiles\Perfil.js" />
@@ -233,6 +242,9 @@
     <Content Include="Views\Tablero\Tablero.cshtml" />
     <Content Include="Views\MenuXtreme\MenuXtreme.cshtml" />
     <Content Include="Views\Perfil\Perfil.cshtml" />
+    <Content Include="Views\MenuCampeonato\MenuCampeonato.cshtml" />
+    <Content Include="Views\GanadorCampeonato\GanadorCampeonato.cshtml" />
+    <Content Include="Views\Empate\Empate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
