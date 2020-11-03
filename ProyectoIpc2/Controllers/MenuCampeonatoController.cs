@@ -16,7 +16,7 @@ namespace ProyectoIpc2.Controllers
 
         [HttpPost]
         public ActionResult IniciarCampeonato(FormCollection collection) {
-            ChampionshipManager.nombreCampeonato = Request.Params["coordenada"];
+            ChampionshipManager.nombreCampeonato = Request.Params["nombreCampeonato"];
             ChampionshipManager.numeroEquipos = Int32.Parse(Request.Params["numeroEquipos"]);
             ChampionshipManager.iniciarCampeonato();
             return new EmptyResult();

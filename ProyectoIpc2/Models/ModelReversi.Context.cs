@@ -26,6 +26,7 @@ namespace ProyectoIpc2.Models
         }
     
         public virtual DbSet<Campeonato> Campeonato { get; set; }
+        public virtual DbSet<Equipo> Equipo { get; set; }
         public virtual DbSet<Partida> Partida { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }

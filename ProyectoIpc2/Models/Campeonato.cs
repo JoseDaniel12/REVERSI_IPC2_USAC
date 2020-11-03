@@ -17,15 +17,19 @@ namespace ProyectoIpc2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Campeonato()
         {
+            this.Equipo = new HashSet<Equipo>();
             this.Partida = new HashSet<Partida>();
         }
     
         public int ChampionId { get; set; }
-        public string XmlRouteInfo { get; set; }
+        public string ChampionName { get; set; }
         public string Resultado { get; set; }
+        public int EarnPoints { get; set; }
         public int UserId { get; set; }
     
         public virtual Usuario Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipo> Equipo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Partida> Partida { get; set; }
     }

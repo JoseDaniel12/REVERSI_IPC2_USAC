@@ -40,7 +40,9 @@ namespace ProyectoIpc2.Controllers
                         GameLogic.jugador_negro = db.Usuario.Find(GameLogic.userId).UserName;
                         GameLogic.jugador_blanco = "PC";       
                 }
-            } 
+            } else if (GameLogic.tipoPartida == "campeonato") {
+                ChampionshipManager.reiniciar();
+            }
             GameLogic.iniciarJuego();
             return new EmptyResult(); 
         }

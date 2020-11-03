@@ -17,7 +17,7 @@ async function renderBoard(info) {
     let ganador = JSON.parse(info["ganador"])
     let anchoTablero = JSON.parse(info["anchoTablero"])
     let altoTablero = JSON.parse(info["altoTablero"])
-    console.log(tablero)
+    
     for (let y = 0; y < altoTablero; y++) {
         for (let x = 0; x < anchoTablero; x++) {
             let id = x + "_" + y
@@ -92,6 +92,30 @@ async function renderBoard(info) {
         turnState.innerHTML = "Ganador: " + ganador
         clearInterval(cronometro)
         document.getElementById("cronometro").innerHTML = ""
+        if (tipoPartida == "campeonato") {
+            let elemento = document.getElementById("imponerGanador")
+            if (elemento != null) {
+                document.getElementById("info").removeChild(elemento);
+            }
+            let boton = document.createElement("button")
+            boton.classList.add("info_option");
+            boton.classList.add("host_black");
+            boton.classList.add("continuar");
+            boton.setAttribute("id", "cambiarColor")
+            boton.setAttribute("onclick", "continuar()")
+            boton.innerHTML = "Continuar"
+            document.getElementById("info").appendChild(boton) 
+                
+            fetch('/Tablero/RefrescarFinal', {
+                method: 'POST'
+            }).then(respuesta => respuesta.json())
+                .then((respuesta) => {
+                    document.getElementById("equipo1").innerHTML = "Eq: " + respuesta["team1Name"] + " (" + respuesta["team1Points"] + "pts)"
+                    document.getElementById("equipo2").innerHTML = "Eq: " + respuesta["team2Name"] + " (" + respuesta["team2Points"] + "pts)"
+                })
+                
+
+        }
     }
 
 }
@@ -281,10 +305,15 @@ function continuar() {
     }).then(respuesta => respuesta.json())
         .then(
             (estadosCampeonato) => {
+                //document.getElementById("info").removeChild(document.getElementById("cambiarColor"));
                 if (estadosCampeonato["haTerminado"] == true) {
                     location.assign("/GanadorCampeonato/GanadorCampeonato")
                 } else {
-                    location.assign("/Tablero/Tablero")
+                    if (estadosCampeonato["hayEmpate"] == true) {
+                        location.assign("/Empate/Empate")
+                    } else {
+                        location.assign("/Tablero/Tablero")
+                    }
                 }
             }
         )
@@ -301,7 +330,11 @@ function imponerGanador() {
         .then(
             (estadosCampeonato) => {
                 if (estadosCampeonato["ganadorCorrecto"] == true) {
-                    location.assign("/Tablero/Tablero")
+                    if (estadosCampeonato["haTerminado"] == true) {
+                        location.assign("/GanadorCampeonato/GanadorCampeonato")
+                    } else {
+                        location.assign("/Tablero/Tablero")
+                    }
                 } else {
                     alert("Nombre invalido, intente de nuevo.")
                 }

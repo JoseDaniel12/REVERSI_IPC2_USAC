@@ -10,9 +10,21 @@
             <PropertyRef Name="ChampionId" />
           </Key>
           <Property Name="ChampionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="XmlRouteInfo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChampionName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Resultado" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EarnPoints" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeamName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Player1Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Player2Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Player3Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChampionId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Partida">
           <Key>
@@ -46,7 +58,7 @@
           <Property Name="BornDate" Type="datetime" Nullable="false" />
           <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Campeonat__UserI__6442E2C9">
+        <Association Name="FK__Campeonat__UserI__308E3499">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="*" />
           <ReferentialConstraint>
@@ -58,7 +70,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Partida__Champio__671F4F74">
+        <Association Name="FK__Equipo__Champion__336AA144">
+          <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campeonato">
+              <PropertyRef Name="ChampionId" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="ChampionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partida__Champio__36470DEF">
           <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="0..1" />
           <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
           <ReferentialConstraint>
@@ -70,7 +94,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Partida__UserId__681373AD">
+        <Association Name="FK__Partida__UserId__373B3228">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
           <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
           <ReferentialConstraint>
@@ -84,17 +108,22 @@
         </Association>
         <EntityContainer Name="ReversiDBModelStoreContainer">
           <EntitySet Name="Campeonato" EntityType="Self.Campeonato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Campeonat__UserI__6442E2C9" Association="Self.FK__Campeonat__UserI__6442E2C9">
+          <AssociationSet Name="FK__Campeonat__UserI__308E3499" Association="Self.FK__Campeonat__UserI__308E3499">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Campeonato" EntitySet="Campeonato" />
           </AssociationSet>
-          <AssociationSet Name="FK__Partida__Champio__671F4F74" Association="Self.FK__Partida__Champio__671F4F74">
+          <AssociationSet Name="FK__Equipo__Champion__336AA144" Association="Self.FK__Equipo__Champion__336AA144">
+            <End Role="Campeonato" EntitySet="Campeonato" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partida__Champio__36470DEF" Association="Self.FK__Partida__Champio__36470DEF">
             <End Role="Campeonato" EntitySet="Campeonato" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
-          <AssociationSet Name="FK__Partida__UserId__681373AD" Association="Self.FK__Partida__UserId__681373AD">
+          <AssociationSet Name="FK__Partida__UserId__373B3228" Association="Self.FK__Partida__UserId__373B3228">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
@@ -105,17 +134,22 @@
       <Schema Namespace="ReversiDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ReversiContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Campeonato" EntityType="ReversiDBModel.Campeonato" />
+          <EntitySet Name="Equipo" EntityType="ReversiDBModel.Equipo" />
           <EntitySet Name="Partida" EntityType="ReversiDBModel.Partida" />
           <EntitySet Name="Usuario" EntityType="ReversiDBModel.Usuario" />
-          <AssociationSet Name="FK__Campeonat__UserI__6442E2C9" Association="ReversiDBModel.FK__Campeonat__UserI__6442E2C9">
+          <AssociationSet Name="FK__Campeonat__UserI__308E3499" Association="ReversiDBModel.FK__Campeonat__UserI__308E3499">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Campeonato" EntitySet="Campeonato" />
           </AssociationSet>
-          <AssociationSet Name="FK__Partida__Champio__671F4F74" Association="ReversiDBModel.FK__Partida__Champio__671F4F74">
+          <AssociationSet Name="FK__Equipo__Champion__336AA144" Association="ReversiDBModel.FK__Equipo__Champion__336AA144">
+            <End Role="Campeonato" EntitySet="Campeonato" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partida__Champio__36470DEF" Association="ReversiDBModel.FK__Partida__Champio__36470DEF">
             <End Role="Campeonato" EntitySet="Campeonato" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
-          <AssociationSet Name="FK__Partida__UserId__681373AD" Association="ReversiDBModel.FK__Partida__UserId__681373AD">
+          <AssociationSet Name="FK__Partida__UserId__373B3228" Association="ReversiDBModel.FK__Partida__UserId__373B3228">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Partida" EntitySet="Partida" />
           </AssociationSet>
@@ -125,11 +159,25 @@
             <PropertyRef Name="ChampionId" />
           </Key>
           <Property Name="ChampionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="XmlRouteInfo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChampionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Resultado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EarnPoints" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Campeonat__UserI__6442E2C9" FromRole="Campeonato" ToRole="Usuario" />
-          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Partida__Champio__671F4F74" FromRole="Campeonato" ToRole="Partida" />
+          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Campeonat__UserI__308E3499" FromRole="Campeonato" ToRole="Usuario" />
+          <NavigationProperty Name="Equipo" Relationship="ReversiDBModel.FK__Equipo__Champion__336AA144" FromRole="Campeonato" ToRole="Equipo" />
+          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Partida__Champio__36470DEF" FromRole="Campeonato" ToRole="Partida" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="TeamId" />
+          </Key>
+          <Property Name="TeamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Player1Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Player2Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Player3Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChampionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Campeonato" Relationship="ReversiDBModel.FK__Equipo__Champion__336AA144" FromRole="Equipo" ToRole="Campeonato" />
         </EntityType>
         <EntityType Name="Partida">
           <Key>
@@ -149,8 +197,8 @@
           <Property Name="HostColor" Type="Int32" Nullable="false" />
           <Property Name="ChampionId" Type="Int32" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Campeonato" Relationship="ReversiDBModel.FK__Partida__Champio__671F4F74" FromRole="Partida" ToRole="Campeonato" />
-          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Partida__UserId__681373AD" FromRole="Partida" ToRole="Usuario" />
+          <NavigationProperty Name="Campeonato" Relationship="ReversiDBModel.FK__Partida__Champio__36470DEF" FromRole="Partida" ToRole="Campeonato" />
+          <NavigationProperty Name="Usuario" Relationship="ReversiDBModel.FK__Partida__UserId__373B3228" FromRole="Partida" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -164,10 +212,10 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="BornDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Campeonato" Relationship="ReversiDBModel.FK__Campeonat__UserI__6442E2C9" FromRole="Usuario" ToRole="Campeonato" />
-          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Partida__UserId__681373AD" FromRole="Usuario" ToRole="Partida" />
+          <NavigationProperty Name="Campeonato" Relationship="ReversiDBModel.FK__Campeonat__UserI__308E3499" FromRole="Usuario" ToRole="Campeonato" />
+          <NavigationProperty Name="Partida" Relationship="ReversiDBModel.FK__Partida__UserId__373B3228" FromRole="Usuario" ToRole="Partida" />
         </EntityType>
-        <Association Name="FK__Campeonat__UserI__6442E2C9">
+        <Association Name="FK__Campeonat__UserI__308E3499">
           <End Type="ReversiDBModel.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="ReversiDBModel.Campeonato" Role="Campeonato" Multiplicity="*" />
           <ReferentialConstraint>
@@ -179,7 +227,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Partida__Champio__671F4F74">
+        <Association Name="FK__Equipo__Champion__336AA144">
+          <End Type="ReversiDBModel.Campeonato" Role="Campeonato" Multiplicity="1" />
+          <End Type="ReversiDBModel.Equipo" Role="Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Campeonato">
+              <PropertyRef Name="ChampionId" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="ChampionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partida__Champio__36470DEF">
           <End Type="ReversiDBModel.Campeonato" Role="Campeonato" Multiplicity="0..1" />
           <End Type="ReversiDBModel.Partida" Role="Partida" Multiplicity="*" />
           <ReferentialConstraint>
@@ -191,7 +251,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Partida__UserId__681373AD">
+        <Association Name="FK__Partida__UserId__373B3228">
           <End Type="ReversiDBModel.Usuario" Role="Usuario" Multiplicity="1" />
           <End Type="ReversiDBModel.Partida" Role="Partida" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,9 +273,22 @@
             <EntityTypeMapping TypeName="ReversiDBModel.Campeonato">
               <MappingFragment StoreEntitySet="Campeonato">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="EarnPoints" ColumnName="EarnPoints" />
                 <ScalarProperty Name="Resultado" ColumnName="Resultado" />
-                <ScalarProperty Name="XmlRouteInfo" ColumnName="XmlRouteInfo" />
+                <ScalarProperty Name="ChampionName" ColumnName="ChampionName" />
                 <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo">
+            <EntityTypeMapping TypeName="ReversiDBModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
+                <ScalarProperty Name="Player3Name" ColumnName="Player3Name" />
+                <ScalarProperty Name="Player2Name" ColumnName="Player2Name" />
+                <ScalarProperty Name="Player1Name" ColumnName="Player1Name" />
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

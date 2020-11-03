@@ -176,8 +176,56 @@ namespace ProyectoIpc2.Content.Csharp {
                 }
             }
             return true;
-        } 
+        }
 
+        public static bool cargarCampeonato(String rootFile) {
+            XmlDocument xmlDoc = new XmlDocument();
+            try {
+                xmlDoc.Load(rootFile);
+            }
+            catch {
+                return false;
+            }
+            foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes) {
+                if (xmlNode.Name == "nombre") {
+                    ChampionshipManager.nombreCampeonato = xmlNode.InnerText;
+                } else if (xmlNode.Name == "equipo") {
+                    Dictionary<string, string> equipo = new Dictionary<string, string>();
+                    equipo.Add("jugador1", xmlNode.ChildNodes[1].InnerText);
+                    equipo.Add("jugador2", xmlNode.ChildNodes[2].InnerText);
+                    equipo.Add("jugador3", xmlNode.ChildNodes[3].InnerText);
+                    equipo.Add("nombreEquipo", xmlNode.ChildNodes[0].InnerText);
+                    equipo.Add("puntos", "0");
+                    ChampionshipManager.equipos.Add(equipo);
+                }
+            }
+            GameLogic.jugador_negro = ChampionshipManager.equipos[0]["jugador1"];
+            GameLogic.jugador_blanco = ChampionshipManager.equipos[1]["jugador1"];
+            GameLogic.iniciarJuego();
+            using (ReversiContext db = new ReversiContext()) {
+                ChampionshipManager.hostUserName = db.Usuario.Find(GameLogic.userId).UserName.ToString();
+                Campeonato campeonato = new Campeonato();
+                campeonato.ChampionName = ChampionshipManager.nombreCampeonato;
+                campeonato.Resultado = "enCurso";
+                campeonato.EarnPoints = 0;
+                campeonato.UserId = GameLogic.userId;
+                db.Campeonato.Add(campeonato);
+                db.SaveChanges();
+                GameLogic.championId = campeonato.ChampionId;
+
+                foreach (Dictionary<string, string> team in ChampionshipManager.equipos) {
+                    Equipo equipo = new Equipo();
+                    equipo.TeamName = team["nombreEquipo"];
+                    equipo.Player1Name = team["jugador1"];
+                    equipo.Player2Name = team["jugador2"];
+                    equipo.Player3Name = team["jugador3"];
+                    equipo.ChampionId = GameLogic.championId;
+                    db.Equipo.Add(equipo);
+                    db.SaveChanges();
+                }
+            }
+            return true;
+        }
 
 
         public static void cargar(String rootFile) {
@@ -185,6 +233,8 @@ namespace ProyectoIpc2.Content.Csharp {
                 cargarPartidaNormal(rootFile);
             } else if (GameLogic.tipoPartida == "vsJugadorXtreme" || GameLogic.tipoPartida == "vsPcXtreme") {
                 cargarPartidaXtreme(rootFile);
+            } else if (GameLogic.tipoPartida == "campeonato") {
+                cargarCampeonato(rootFile);
             }
         }
 

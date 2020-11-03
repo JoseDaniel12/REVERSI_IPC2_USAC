@@ -5,9 +5,21 @@
       <PropertyRef Name="ChampionId" />
     </Key>
     <Property Name="ChampionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="XmlRouteInfo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChampionName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Resultado" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EarnPoints" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Equipo">
+    <Key>
+      <PropertyRef Name="TeamId" />
+    </Key>
+    <Property Name="TeamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Player1Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Player2Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Player3Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChampionId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Partida">
     <Key>
@@ -41,7 +53,7 @@
     <Property Name="BornDate" Type="datetime" Nullable="false" />
     <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Campeonat__UserI__6442E2C9">
+  <Association Name="FK__Campeonat__UserI__308E3499">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
     <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="*" />
     <ReferentialConstraint>
@@ -53,7 +65,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Partida__Champio__671F4F74">
+  <Association Name="FK__Equipo__Champion__336AA144">
+    <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="1" />
+    <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campeonato">
+        <PropertyRef Name="ChampionId" />
+      </Principal>
+      <Dependent Role="Equipo">
+        <PropertyRef Name="ChampionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Partida__Champio__36470DEF">
     <End Role="Campeonato" Type="Self.Campeonato" Multiplicity="0..1" />
     <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
     <ReferentialConstraint>
@@ -65,7 +89,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Partida__UserId__681373AD">
+  <Association Name="FK__Partida__UserId__373B3228">
     <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
     <End Role="Partida" Type="Self.Partida" Multiplicity="*" />
     <ReferentialConstraint>
@@ -79,17 +103,22 @@
   </Association>
   <EntityContainer Name="ReversiDBModelStoreContainer">
     <EntitySet Name="Campeonato" EntityType="Self.Campeonato" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Campeonat__UserI__6442E2C9" Association="Self.FK__Campeonat__UserI__6442E2C9">
+    <AssociationSet Name="FK__Campeonat__UserI__308E3499" Association="Self.FK__Campeonat__UserI__308E3499">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Campeonato" EntitySet="Campeonato" />
     </AssociationSet>
-    <AssociationSet Name="FK__Partida__Champio__671F4F74" Association="Self.FK__Partida__Champio__671F4F74">
+    <AssociationSet Name="FK__Equipo__Champion__336AA144" Association="Self.FK__Equipo__Champion__336AA144">
+      <End Role="Campeonato" EntitySet="Campeonato" />
+      <End Role="Equipo" EntitySet="Equipo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Partida__Champio__36470DEF" Association="Self.FK__Partida__Champio__36470DEF">
       <End Role="Campeonato" EntitySet="Campeonato" />
       <End Role="Partida" EntitySet="Partida" />
     </AssociationSet>
-    <AssociationSet Name="FK__Partida__UserId__681373AD" Association="Self.FK__Partida__UserId__681373AD">
+    <AssociationSet Name="FK__Partida__UserId__373B3228" Association="Self.FK__Partida__UserId__373B3228">
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Partida" EntitySet="Partida" />
     </AssociationSet>

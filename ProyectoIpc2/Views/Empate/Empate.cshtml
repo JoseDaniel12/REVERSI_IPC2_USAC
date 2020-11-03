@@ -9,30 +9,29 @@
 </head>
 
 <body>
-    
     <div class="option-container">
         <img src="~/Content/Imgs/reversi.png" alt="" width="454" class="cabezera">
         <p>Ha habido empate, elige a un jugador para desempatar</p>
-        <label>Jugador equipo 1:</label>
-        <select id="jugador_equipo1">
-            <option>4</option>
-            <option>8</option>
-            <option>16</option>
+        <label>Jugador del equipo @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["nombreEquipo"]:</label>
+        <select id="jugadorEquipo1">
+            <option>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["jugador1"]</option>
+            <option>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["jugador2"]</option>
+            <option>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["jugador3"]</option>
         </select>
 
-        <label>Jugador equipo 2:</label>
-        <select id="jugador_equipo2">
-            <option>4</option>
-            <option>8</option>
-            <option>16</option>
+        <label>Jugador del equipo @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["nombreEquipo"]:</label>
+        <select id="jugadorEquipo2">
+            <option>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["jugador1"]</option>
+            <option>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["jugador2"]</option>
+            <option>@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["jugador3"]</option>
         </select>
 
         <div class="botones">
-            <button class="option" id="salir" onclick="slir()">Salir</button>
+            <button class="option" id="salir" onclick="salir()">Salir</button>
             <button class="option" onclick="desempatar()">Continuar</button>
         </div>
     </div>
-    <script src=""></script>
+    <script src="~/Content/JsFiles/empate.js"></script>
 </body>
 
 </html>

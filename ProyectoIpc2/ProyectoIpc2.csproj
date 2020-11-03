@@ -148,6 +148,9 @@
     <Compile Include="Models\Campeonato.cs">
       <DependentUpon>ModelReversi.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Equipo.cs">
+      <DependentUpon>ModelReversi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ModelReversi.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -184,6 +187,7 @@
     <Content Include="Content\Imgs\fondoGanador.jpg" />
     <Content Include="Content\Imgs\GoogleLogo.png" />
     <Content Include="Content\Imgs\reversi.png" />
+    <Content Include="Content\JsFiles\empate.js" />
     <Content Include="Content\JsFiles\MenuCampeonato.js" />
     <Content Include="Content\JsFiles\MenuPrincipal.js" />
     <Content Include="Content\JsFiles\MenuXtreme.js" />

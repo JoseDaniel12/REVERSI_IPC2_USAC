@@ -5,9 +5,22 @@
       <EntityTypeMapping TypeName="ReversiDBModel.Campeonato">
         <MappingFragment StoreEntitySet="Campeonato">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="EarnPoints" ColumnName="EarnPoints" />
           <ScalarProperty Name="Resultado" ColumnName="Resultado" />
-          <ScalarProperty Name="XmlRouteInfo" ColumnName="XmlRouteInfo" />
+          <ScalarProperty Name="ChampionName" ColumnName="ChampionName" />
           <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipo">
+      <EntityTypeMapping TypeName="ReversiDBModel.Equipo">
+        <MappingFragment StoreEntitySet="Equipo">
+          <ScalarProperty Name="ChampionId" ColumnName="ChampionId" />
+          <ScalarProperty Name="Player3Name" ColumnName="Player3Name" />
+          <ScalarProperty Name="Player2Name" ColumnName="Player2Name" />
+          <ScalarProperty Name="Player1Name" ColumnName="Player1Name" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="TeamId" ColumnName="TeamId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

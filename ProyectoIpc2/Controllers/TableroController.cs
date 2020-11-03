@@ -189,10 +189,42 @@ namespace ProyectoIpc2.Controllers
         [HttpPost]
         public ActionResult ImponerGanador(FormCollection collection) {
             string jugadorGandor = Request.Params["jugadorGanador"].ToString();
-            if (jugadorGandor == ChampionshipManager.equipos[0].Values.ToList()[ChampionshipManager.contadorPartidas] || jugadorGandor == ChampionshipManager.equipos[1].Values.ToList()[ChampionshipManager.contadorPartidas]) {
-                ChampionshipManager.manage(true, jugadorGandor);
+            if (ChampionshipManager.equipos[0]["jugador1"] == jugadorGandor) {
+                ChampionshipManager.manage(true, 0, 0);
+            } else if (ChampionshipManager.equipos[0]["jugador2"] == jugadorGandor) {
+                ChampionshipManager.manage(true, 1, 0);
+            } else if (ChampionshipManager.equipos[0]["jugador3"] == jugadorGandor) {
+                ChampionshipManager.manage(true, 2, 0);
+            } else if (ChampionshipManager.equipos[1]["jugador1"] == jugadorGandor) {
+                ChampionshipManager.manage(true, 0, 1);
+            } else if (ChampionshipManager.equipos[1]["jugador2"] == jugadorGandor) {
+                ChampionshipManager.manage(true, 1, 1);
+            } else if (ChampionshipManager.equipos[1]["jugador3"] == jugadorGandor) {
+                ChampionshipManager.manage(true, 2, 1);
+            } else {
+                ChampionshipManager.estadosCampeonato["ganadorCorrecto"] = false;
             }
             return Content(JsonConvert.SerializeObject(ChampionshipManager.estadosCampeonato));
+        }
+
+        [HttpPost]
+        public ActionResult RefrescarFinal () {
+            int team1Points = Convert.ToInt32(ChampionshipManager.equipos[0]["puntos"]);
+            int team2oints = Convert.ToInt32(ChampionshipManager.equipos[1]["puntos"]);
+            if (GameLogic.player1Points > GameLogic.player2Points) {
+                team1Points += 3;
+            } else if (GameLogic.player2Points > GameLogic.player1Points) {
+                team2oints += 3;
+            } else {
+                team1Points += 1;
+                team2oints += 1;
+            }
+            Dictionary<string, string> infoToUpdate = new Dictionary<string, string>();
+            infoToUpdate.Add("team1Points", team1Points.ToString());
+            infoToUpdate.Add("team2Points", team2oints.ToString());
+            infoToUpdate.Add("team1Name", ChampionshipManager.equipos[0]["nombreEquipo"]);
+            infoToUpdate.Add("team2Name", ChampionshipManager.equipos[1]["nombreEquipo"]);
+            return Content(JsonConvert.SerializeObject(infoToUpdate));
         }
 
     }

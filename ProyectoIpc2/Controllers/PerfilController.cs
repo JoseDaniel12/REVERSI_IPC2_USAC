@@ -26,7 +26,7 @@ namespace ProyectoIpc2.Controllers
                 List<Dictionary<string, string>> partidasGanadas = new List<Dictionary<string, string>>();
                 foreach (Partida row in db.Partida) {
                     Dictionary<string, string> partidaGanadas = new Dictionary<string, string>();
-                    if (row.UserId == usuario.UserId) {
+                    if (row.UserId == usuario.UserId && row.GameType != "campeonato") {
                         partidaGanadas.Add("resultado", row.Resultado);
                         partidaGanadas.Add("gameId", row.GameId.ToString());
                         partidaGanadas.Add("gameType", row.GameType.ToString());
@@ -41,12 +41,30 @@ namespace ProyectoIpc2.Controllers
                             partidaGanadas.Add("tiempoAdversario", row.Player1Time.ToString() + " seg");
                             partidaGanadas.Add("puntosAdversario", row.Player1Points.ToString());
                         }
+                        partidasGanadas.Add(partidaGanadas);
                     }
-                    partidasGanadas.Add(partidaGanadas);
                 }
                 ViewBag.partidasGanadas = partidasGanadas;
 
-
+                int nCampeonatos = 0;
+                int nCampeonatosGanados = 0;
+                int puntosGanados = 0;
+                foreach (Campeonato campeonato in db.Campeonato) {
+                    foreach  (Equipo equipo in db.Equipo) {
+                        string nombre = ChampionshipManager.hostUserName;
+                        if (equipo.Player1Name == nombre || equipo.Player2Name == nombre || equipo.Player3Name == nombre) {
+                            nCampeonatos++;
+                            if (campeonato.Resultado == "ganado") {
+                                nCampeonatosGanados++;
+                                puntosGanados += campeonato.EarnPoints;
+                            }
+                            break;
+                        }
+                    }
+                }
+                ViewBag.nCampeonatos = nCampeonatos;
+                ViewBag.nCampeonatosGanados = nCampeonatosGanados;
+                ViewBag.puntosGanados = puntosGanados;
 
             }
             return View();

@@ -77,33 +77,31 @@
         </div>
     </div>
 
-    <div class="players_info">
+    <div id="info" class="players_info">
         <div class="player_info">
             @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
-            <div class="equipo" id="equipo1">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["nombreEquipo"]</div>
+            <div class="equipo" id="equipo1">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["nombreEquipo"] (@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["puntos"]pts)</div>
             }
             <div class="black_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_negro</div>
             <div class="player_movs" id="player_movs1">Movimientos: 0</div>
         </div>
         <div class="player_info">
             @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
-            <div class="equipo"  id="equipo2">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["nombreEquipo"]</div>
+            <div class="equipo" id="equipo2">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["nombreEquipo"] (@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["puntos"]pts)</div>
             }
             <div class="white_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_blanco</div>
             <div class="player_movs" id="player_movs2">Movimientos: 0</div>
         </div>
         @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {
-            <div>
+            <div id="imponerGanador">
                 <input type="text" class="nombre_input" placeholder="Jugador gandor" id="jugadorGanador">
                 <button class="info_option" id="nombre" onclick="imponerGanador()">Imponer ganador</button>
             </div>
         }
 
 
-        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {
-                <div>
-                    <button class="info_option host_black continuar" id="cambiarColor" onclick="continuar()">Continuar</button>
-                </div>
+        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {       
+            // <button class="info_option host_black continuar" id="cambiarColor" onclick="continuar()">Continuar</button>
         }
 
 
