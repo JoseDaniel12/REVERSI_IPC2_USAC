@@ -37,6 +37,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
             info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
+            info.Add("equipos", JsonConvert.SerializeObject(ChampionshipManager.equiposRespaldo));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -66,6 +67,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
             info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
+            info.Add("equipos", JsonConvert.SerializeObject(ChampionshipManager.equiposRespaldo));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -89,6 +91,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
             info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
+            info.Add("equipos", JsonConvert.SerializeObject(ChampionshipManager.equiposRespaldo));
             return Content(JsonConvert.SerializeObject(info));
         }
 
@@ -164,6 +167,7 @@ namespace ProyectoIpc2.Controllers
             info.Add("ganador", JsonConvert.SerializeObject(GameLogic.ganador));
             info.Add("anchoTablero", JsonConvert.SerializeObject(GameLogic.anchoTablero));
             info.Add("altoTablero", JsonConvert.SerializeObject(GameLogic.altoTablero));
+            info.Add("equipos", JsonConvert.SerializeObject(ChampionshipManager.equiposRespaldo));
             return Content(JsonConvert.SerializeObject(info));
         }
 

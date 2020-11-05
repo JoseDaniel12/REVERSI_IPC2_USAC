@@ -184,10 +184,14 @@
     <Content Include="Content\css\PerfilEstilo.css" />
     <Content Include="Content\css\RegistroEstilo.css" />
     <Content Include="Content\css\TableroEstilo.css" />
+    <Content Include="Content\Imgs\esquema16.jpg" />
+    <Content Include="Content\Imgs\esquema4.jpg" />
+    <Content Include="Content\Imgs\esquema8.jpg" />
     <Content Include="Content\Imgs\fondoGanador.jpg" />
     <Content Include="Content\Imgs\GoogleLogo.png" />
     <Content Include="Content\Imgs\reversi.png" />
     <Content Include="Content\JsFiles\empate.js" />
+    <Content Include="Content\JsFiles\esquemas.js" />
     <Content Include="Content\JsFiles\MenuCampeonato.js" />
     <Content Include="Content\JsFiles\MenuPrincipal.js" />
     <Content Include="Content\JsFiles\MenuXtreme.js" />

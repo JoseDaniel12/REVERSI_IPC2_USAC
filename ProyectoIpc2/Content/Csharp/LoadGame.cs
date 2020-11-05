@@ -99,37 +99,39 @@ namespace ProyectoIpc2.Content.Csharp {
             GameLogic.xmlRouteBoard = rootFile;
             GameLogic.gameId = -1;
             GameLogic.limpiarTablero();
-            string[] abcdario = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T" };
+            string[] abcdario = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "V"};
             string[] colores = new string[] { "gris", "negro", "blanco", "rojo", "amarillo", "azul", "anaranjado", "verde", "violeta", "celeste" };
             List<String> colores_p1 = new List<String>();
             List<String> colores_p2 = new List<String>();
             foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes) { 
-                if (xmlNode.Name == "filas") {
+                if (xmlNode.Name.ToLower() == "filas") {
                     GameLogic.altoTablero = Int32.Parse(xmlNode.InnerText);
-                } else if (xmlNode.Name == "columnas") {
+                } else if (xmlNode.Name.ToLower() == "columnas") {
                     GameLogic.anchoTablero = Int32.Parse(xmlNode.InnerText);
                     GameLogic.iniciarJuego();
-                } else if (xmlNode.Name == "Jugador1") {
+                } else if (xmlNode.Name.ToLower() == "jugador1") {
                     foreach (XmlNode subXmlNode in xmlNode.ChildNodes) {
-                        colores_p1.Add(subXmlNode.InnerText);
+                        colores_p1.Add(subXmlNode.InnerText.ToLower());
                     }
-                } else if (xmlNode.Name == "Jugador2") {
+                } else if (xmlNode.Name.ToLower() == "jugador2") {
                     foreach (XmlNode subXmlNode in xmlNode.ChildNodes) {
-                        colores_p2.Add(subXmlNode.InnerText);
+                        colores_p2.Add(subXmlNode.InnerText.ToLower());
                     }
                     GameLogic.coloresElegidos = new List<List<string>> { colores_p1, colores_p2 };
                     GameLogic.coloresActuales = new List<string> { colores_p1[0], colores_p2[0] };
-                } else if (xmlNode.Name == "Modalidad") {
-                    GameLogic.esModoInverso = (xmlDoc.InnerText == "Normal") ? false : true;
-                } else if (xmlNode.Name == "tablero") {
+                } else if (xmlNode.Name.ToLower() == "modalidad") {
+                    GameLogic.esModoInverso = (xmlDoc.InnerText.ToLower() == "normal") ? false : true;
+                } else if (xmlNode.Name.ToLower() == "tablero") {
                     foreach (XmlNode subXmlNode in xmlNode.ChildNodes) {
-                        if (subXmlNode.Name == "ficha") {
+                        if (subXmlNode.Name.ToLower() == "ficha") {
                             string color = subXmlNode.ChildNodes[0].InnerText;
                             int y = Int32.Parse(subXmlNode.ChildNodes[2].InnerText) - 1;
                             int x = Array.IndexOf(abcdario, subXmlNode.ChildNodes[1].InnerText);
-                            GameLogic.tableroDeColores[y, x] = Array.IndexOf(colores, color);
-                            GameLogic.tablero[y, x] = (colores_p1.Contains(color)) ? 1 : 2;
-                        } else if (subXmlNode.Name == "siguienteTiro") {
+                            if (x >= 0 && x <= GameLogic.anchoTablero-1 && y >= 0 && y <= GameLogic.altoTablero) {
+                                GameLogic.tableroDeColores[y, x] = (colores.Contains(color)) ? Array.IndexOf(colores, color) : -1;
+                                GameLogic.tablero[y, x] = (colores_p1.Contains(color)) ? 1 : 2;
+                            } 
+                        } else if (subXmlNode.Name.ToLower() == "siguientetiro") {
                             string color = subXmlNode.ChildNodes[0].InnerText;
                             GameLogic.turno = (colores_p1.Contains(color)) ? 1 : 2;
                             GameLogic.tirosPosibles = GameLogic.actualizarTirosPosibles(GameLogic.turno);
@@ -187,9 +189,9 @@ namespace ProyectoIpc2.Content.Csharp {
                 return false;
             }
             foreach (XmlNode xmlNode in xmlDoc.DocumentElement.ChildNodes) {
-                if (xmlNode.Name == "nombre") {
+                if (xmlNode.Name.ToLower() == "nombre") {
                     ChampionshipManager.nombreCampeonato = xmlNode.InnerText;
-                } else if (xmlNode.Name == "equipo") {
+                } else if (xmlNode.Name.ToLower() == "equipo") {
                     Dictionary<string, string> equipo = new Dictionary<string, string>();
                     equipo.Add("jugador1", xmlNode.ChildNodes[1].InnerText);
                     equipo.Add("jugador2", xmlNode.ChildNodes[2].InnerText);
@@ -197,6 +199,7 @@ namespace ProyectoIpc2.Content.Csharp {
                     equipo.Add("nombreEquipo", xmlNode.ChildNodes[0].InnerText);
                     equipo.Add("puntos", "0");
                     ChampionshipManager.equipos.Add(equipo);
+                    ChampionshipManager.equiposRespaldo.Add(equipo);
                 }
             }
             GameLogic.jugador_negro = ChampionshipManager.equipos[0]["jugador1"];

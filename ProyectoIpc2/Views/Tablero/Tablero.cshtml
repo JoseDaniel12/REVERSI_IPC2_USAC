@@ -22,99 +22,103 @@
 </head>
 
 <body>
+    <div class="cont">
+        <div class="options-container">
+            <button class="option salir" onclick="salir()"> Salir </button>
+            @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida != "campeonato") {
+                <button class="option" onclick="guardarPartida()">Guardar Partida</button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Cargar Partida
+                </button>
 
-    <div class="options-container">
-        <button class="option salir" onclick="salir()"> Salir </button>
-        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida != "campeonato") {
-            <button class="option" onclick="guardarPartida()">Guardar Partida</button>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Cargar Partida
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Cargar partida</h5>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile01"
-                                           aria-describedby="inputGroupFileAddon01" onchange="processSelectedFiles(this)">
-                                    <label class="custom-file-label" for="inputGroupFile01" id="choosedFile"
-                                           accept=".xml">Choose file</label>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Cargar partida</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                               aria-describedby="inputGroupFileAddon01" onchange="processSelectedFiles(this)">
+                                        <label class="custom-file-label" for="inputGroupFile01" id="choosedFile"
+                                               accept=".xml">Choose file</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="cargarPartida()" data-dismiss="modal">Continuar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="cargarPartida()" data-dismiss="modal">Continuar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- fin de boostrap -->
-        }
-
-    </div>
-
-    <div class="game_container">
-        <div class="state-container">
-            <div class="black-points"><p id="player1Points">Puntos: 2</p></div>
-            <div class="turn-state">
-                <p id="turno">Turno: Negro</p>
-                <p id="cronometro"><span id="minutos">0</span>:<span id="segundos">0</span></p>
-            </div>
-            <div class="white-points"><p id="player2Points">Puntos: 2</p></div>
-        </div>
-
-        <div class="box-container" id="contendorTablero">
-            <!-- AQUI VA EL TABLERO -->
-        </div>
-    </div>
-
-    <div id="info" class="players_info">
-        <div class="player_info">
-            @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
-            <div class="equipo" id="equipo1">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["nombreEquipo"] (@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["puntos"]pts)</div>
+                <!-- fin de boostrap -->
             }
-            <div class="black_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_negro</div>
-            <div class="player_movs" id="player_movs1">Movimientos: 0</div>
+
         </div>
-        <div class="player_info">
-            @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
-            <div class="equipo" id="equipo2">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["nombreEquipo"] (@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["puntos"]pts)</div>
-            }
-            <div class="white_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_blanco</div>
-            <div class="player_movs" id="player_movs2">Movimientos: 0</div>
-        </div>
-        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {
-            <div id="imponerGanador">
-                <input type="text" class="nombre_input" placeholder="Jugador gandor" id="jugadorGanador">
-                <button class="info_option" id="nombre" onclick="imponerGanador()">Imponer ganador</button>
+
+        <div class="game_container">
+            <div class="state-container">
+                <div class="black-points"><p id="player1Points">Puntos: 2</p></div>
+                <div class="turn-state">
+                    <p id="turno">Turno: Negro</p>
+                    <p id="cronometro"><span id="minutos">0</span>:<span id="segundos">0</span></p>
+                </div>
+                <div class="white-points"><p id="player2Points">Puntos: 2</p></div>
             </div>
-        }
 
+            <div class="box-container" id="contendorTablero">
+                <!-- AQUI VA EL TABLERO -->
+            </div>
+        </div>
 
-        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {       
-            // <button class="info_option host_black continuar" id="cambiarColor" onclick="continuar()">Continuar</button>
-        }
-
-
-        @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
-            if (ProyectoIpc2.Content.Csharp.GameLogic.hostColor == 1) {
-                <button class="info_option host_black" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
-            } else {
-                <button class="info_option host_white" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+        <div id="info" class="players_info">
+            <div class="player_info">
+                @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
+                    <div class="equipo" id="equipo1">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["nombreEquipo"] (@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[0]["puntos"]pts)</div>
+                }
+                <div class="black_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_negro</div>
+                <div class="player_movs" id="player_movs1">Movimientos: 0</div>
+            </div>
+            <div class="player_info">
+                @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
+                    <div class="equipo" id="equipo2">Eq: @ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["nombreEquipo"] (@ProyectoIpc2.Content.Csharp.ChampionshipManager.equipos[1]["puntos"]pts)</div>
+                }
+                <div class="white_Name">@ProyectoIpc2.Content.Csharp.GameLogic.jugador_blanco</div>
+                <div class="player_movs" id="player_movs2">Movimientos: 0</div>
+            </div>
+            @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {
+                <div id="imponerGanador">
+                    <input type="text" class="nombre_input" placeholder="Jugador gandor" id="jugadorGanador">
+                    <button class="info_option" id="nombre" onclick="imponerGanador()">Imponer ganador</button>
+                </div>
             }
-        }
-    </div>
 
-        <script src="~/Content/JsFiles/Pruebas.js?v=<%=DateTime.Now%>"></script>
+
+            @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato" && ProyectoIpc2.Content.Csharp.GameLogic.isFinished() == false) {
+                // <button class="info_option host_black continuar" id="cambiarColor" onclick="continuar()">Continuar</button>
+            }
+
+
+            @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "vsJugador") {
+                if (ProyectoIpc2.Content.Csharp.GameLogic.hostColor == 1) {
+                    <button class="info_option host_black" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+                } else {
+                    <button class="info_option host_white" id="cambiarColor" onclick="cambiarColor()">Cambiar color del host</button>
+                }
+            }
+        </div>
+    </div>
+    @if (ProyectoIpc2.Content.Csharp.GameLogic.tipoPartida == "campeonato") {
+        <div class="grid-block" style="width: 161vh; height: 62vh; " id="esquema"></div>
+     }
+    <script src="~/Content/JsFiles/Pruebas.js?v=<%=DateTime.Now%>"></script>
+    <script src="~/Content/JsFiles/esquemas.js?v=<%=DateTime.Now%>"></script>
 </body>
 
 </html>

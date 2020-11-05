@@ -268,3 +268,28 @@
     justify-content: center;
     align-items: center;
 }
+
+#esquema {
+    position: absolute;
+    background: url("/Content/Imgs/esquema16.jpg");
+    background-color: lightgray;
+    margin-top:650px;
+    margin-left: 140px;
+    margin-bottom:50px;
+    
+}
+
+.cont {
+    display: block
+}
+
+.bloque {
+    position: absolute;
+    background-color: red;
+    width: 101px;
+    height: 42px;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

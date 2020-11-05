@@ -102,7 +102,7 @@ namespace ProyectoIpc2.Content.Csharp {
             partidaNode.AppendChild(modalidadNode);
 
             XmlNode tableroNode = xmlDoc.CreateElement("tablero");
-            string[] abcdario = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T"};
+            string[] abcdario = new string[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "V"};
             string[] colores = new string[] {"gris", "negro", "blanco", "rojo", "amarillo", "azul", "anaranjado", "verde", "violeta", "celeste" };
             for (int y = 0; y < GameLogic.altoTablero; y++) {
                 for (int x = 0; x < GameLogic.anchoTablero; x++) {

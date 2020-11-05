@@ -17,6 +17,7 @@ async function renderBoard(info) {
     let ganador = JSON.parse(info["ganador"])
     let anchoTablero = JSON.parse(info["anchoTablero"])
     let altoTablero = JSON.parse(info["altoTablero"])
+    let equipos = JSON.parse(info["equipos"])
     
     for (let y = 0; y < altoTablero; y++) {
         for (let x = 0; x < anchoTablero; x++) {
@@ -86,6 +87,11 @@ async function renderBoard(info) {
             method: 'POST',
         }).then(respuesta => respuesta.json())
             .then(respuesta => renderBoard(respuesta))
+    }
+
+    if (tipoPartida == "campeonato") {
+        console.log(equipos)
+        colocarEquipos(equipos)
     }
     
     if (haTerminado == true) {
@@ -246,7 +252,7 @@ function prepararTablero() {
     fetch('/Tablero/PrepararTablero', {
         method: 'POST',
     }).then(respuesta => respuesta.json())
-        .then(respuesta => construirTablero(respuesta))
+      .then(respuesta => construirTablero(respuesta))
 }
 
 function construirTablero(info) {

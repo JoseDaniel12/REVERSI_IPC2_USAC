@@ -15,6 +15,7 @@ namespace ProyectoIpc2.Content.Csharp {
         public static int numeroEquipos = 0;
         public static List<Dictionary<string, string>> equipos = new List<Dictionary<string, string>>();
         public static List<Dictionary<string, string>> controlAuxiliar = new List<Dictionary<string, string>>();
+        public static List<Dictionary<string, string>> equiposRespaldo = new List<Dictionary<string, string>>();
         public static int contadorPartidas = 0;
         public static string resultado = "perdido";
         public static int earnPoints = 0;
@@ -49,6 +50,9 @@ namespace ProyectoIpc2.Content.Csharp {
                 equipos.Add(equipo);
                 nJugadores += 3;
             }
+            foreach (Dictionary<string, string> equipo in equipos) {
+                equiposRespaldo.Add(equipo);
+            }
             GameLogic.jugador_negro = equipos[0]["jugador1"];
             GameLogic.jugador_blanco = equipos[1]["jugador1"];
             GameLogic.iniciarJuego();
@@ -82,7 +86,8 @@ namespace ProyectoIpc2.Content.Csharp {
         public static void reiniciar() {
             nombreCampeonato = "Campeonato";
             numeroEquipos = 0;
-            equipos = new List<Dictionary<string, string>>();
+            equipos = new List<Dictionary<string, string>>(); 
+            equiposRespaldo = new List<Dictionary<string, string>>();
             controlAuxiliar = new List<Dictionary<string, string>>();
             contadorPartidas = 0;
             resultado = "perdido";
