@@ -268,6 +268,9 @@ namespace ProyectoIpc2.Content.Csharp
                             tableroDeColores[ficha[1], ficha[0]] = dicColores[coloresActuales[turno - 1]];
                         }
                     }
+                    if (contarFichas() >= 4) {
+                        cambiarColor(turno);
+                    }
                     calcularPutnos();
 
                     if (turno == 1) {
@@ -278,11 +281,12 @@ namespace ProyectoIpc2.Content.Csharp
 
 
                     // Verifica si es aprtura personalizada de lo contrario continua normal
-                    if ((tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") && (player1MovesNumber + player2MovesNumber) <= 4) {
+                    if ((tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") && contarFichas() < 4) {
                         foreach (int[] tiro in tirosPosibles) {
                             if (tiroX == tiro[0] && tiroY == tiro[1]) {
                                 tablero[tiroY, tiroX] = turno;
                                 tableroDeColores[tiroY, tiroX] = dicColores[coloresActuales[turno - 1]];
+                                cambiarColor(turno);
                                 tirosPosibles.Remove(tiro);
                                 turno = (turno == 1) ? 2 : 1;
                                 tirosPosibles = (player1MovesNumber + player2MovesNumber == 4) ? actualizarTirosPosibles(turno):tirosPosibles;
@@ -302,15 +306,6 @@ namespace ProyectoIpc2.Content.Csharp
                             tirosPosibles = actualizarTirosPosibles(turno);
                         }
                     }
-
-                    /*
-                    Debug.WriteLine("Turno siguiente: " + ((turno == 1) ? "negro" : "blanco"));
-                    foreach (int[] tiro in tirosPosibles) {
-                        Debug.WriteLine(tiro[0] + ", " + tiro[1]);
-                    }
-                    Debug.WriteLine("___________________________");
-                    */
-                    cambiarColor(turno);
                     break;
                 }
             }
@@ -529,6 +524,8 @@ namespace ProyectoIpc2.Content.Csharp
             tiempoSegP2 = 0;
             tirosPosibles = new List<int[]>();
             turno = 1;
+            ganador = "";
+            resultado = "enCurso";
             haTerminado = false;
             esModoInverso = false;
             for (int y = 0; y < altoTablero; y++) {

@@ -47,7 +47,7 @@ namespace ProyectoIpc2.Controllers
                 validado = false;
             } else if (colores_p1.Intersect(colores_p1).ToList().Count() != colores_p1.Count()) {
                 validado = false;
-            } else if (colores_p2.Intersect(colores_p2).ToList().Count() != colores_p1.Count()) {
+            } else if (colores_p2.Intersect(colores_p2).ToList().Count() != colores_p2.Count()) {
                 validado = false;
             } else if (colores_p1.Count() == 0 || colores_p2.Count() == 0) {
                 validado = false;

@@ -49,14 +49,14 @@ namespace ProyectoIpc2.Controllers
                 int nCampeonatos = 0;
                 int nCampeonatosGanados = 0;
                 int puntosGanados = 0;
+                string nombre = db.Usuario.Find(GameLogic.userId).UserName;
                 foreach (Campeonato campeonato in db.Campeonato) {
                     foreach  (Equipo equipo in db.Equipo) {
-                        string nombre = ChampionshipManager.hostUserName;
-                        if (equipo.Player1Name == nombre || equipo.Player2Name == nombre || equipo.Player3Name == nombre) {
+                        if ((equipo.Player1Name == nombre || equipo.Player2Name == nombre || equipo.Player3Name == nombre) && equipo.ChampionId == campeonato.ChampionId) {
                             nCampeonatos++;
+                            puntosGanados += campeonato.EarnPoints;
                             if (campeonato.Resultado == "ganado") {
                                 nCampeonatosGanados++;
-                                puntosGanados += campeonato.EarnPoints;
                             }
                             break;
                         }

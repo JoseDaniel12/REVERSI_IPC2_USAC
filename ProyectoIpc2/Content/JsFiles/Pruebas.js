@@ -18,7 +18,7 @@ async function renderBoard(info) {
     let anchoTablero = JSON.parse(info["anchoTablero"])
     let altoTablero = JSON.parse(info["altoTablero"])
     let equipos = JSON.parse(info["equipos"])
-    
+    console.log(tablero)
     for (let y = 0; y < altoTablero; y++) {
         for (let x = 0; x < anchoTablero; x++) {
             let id = x + "_" + y
@@ -261,7 +261,7 @@ function construirTablero(info) {
     let contenedor = document.getElementById("contendorTablero")
     contenedor.innerHTML = ""
     let numsText = ["cero", "uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve"]
-    let abcdario = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T"]
+    let abcdario = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T","V"]
 
     for (let y = 0; y < alto + 2; y++) {
         let fila = document.createElement("div")

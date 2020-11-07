@@ -60,7 +60,6 @@ namespace ProyectoIpc2.Content.Csharp {
             using(ReversiContext db = new ReversiContext()) {
                 hostUserName = db.Usuario.Find(GameLogic.userId).UserName.ToString();
                 Campeonato campeonato = new Campeonato();
-                Debug.WriteLine(nombreCampeonato);
                 campeonato.ChampionName = nombreCampeonato;
                 campeonato.Resultado = "perdido";
                 campeonato.EarnPoints = 0;
