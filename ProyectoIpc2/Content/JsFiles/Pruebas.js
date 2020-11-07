@@ -57,9 +57,9 @@ async function renderBoard(info) {
 
     let turnState = document.getElementById("turno")
     if (turno == 1) {
-        turnState.innerHTML = "Turno: Negro"
+        turnState.innerHTML = "Turno: " + jugador_negro
     } else {
-        turnState.innerHTML = "Turno: Blanco"
+        turnState.innerHTML = "Turno: " + jugador_blanco
     }
 
     let player_movs1 = document.getElementById("player_movs1")

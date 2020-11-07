@@ -151,7 +151,7 @@ namespace ProyectoIpc2.Content.Csharp {
                 partida.Player1Time = GameLogic.tiempoSegP1;
                 partida.Player2Time = GameLogic.tiempoSegP2;
                 partida.Resultado = GameLogic.resultado;
-                partida.HostColor = (GameLogic.tipoPartida == "vsPc" || GameLogic.tipoPartida == "vsJugador") ? GameLogic.hostColor : partida.HostColor;
+                partida.HostColor = GameLogic.hostColor;
                 partida.ChampionId = (GameLogic.tipoPartida == "campeonato") ? GameLogic.championId : partida.ChampionId;
                 partida.UserId = GameLogic.userId;
                 if (db.Partida.Find(gameId) == null) {

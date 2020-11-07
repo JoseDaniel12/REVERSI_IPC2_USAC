@@ -170,10 +170,23 @@ namespace ProyectoIpc2.Content.Csharp {
                             GameLogic.player2MovesNumber = partida.Player2MovesNumber;
                             GameLogic.tiempoSegP1 = partida.Player1Time;
                             GameLogic.tiempoSegP2 = partida.Player1Time;
+                            GameLogic.hostColor = partida.HostColor;
                             if (GameLogic.tipoPartida == "vsJugadorXtreme") {
-                                GameLogic.hostColor = partida.HostColor;
                                 GameLogic.jugador_negro = (partida.HostColor == 1) ? db.Usuario.Find(partida.UserId).UserName.ToString() : "Invitado";
                                 GameLogic.jugador_blanco = (partida.HostColor == 2) ? db.Usuario.Find(partida.UserId).UserName.ToString() : "Invitado";
+                            } else if (GameLogic.tipoPartida == "vsPc") {
+                                GameLogic.jugador_negro = (partida.HostColor == 1) ? db.Usuario.Find(partida.UserId).UserName.ToString() : "PC";
+                                GameLogic.jugador_blanco = (partida.HostColor == 2) ? db.Usuario.Find(partida.UserId).UserName.ToString() : "PC";
+                            }
+
+                            if (GameLogic.isFinished()) {
+                                if (partida.Player1Points > partida.Player2Points) {
+                                    GameLogic.ganador = GameLogic.jugador_negro;
+                                } else if (partida.Player2Points > partida.Player1Points) {
+                                    GameLogic.ganador = GameLogic.jugador_blanco;
+                                } else {
+                                    GameLogic.ganador = "EMPATE";
+                                }
                             }
                         }
                     }
