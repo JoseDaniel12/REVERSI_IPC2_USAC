@@ -174,6 +174,7 @@ namespace ProyectoIpc2.Content.Csharp {
                             GameLogic.tiempoSegP1 = partida.Player1Time;
                             GameLogic.tiempoSegP2 = partida.Player1Time;
                             GameLogic.hostColor = partida.HostColor;
+                            GameLogic.esModoInverso = (partida.GameMode == "Normal") ? false : true;
                             if (GameLogic.tipoPartida == "vsJugadorXtreme") {
                                 GameLogic.jugador_negro = (partida.HostColor == 1) ? db.Usuario.Find(partida.UserId).UserName.ToString() : "Invitado";
                                 GameLogic.jugador_blanco = (partida.HostColor == 2) ? db.Usuario.Find(partida.UserId).UserName.ToString() : "Invitado";
@@ -183,13 +184,7 @@ namespace ProyectoIpc2.Content.Csharp {
                             }
 
                             if (GameLogic.isFinished()) {
-                                if (partida.Player1Points > partida.Player2Points) {
-                                    GameLogic.ganador = GameLogic.jugador_negro;
-                                } else if (partida.Player2Points > partida.Player1Points) {
-                                    GameLogic.ganador = GameLogic.jugador_blanco;
-                                } else {
-                                    GameLogic.ganador = "EMPATE";
-                                }
+                                GameLogic.definirGanador();
                             }
                         }
                     }
