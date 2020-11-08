@@ -18,7 +18,7 @@ async function renderBoard(info) {
     let anchoTablero = JSON.parse(info["anchoTablero"])
     let altoTablero = JSON.parse(info["altoTablero"])
     let equipos = JSON.parse(info["equipos"])
-    console.log(tablero)
+
     for (let y = 0; y < altoTablero; y++) {
         for (let x = 0; x < anchoTablero; x++) {
             let id = x + "_" + y

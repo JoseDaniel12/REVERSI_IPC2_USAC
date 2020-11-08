@@ -38,6 +38,7 @@ namespace ProyectoIpc2.Content.Csharp
         public static string resultado = "enCurso";
         public static int anchoTablero = 8;
         public static int altoTablero = 8;
+        public static bool esPersonalizada = false;
         public static List<List<String>> coloresElegidos = new List<List<String>>{
             new List<String> {"negro"},
             new List<String> {"blanco"},
@@ -73,17 +74,50 @@ namespace ProyectoIpc2.Content.Csharp
                 tablero[(altoTablero / 2), (anchoTablero / 2) - 1] = 1;
                 tablero[(altoTablero / 2), (anchoTablero / 2)] = 2;
                 tirosPosibles = actualizarTirosPosibles(1);
+                tableroDeColores = (int[,])tablero.Clone();
             } else if (tipoPartida == "vsPcXtreme" || tipoPartida == "vsJugadorXtreme") {
                 tablero = new int[altoTablero, anchoTablero];
                 limpiarTablero();
-                tirosPosibles = new List<int[]>() {
-                    new int[] { (anchoTablero / 2) - 1, (altoTablero / 2) - 1},
-                    new int[] { (anchoTablero / 2), (altoTablero / 2) - 1},
-                    new int[] { (anchoTablero / 2) - 1, (altoTablero / 2)},
-                    new int[] {(anchoTablero / 2), (altoTablero / 2)},
-                };
+                tableroDeColores = (int[,])tablero.Clone();
+                if (esPersonalizada == true) {
+                    tirosPosibles = new List<int[]>() {
+                        new int[] { (anchoTablero / 2) - 1, (altoTablero / 2) - 1},
+                        new int[] { (anchoTablero / 2), (altoTablero / 2) - 1},
+                        new int[] { (anchoTablero / 2) - 1, (altoTablero / 2)},
+                        new int[] {(anchoTablero / 2), (altoTablero / 2)},
+                    };
+                    
+                } else {
+                    tablero[(altoTablero / 2) - 1, (anchoTablero / 2) - 1] = 2;
+                    tablero[(altoTablero / 2) - 1, (anchoTablero / 2)] = 1;
+                    tablero[(altoTablero / 2), (anchoTablero / 2) - 1] = 1;
+                    tablero[(altoTablero / 2), (anchoTablero / 2)] = 2;
+
+                    if (coloresElegidos[0].Count < 2) {
+                        tableroDeColores[(altoTablero / 2) - 1, (anchoTablero / 2)] = dicColores[coloresElegidos[0][0]];
+                        tableroDeColores[(altoTablero / 2), (anchoTablero / 2) - 1] = dicColores[coloresElegidos[0][0]];
+                    } else {
+                        tableroDeColores[(altoTablero / 2) - 1, (anchoTablero / 2)] = dicColores[coloresElegidos[0][0]];
+                        tableroDeColores[(altoTablero / 2), (anchoTablero / 2) - 1] = dicColores[coloresElegidos[0][1]];
+                    }
+
+                    if (coloresElegidos[1].Count < 2) {
+                        tableroDeColores[(altoTablero / 2) - 1, (anchoTablero / 2) - 1] = dicColores[coloresElegidos[1][0]];
+                        tableroDeColores[(altoTablero / 2), (anchoTablero / 2)] = dicColores[coloresElegidos[1][0]];
+                    } else {
+                        tableroDeColores[(altoTablero / 2) - 1, (anchoTablero / 2) - 1] = dicColores[coloresElegidos[1][0]];
+                        tableroDeColores[(altoTablero / 2), (anchoTablero / 2)] = dicColores[coloresElegidos[1][1]];
+                    }
+                    cambiarColor(1);
+                    cambiarColor(1);
+                    cambiarColor(2);
+                    cambiarColor(1);
+                    cambiarColor(2);
+
+                    tirosPosibles = actualizarTirosPosibles(1);
+                }
             }
-            tableroDeColores = (int[,])tablero.Clone();
+         
             tableroInicial = (int[,])tablero.Clone();
         }
 
@@ -528,6 +562,7 @@ namespace ProyectoIpc2.Content.Csharp
             resultado = "enCurso";
             haTerminado = false;
             esModoInverso = false;
+            esPersonalizada = false;
             for (int y = 0; y < altoTablero; y++) {
                 for (int x = 0; x < anchoTablero; x++) {
                     tablero[y, x] = tableroInicial[y, x];

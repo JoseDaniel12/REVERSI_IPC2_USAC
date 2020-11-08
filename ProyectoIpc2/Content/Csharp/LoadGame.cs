@@ -108,14 +108,17 @@ namespace ProyectoIpc2.Content.Csharp {
                     GameLogic.altoTablero = Int32.Parse(xmlNode.InnerText);
                 } else if (xmlNode.Name.ToLower() == "columnas") {
                     GameLogic.anchoTablero = Int32.Parse(xmlNode.InnerText);
-                    GameLogic.iniciarJuego();
+                    GameLogic.tablero = new int[GameLogic.altoTablero, GameLogic.anchoTablero];
+                    GameLogic.limpiarTablero();
+                    GameLogic.tableroDeColores = (int[,])GameLogic.tablero.Clone();
+                    GameLogic.tableroInicial = (int[,])GameLogic.tablero.Clone();
+
                 } else if (xmlNode.Name.ToLower() == "jugador1") {
                     foreach (XmlNode subXmlNode in xmlNode.ChildNodes) {
                         colores_p1.Add(subXmlNode.InnerText.ToLower());
                     }
                 } else if (xmlNode.Name.ToLower() == "jugador2") {
                     foreach (XmlNode subXmlNode in xmlNode.ChildNodes) {
-                        Debug.WriteLine(subXmlNode.InnerText.ToLower());
                         colores_p2.Add(subXmlNode.InnerText.ToLower());
                     }
                     GameLogic.coloresElegidos = new List<List<string>> { colores_p1, colores_p2 };

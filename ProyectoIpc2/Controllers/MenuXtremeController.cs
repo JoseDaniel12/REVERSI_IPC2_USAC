@@ -21,6 +21,7 @@ namespace ProyectoIpc2.Controllers
             int anchoTablero = Int32.Parse(Request.Params["anchoTablero"].ToString());
             int altoTablero = Int32.Parse(Request.Params["altoTablero"].ToString());
             string modalidad = Request.Params["modalidad"].ToString();
+            string apertura = Request.Params["apertura"].ToString();
 
             string color1_p1 = Request.Params["color1_p1"].ToString().ToLower();
             string color2_p1 = Request.Params["color2_p1"].ToString().ToLower();
@@ -62,6 +63,12 @@ namespace ProyectoIpc2.Controllers
                 if (modalidad == "Inverso") {
                     GameLogic.esModoInverso = true;
                 }
+                if (apertura == "Apertura Normal") {
+                    GameLogic.esPersonalizada = false;
+                } else {
+                    GameLogic.esPersonalizada = true;
+                }
+
                 GameLogic.iniciarJuego();
                 return Content(JsonConvert.SerializeObject(true));
             }

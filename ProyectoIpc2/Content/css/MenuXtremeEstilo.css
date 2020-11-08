@@ -18,7 +18,7 @@
 
 .option-container {
     position: relative;
-    margin: 6px auto;
+    margin: 4px auto;
     background-color: whitesmoke;
     width: 454px;
     border-radius: 8px;
@@ -76,4 +76,8 @@ label {
 
 #regresar {
     background-color: #e82e40;
+}
+
+#apertura {
+    margin-top: 4px;
 }
